@@ -1,15 +1,16 @@
 import React from "react";
 import "./App.css";
-import Nav from "../Nav";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Nav from "../Nav/Nav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Products from "../Products/Products";
 import Home from "../Home/Home";
+import ProductShow from "../Products/ProductShow";
 import "./App.css";
 
 function App() {
   return (
     <Router basename="/isell">
-      <div classNameName="App">
+      <div className="App">
         <Nav />
 
         <div className="content">
@@ -19,6 +20,9 @@ function App() {
             </Route>
             <Route exact path="/Products">
               <Products />
+            </Route>
+            <Route exact path="/Products/:id/Show" component={ProductShow}>
+              <ProductShow />
             </Route>
           </Switch>
         </div>
