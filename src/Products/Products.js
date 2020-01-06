@@ -15,6 +15,7 @@ class Products extends Component {
           <ProductCard
             key={i}
             {...product}
+            product={product}
             url={url}
             productClass={`product-card-${id} product-card`}
           />

@@ -17,46 +17,44 @@ const products = [];
 
 const product1 = new Product(
   1,
-  "towel",
-  "large",
-  "4.99",
+  "Louis Vuitton",
+  "Juul Sticker",
+  "9.99",
   "http://localhost:3000/images/img4.jpg",
   "Phone Accesories"
 );
 const product2 = new Product(
   2,
-  "towel",
-  "small",
+  "Hello",
+  "Juul Sticker",
   "3.99",
   "http://localhost:3000/images/img5.jpg",
-  "null"
+  "Phone Accesories"
 );
 const product3 = new Product(
   3,
-  "hockey stick",
-  "Small hockey stick for kids",
+  "Marble",
+  "Juul Sticker",
   "9.99",
-
   "http://localhost:3000/images/img6.jpg",
-  "null"
+  "Phone Accesories"
 );
 const product4 = new Product(
   4,
-  "Juul Skins",
-  "Jull stickers",
+  "Juul Holder",
+  "Juul Holder, Sticks to anywhere! Reusable!",
   "12.99",
 
   "http://localhost:3000/images/img7.jpg",
-  "null"
+  "Phone Accesories"
 );
 const product5 = new Product(
   5,
-  "Painting",
-  "city painting",
-  "120.00",
-
+  "Rick and Morty",
+  "Juul Sticker",
+  "9.99",
   "http://localhost:3000/images/img8.jpg",
-  "null"
+  "Phone Accesories"
 );
 
 products.push(product1, product2, product3, product4, product5);

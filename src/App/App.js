@@ -21,9 +21,12 @@ function App() {
             <Route exact path="/Products">
               <Products />
             </Route>
-            <Route exact path="/Products/:id/Show" component={ProductShow}>
-              <ProductShow />
-            </Route>
+            <Route
+              exact
+              path="/Products/:id/Show"
+              component={ProductShow}
+              render={props => <ProductShow {...props} />}
+            />
           </Switch>
         </div>
         {/* <!-- Footer --> */}

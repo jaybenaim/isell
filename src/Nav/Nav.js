@@ -8,8 +8,8 @@ class Nav extends Component {
     return (
       <>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">
-            Navbar
+          <a class="navbar-brand" href="/">
+            Isell
           </a>
           <button
             class="navbar-toggler"
@@ -26,7 +26,7 @@ class Nav extends Component {
             <ul class="navbar-nav">
               <li class="nav-item active">
                 <Link className="nav-link" to="/">
-                  Home <span class="sr-only">(current)</span>
+                  Isell <span class="sr-only">(current)</span>
                 </Link>
                 <a class="nav-link" href="#"></a>
               </li>

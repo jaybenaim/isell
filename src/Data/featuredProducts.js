@@ -16,27 +16,27 @@ class Product {
 const products = [];
 const product1 = new Product(
   1,
-  "towel",
-  "large",
+  "Gucci",
+  "Juul Sticker",
   "4.99",
   "http://localhost:3000/images/img1.jpg",
   "Phone Accesories"
 );
 const product2 = new Product(
   2,
-  "towel",
-  "small",
+  "Rick and Morty",
+  "Juul Sticker",
   "3.99",
   "http://localhost:3000/images/img2.jpg",
-  "null"
+  "Phone Accesories"
 );
 const product3 = new Product(
   3,
-  "hockey stick",
-  "Small hockey stick for kids",
+  "Supreme",
+  "Juul Sticker",
   "9.99",
   "http://localhost:3000/images/img3.jpg",
-  "null"
+  "Phone Accesories"
 );
 products.push(product1, product2, product3);
 

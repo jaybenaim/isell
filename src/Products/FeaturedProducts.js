@@ -20,18 +20,21 @@ class FeaturedProducts extends Component {
               <div className="card-1">
                 <ProductCard
                   {...featuredProducts[0]}
+                  product={featuredProducts[0]}
                   productClass={`product-card-${featuredProducts[0].id} product-card`}
                 />
               </div>
               <div className="card-2">
                 <ProductCard
                   {...featuredProducts[1]}
+                  product={featuredProducts[1]}
                   productClass={`product-card-${featuredProducts[1].id} product-card`}
                 />
               </div>
               <div className="card-3">
                 <ProductCard
                   {...featuredProducts[2]}
+                  product={featuredProducts[2]}
                   productClass={`product-card-${featuredProducts[2].id} product-card`}
                 />
               </div>
