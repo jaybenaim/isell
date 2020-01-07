@@ -3,6 +3,7 @@ import FeaturedProducts from "../Products/FeaturedProducts";
 class Home extends Component {
   state = {};
   render() {
+    const { addToCart } = this.props;
     return (
       <>
         <header>
@@ -92,7 +93,7 @@ class Home extends Component {
           </div>
         </header>
         <div>
-          <FeaturedProducts />
+          <FeaturedProducts addToCart={addToCart} />
         </div>
       </>
     );

@@ -40,7 +40,7 @@ class App extends Component {
           <div className="content">
             <Switch>
               <Route exact path="/">
-                <Home />
+                <Home addToCart={this.addToCart} />
               </Route>
               <Route exact path="/Products">
                 <Products addToCart={this.addToCart} />
