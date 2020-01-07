@@ -6,22 +6,6 @@ import "./featuredProducts.css";
 class FeaturedProducts extends Component {
   state = {};
   render() {
-    const {
-      name: name1,
-      description: desc1,
-      price: price1
-    } = featuredProducts[0];
-    const {
-      name: name2,
-      description: desc2,
-      price: price2
-    } = featuredProducts[1];
-    const {
-      name: name3,
-      description: desc3,
-      price: price3
-    } = featuredProducts[2];
-
     return (
       <div className="featured-products-container">
         <div className="card text-center">
@@ -34,13 +18,25 @@ class FeaturedProducts extends Component {
             </p>
             <div className="featured-products-grid">
               <div className="card-1">
-                <ProductCard name={name1} description={desc1} price={price1} />
+                <ProductCard
+                  {...featuredProducts[0]}
+                  product={featuredProducts[0]}
+                  productClass={`product-card-${featuredProducts[0].id} product-card`}
+                />
               </div>
               <div className="card-2">
-                <ProductCard name={name2} description={desc2} price={price2} />
+                <ProductCard
+                  {...featuredProducts[1]}
+                  product={featuredProducts[1]}
+                  productClass={`product-card-${featuredProducts[1].id} product-card`}
+                />
               </div>
               <div className="card-3">
-                <ProductCard name={name3} description={desc3} price={price3} />
+                <ProductCard
+                  {...featuredProducts[2]}
+                  product={featuredProducts[2]}
+                  productClass={`product-card-${featuredProducts[2].id} product-card`}
+                />
               </div>
             </div>
           </div>

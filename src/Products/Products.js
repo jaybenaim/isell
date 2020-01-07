@@ -7,17 +7,20 @@ class Products extends Component {
   state = {};
   render() {
     let productList = products.map((product, i) => {
-      const { id, name, description, price } = product;
-      return (
-        <ProductCard
-          key={i}
-          id={id}
-          name={name}
-          description={description}
-          price={price}
-          productClass={`product-card-${id}`}
-        />
-      );
+      const { id, image: url } = product;
+      if (product.image === undefined) {
+        return;
+      } else {
+        return (
+          <ProductCard
+            key={i}
+            {...product}
+            product={product}
+            url={url}
+            productClass={`product-card-${id} product-card`}
+          />
+        );
+      }
     });
     return (
       <div>
