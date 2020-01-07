@@ -24,13 +24,13 @@ class CartModal extends Component {
     }
   };
   checkout = () => {
-    const { onHide, cart } = this.props;
+    const { onHide } = this.props;
     onHide();
-    localStorage.cart = cart;
   };
 
   render() {
     const { props } = this;
+    const { cart } = props;
 
     return (
       <Modal
@@ -48,8 +48,8 @@ class CartModal extends Component {
             className="nav-link"
             onClick={() => this.checkout()}
             to={{
-              pathname: "/ShoppingCart"
-              //   state: { cart: props.cart }
+              pathname: "/ShoppingCart",
+              params: cart
             }}
           >
             Checkout

@@ -46,13 +46,25 @@ class Nav extends Component {
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item active">
-                <Link className="nav-link" to="/">
+              <li
+                class="nav-item active"
+                data-toggle="collapse"
+                data-target="#navbarNavDropdown"
+              >
+                <Link
+                  className="nav-link"
+                  to="/"
+                  data-toggle="collapse"
+                  data-target="#navbarNavDropdown"
+                >
                   Isell <span class="sr-only">(current)</span>
                 </Link>
-                <a class="nav-link" href="#"></a>
               </li>
-              <li class="nav-item">
+              <li
+                class="nav-item"
+                data-toggle="collapse"
+                data-target="#navbarNavDropdown"
+              >
                 <Link className="nav-link" to="/Products">
                   Products
                 </Link>
@@ -88,19 +100,13 @@ class Nav extends Component {
                   </a>
                 </div>
               </li>
-              <li>
-                <Link
-                  className="nav-link"
-                  to={{
-                    pathname: "/ShoppingCart",
-                    state: {
-                      showCart,
-                      handleShowCart: this.handleShowCart
-                    }
-                  }}
+              <li data-toggle="collapse" data-target="#navbarNavDropdown">
+                <button
+                  className="cart-btn btn"
+                  onClick={() => this.handleShowCart()}
                 >
-                  Cart &nbsp;<span>{cart.qty}</span>{" "}
-                </Link>
+                  Cart &nbsp; <span>{cart.qty}</span>
+                </button>
               </li>
             </ul>
           </div>
