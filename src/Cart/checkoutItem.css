@@ -1,0 +1,16 @@
+.checkout-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.checkout-item-name {
+  grid-area: 1/1;
+}
+.checkout-item-desc {
+  grid-area: 1/2;
+}
+.checkout-item-qty {
+  grid-area: 1/3;
+}
+.checkout-item-price {
+  grid-area: 1/4;
+}
