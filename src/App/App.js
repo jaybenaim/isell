@@ -21,7 +21,9 @@ class App extends Component {
     for (let i = 1; i <= qty; i++) {
       items.push(new Product(id + 1, name, description, price, image));
     }
-
+    if (qty == 0 || qty === undefined) {
+      qty = 1;
+    }
     this.setState(prevState => {
       return {
         cartQty: (prevState.cartQty += qty),

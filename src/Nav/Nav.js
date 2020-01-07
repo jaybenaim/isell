@@ -99,7 +99,7 @@ class Nav extends Component {
                     }
                   }}
                 >
-                  Cart<span>0</span>{" "}
+                  Cart &nbsp;<span>{cart.qty}</span>{" "}
                 </Link>
               </li>
             </ul>

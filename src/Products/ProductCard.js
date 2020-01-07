@@ -4,19 +4,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 class ProductCard extends Component {
   state = {
     isLoaded: false,
-    qty: 0
+    qty: 1
   };
 
   componentDidMount() {
     this.setState({ image: true });
   }
   handleSetQty = event => {
-    const { product, addToCart } = this.props;
     let qty = Number(event.target.value);
-    if (!qty || qty === 0) {
-      qty = 1;
-    }
-
     this.setState({ qty: qty });
   };
   getImageURl = () => {
@@ -61,6 +56,7 @@ class ProductCard extends Component {
             name="quantity"
             min="1"
             max="10"
+            placeholder="1"
             ref={this.qtyRef}
             onChange={this.handleSetQty}
           ></input>

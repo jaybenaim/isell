@@ -1,0 +1,6 @@
+.cart-btn {
+  position: fixed;
+  z-index: 3;
+  margin-left: 40px;
+}
+/* change with window scroll */
