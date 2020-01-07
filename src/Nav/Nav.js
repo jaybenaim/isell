@@ -20,7 +20,7 @@ class Nav extends Component {
           </a>
 
           <button
-            className="cart-btn btn"
+            className="cart-btn cart-btn-1 btn"
             onClick={() => this.handleShowCart()}
           >
             Cart &nbsp; <span>{cart.qty}</span>

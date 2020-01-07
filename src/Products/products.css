@@ -89,3 +89,9 @@
     grid-area: 2/1;
   }
 }
+.qty-input,
+.add-to-cart-btn {
+  border-radius: 4px;
+  margin-right: 4px;
+  margin-bottom: 10px;
+}

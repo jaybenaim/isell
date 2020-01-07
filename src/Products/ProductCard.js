@@ -52,6 +52,7 @@ class ProductCard extends Component {
           <p className="card-text">{description}</p>
           <p> {price}</p>
           <input
+            className="qty-input"
             type="number"
             name="quantity"
             min="1"
@@ -60,7 +61,12 @@ class ProductCard extends Component {
             ref={this.qtyRef}
             onChange={this.handleSetQty}
           ></input>
-          <button onClick={() => addToCart(qty, product)}>Add to cart</button>
+          <button
+            className="add-to-cart-btn"
+            onClick={() => addToCart(qty, product)}
+          >
+            Add to cart
+          </button>
           <Link
             to={{
               pathname: `/Products/${id}/show`,
