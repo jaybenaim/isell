@@ -3,12 +3,22 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class ProductCard extends Component {
   state = {
-    isLoaded: false
+    isLoaded: false,
+    qty: 0
   };
 
   componentDidMount() {
     this.setState({ image: true });
   }
+  handleSetQty = event => {
+    const { product, addToCart } = this.props;
+    let qty = Number(event.target.value);
+    if (!qty || qty === 0) {
+      qty = 1;
+    }
+
+    this.setState({ qty: qty });
+  };
   getImageURl = () => {
     const { image, name, id } = this.props;
     if (image === undefined) {
@@ -24,6 +34,7 @@ class ProductCard extends Component {
     }
   };
   render() {
+    const { qty } = this.state;
     let {
       name,
       description,
@@ -31,7 +42,8 @@ class ProductCard extends Component {
       productClass,
       id,
       product,
-      image
+      image,
+      addToCart
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
     description = description.replace(/^\w/, c => c.toUpperCase());
@@ -44,6 +56,15 @@ class ProductCard extends Component {
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{description}</p>
           <p> {price}</p>
+          <input
+            type="number"
+            name="quantity"
+            min="1"
+            max="10"
+            ref={this.qtyRef}
+            onChange={this.handleSetQty}
+          ></input>
+          <button onClick={() => addToCart(qty, product)}>Add to cart</button>
           <Link
             to={{
               pathname: `/Products/${id}/show`,

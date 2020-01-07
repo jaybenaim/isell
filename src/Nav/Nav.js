@@ -1,16 +1,38 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import CartModal from "../Cart/CartModal";
 class Nav extends Component {
-  state = {};
-
+  state = {
+    showCart: false
+  };
+  handleShowCart = event => {
+    const { showCart } = this.state;
+    this.setState({ showCart: !showCart });
+  };
   render() {
+    const { cart } = this.props;
+    const { showCart } = this.state;
     return (
       <>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="/">
             Isell
           </a>
+
+          <button
+            className="cart-btn btn"
+            onClick={() => this.handleShowCart()}
+          >
+            Cart &nbsp; <span>{cart.qty}</span>
+          </button>
+
+          {showCart && (
+            <CartModal
+              onHide={() => this.handleShowCart()}
+              show={showCart}
+              cart={cart}
+            />
+          )}
           <button
             class="navbar-toggler"
             type="button"
@@ -65,6 +87,20 @@ class Nav extends Component {
                     Something else here
                   </a>
                 </div>
+              </li>
+              <li>
+                <Link
+                  className="nav-link"
+                  to={{
+                    pathname: "/ShoppingCart",
+                    state: {
+                      showCart,
+                      handleShowCart: this.handleShowCart
+                    }
+                  }}
+                >
+                  Cart<span>0</span>{" "}
+                </Link>
               </li>
             </ul>
           </div>

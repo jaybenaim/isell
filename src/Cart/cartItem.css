@@ -1,0 +1,11 @@
+.modal-cart-item {
+  width: 90%;
+  margin: 0 auto;
+  background: #eee;
+  -webkit-box-shadow: 3px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  padding: 20px;
+}

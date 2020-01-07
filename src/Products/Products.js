@@ -6,6 +6,7 @@ import "./products.css";
 class Products extends Component {
   state = {};
   render() {
+    const { addToCart } = this.props;
     let productList = products.map((product, i) => {
       const { id, image: url } = product;
       if (product.image === undefined) {
@@ -18,13 +19,14 @@ class Products extends Component {
             product={product}
             url={url}
             productClass={`product-card-${id} product-card`}
+            addToCart={addToCart}
           />
         );
       }
     });
     return (
       <div>
-        <FeaturedProducts />
+        <FeaturedProducts addToCart={addToCart} />
         <div className="product-container">{productList}</div>
       </div>
     );
