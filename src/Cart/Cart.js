@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CheckoutItem from "./CheckoutItem";
 import "./cart.css";
+import SmartComponent from "../Payments/SmartComponent";
 class Cart extends Component {
   state = {
     subTotal: 0
@@ -39,6 +40,7 @@ class Cart extends Component {
         <div>
           SubTotal: <span> {subTotal}</span>
         </div>
+        <SmartComponent />
         <div>Proceed to checkout</div>
       </div>
     );
