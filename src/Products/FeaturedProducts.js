@@ -16,6 +16,8 @@ class FeaturedProducts extends Component {
             <p className="card-text">
               Take an additional 10% when using the code{" "}
               <span className="text-secondary">FREESTUFF </span>
+              <br />
+              NOT A REAL ECOMMERCE SITE DO NOT TRY TO PURCHASE
             </p>
             <div className="featured-products-grid">
               <div className="card-1">

@@ -3,16 +3,19 @@ import "./App.css";
 import Nav from "../Nav/Nav";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Products from "../Products/Products";
+import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
 import ProductShow from "../Products/ProductShow";
 import Cart from "../Cart/Cart";
 import "./App.css";
 import Product from "../Data/productSchema";
 
+const history = createBrowserHistory();
 class App extends Component {
   state = {
     cartQty: 0,
-    cartItems: []
+    cartItems: [],
+    selectedProduct: null
   };
   addToCart = (qty, item) => {
     const { id, name, description, price, image } = item;
@@ -31,11 +34,13 @@ class App extends Component {
       };
     });
   };
-
+  setSelectedProduct = product => {
+    this.setState({ selectProduct: product });
+  };
   render() {
     const { cartItems, cartQty } = this.state;
     return (
-      <Router basename="/isell">
+      <Router basename="/isell" history={history}>
         <div className="App">
           <Nav cart={{ qty: cartQty, items: cartItems }} />
 
@@ -45,7 +50,11 @@ class App extends Component {
                 <Home addToCart={this.addToCart} />
               </Route>
               <Route exact path="/Products">
-                <Products addToCart={this.addToCart} />
+                <Products
+                  addToCart={this.addToCart}
+                  selectProduct={this.setSelectedProduct}
+                  history={history}
+                />
               </Route>
               <Route
                 exact
@@ -67,7 +76,8 @@ class App extends Component {
           <footer className="py-5 bg-dark">
             <div className="container">
               <p className="m-0 text-center text-white">
-                Copyright &copy; Your Website 2019
+                Copyright &copy; Your Website 2019 NOT A REAL ECOMMERCE SITE DO
+                NOT TRY TO PURCHASE
               </p>
             </div>
             {/* <!-- /.container --> */}

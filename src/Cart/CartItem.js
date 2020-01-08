@@ -18,7 +18,7 @@ class CartItem extends Component {
                 role="button"
                 class="btn btn-secondary popover-test"
                 title="Popover title"
-                data-content={description}
+                data-content={`${description}`}
               >
                 {name}
               </a>
