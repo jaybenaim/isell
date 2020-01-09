@@ -39,7 +39,7 @@ var corsOptionsDelegate = function(req, callback) {
 //   res.sendFile("/Users/jay/projects/ecommerce/isell/isell/build/index.html");
 // });
 app.get("/", (req, res) => {
-  res.render("home");
+  res.write("<h1>Home</h1>");
 });
 
 app.options("/charge", cors(corsOptionsDelegate));
