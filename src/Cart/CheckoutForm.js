@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
-import stripe from "../Api/stripe";
+import backend from "../Api/backend";
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +16,7 @@ class CheckoutForm extends Component {
     let data = { token: token.id, subTotal };
     data = JSON.stringify(data);
 
-    let response = await fetch(`/charge`, {
+    let response = await backend(`/charge`, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
