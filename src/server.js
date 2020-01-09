@@ -22,11 +22,11 @@ const corsOptions = {
   origin: "https://jaybenaim.github.io",
   RegExp: /jaybenaim.github.io$/,
   preflightContinue: true,
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization", "data", "x-trigger"],
+  credentials: true
 };
 // app.use(cors());
 var corsOptionsDelegate = function(req, callback) {
-  var corsOptions;
   if (whitelist.indexOf(req.header("Origin")) !== -1) {
     corsOptions; // reflect (enable) the requested origin in the CORS response
   } else {
@@ -43,11 +43,11 @@ app.get("/", (req, res) => {
 });
 
 app.options("/charge", cors(corsOptionsDelegate));
-app.post("/charge", cors(corsOptionsDelegate), async (req, res) => {
+app.post("/charge", cors(corsOptionsDelegate), async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
-    console.log(data.token);
+    console.log(next);
     let { token, subTotal } = data;
     subTotal = Math.floor(subTotal * 100);
     let { status } = await stripe.charges.create({
