@@ -1,13 +1,22 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-// const cors = require("cors");
+const cors = require("cors");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 
+app.options("*", cors());
 app.use(require("body-parser").text());
 app.use(
   express.static("/Users/jay/projects/ecommerce/isell/isell/build/index.html")
 );
+app.use((_, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 const whitelist = [
   "https://jaybenaim.github.io",
   "https://jaybenaim.github.io/isell/",
