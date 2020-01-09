@@ -21,12 +21,13 @@ class CheckoutForm extends Component {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
-        Authorization: "Bearer sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH"
+        Authorization: "Bearer sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH",
+        data
       },
-      body: data
+      body: token.id
     });
-    console.log();
-    if (response.ok) this.setState({ complete: true });
+
+    if (response.statusText === "OK") this.setState({ complete: true });
   }
   render() {
     if (this.state.complete) return <h1>Purchase Complete</h1>;
