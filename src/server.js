@@ -5,7 +5,21 @@ const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 
 app.use(require("body-parser").text());
 
-app.post("/charge", cors(), async (req, res) => {
+const whitelist = [
+  "https://jaybenaim.github.io/isell/",
+  "localhost",
+  "127.0.0.1"
+];
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+};
+app.post("/charge", cors(corsOptions), async (req, res) => {
   try {
     const data = JSON.parse(req.body);
     let { token, subTotal } = data;
