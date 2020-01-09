@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
+import stripe from "../Api/stripe";
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class CheckoutForm extends Component {
   async submit(ev) {
     // user clicked submit
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let response = await fetch("https://api.stripe.com/v1/checked/sessions/", {
+    let response = await stripe("https://api.stripe.com/v1/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
@@ -27,7 +28,7 @@ class CheckoutForm extends Component {
     return (
       <div className="checkout">
         <p>Would you like to complete the purchase?</p>
-        <CardElement name="juul skin" />
+        <CardElement />
         <button onClick={this.submit}>Purchase</button>
       </div>
     );
