@@ -4,7 +4,6 @@ const path = require("path");
 const cors = require("cors");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 
-app.options("*", cors());
 app.use(require("body-parser").text());
 app.use(
   express.static("/Users/jay/projects/ecommerce/isell/isell/build/index.html")
@@ -17,6 +16,10 @@ const whitelist = [
   "localhost:3000",
   "127.0.0.1"
 ];
+const corsOptions = {
+  origin: "https://jaybenaim.github.io"
+};
+
 // app.use(cors());
 var corsOptionsDelegate = function(req, callback) {
   var corsOptions;
@@ -35,8 +38,8 @@ var corsOptionsDelegate = function(req, callback) {
 app.get("/", (req, res) => {
   res.sendFile("/Users/jay/projects/ecommerce/isell/isell/build/index.html");
 });
-
-app.post("/charge", cors(corsOptionsDelegate), async (req, res) => {
+app.options("/charge", cors(corsOptions));
+app.post("/charge", cors(), async (req, res) => {
   try {
     const data = JSON.parse(req.body);
     let { token, subTotal } = data;
