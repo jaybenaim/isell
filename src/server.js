@@ -19,7 +19,7 @@ const whitelist = [
   "127.0.0.1"
 ];
 const corsOptions = {
-  origin: "http://localhost:3000",
+  origin: "https://jaybenaim.github.io",
   RegExp: /jaybenaim.github.io$/,
   preflightContinue: true,
   allowedHeaders: ["Content-Type", "Authorization"]
