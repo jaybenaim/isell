@@ -11,16 +11,20 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // user clicked submit
+    const { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let response = await stripe("https://api.stripe.com/v1/charge", {
+    let data = { token: token.id, subTotal };
+    data = JSON.stringify(data);
+
+    let response = await fetch(`/charge`, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
         Authorization: "Bearer sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH"
       },
-      body: token.id
+      body: data
     });
-
+    console.log();
     if (response.ok) this.setState({ complete: true });
   }
   render() {

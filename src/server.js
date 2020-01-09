@@ -1,31 +1,24 @@
-const path = require("path");
-const express = require("express");
-const bodyParser = require("body-parser");
-const postCharge = require("./stripe");
-require("dotenv").config();
+const app = require("express")();
+const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 
-const app = express();
-const router = express.Router();
-const port = process.env.PORT || 7000;
+app.use(require("body-parser").text());
 
-router.post("/stripe/charge", postCharge);
-router.all("*", (_, res) =>
-  res.json({ message: "please make a POST request to /stripe/charge" })
-);
-app.use((_, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
+app.post("/charge", async (req, res) => {
+  try {
+    const data = JSON.parse(req.body);
+    let { token, subTotal } = data;
+    subTotal = Math.floor(subTotal * 100);
+    let { status } = await stripe.charges.create({
+      amount: subTotal,
+      currency: "cad",
+      description: "An example charge",
+      source: token
+    });
+
+    res.json({ status });
+  } catch (err) {
+    console.log(err);
+    res.status(500).end();
+  }
 });
-app.use(bodyParser.json());
-app.use("/api", router);
-app.use(express.static(path.join(__dirname, "../build")));
-
-app.get("*", (_, res) => {
-  res.sendFile(path.resolve(__dirname, "../build/index.html"));
-});
-
-app.listen(port, () => console.log(`server running on port ${port}`));
+app.listen(9000, () => console.log("Listening on port 9000"));

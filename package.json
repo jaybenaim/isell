@@ -48,6 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://jaybenaim.github.io/isell/",
-  "homepage": "."
+  "proxy": "http://localhost:9000"
 }
