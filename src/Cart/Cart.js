@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import CheckoutItem from "./CheckoutItem";
+import { Elements, StripeProvider } from "react-stripe-elements";
+import CheckoutForm from "./CheckoutForm";
 import "./cart.css";
-import SmartComponent from "../Payments/SmartComponent";
+import axios from "axios";
 class Cart extends Component {
   state = {
-    subTotal: 0
+    subTotal: 0,
+    isCheckedOut: false
   };
   calculateTotal = () => {
     const { params } = this.props.location;
@@ -26,12 +29,29 @@ class Cart extends Component {
 
     return cartItems;
   };
+  handleCheckout = () => {
+    const { isCheckedOut } = this.state;
+
+    this.setState({ isCheckedOut: !isCheckedOut });
+  };
+  showCheckoutForm = () => {
+    return (
+      <StripeProvider apiKey="pk_test_N9kQC9mdg8hBiyrLLJ5cbQXo0017dreaCh">
+        <div className="example">
+          <h1>Confirm</h1>
+          <Elements>
+            <CheckoutForm />
+          </Elements>
+        </div>
+      </StripeProvider>
+    );
+  };
   componentDidMount() {
     this.calculateTotal();
   }
   render() {
     const { params } = this.props.location;
-    const { subTotal } = this.state;
+    const { subTotal, isCheckedOut } = this.state;
 
     return (
       <div className="cart-container">
@@ -40,8 +60,8 @@ class Cart extends Component {
         <div>
           SubTotal: <span> {subTotal}</span>
         </div>
-        <SmartComponent />
-        <div>Proceed to checkout</div>
+        {isCheckedOut && this.showCheckoutForm()}
+        <div onClick={() => this.handleCheckout()}>Proceed to checkout</div>
       </div>
     );
   }
