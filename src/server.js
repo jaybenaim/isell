@@ -21,7 +21,11 @@ const whitelist = [
 var corsOptionsDelegate = function(req, callback) {
   var corsOptions;
   if (whitelist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true, RegExp: /jaybenaim.github.io$/ }; // reflect (enable) the requested origin in the CORS response
+    corsOptions = {
+      origin: true,
+      RegExp: /jaybenaim.github.io$/,
+      preflightContinue: true
+    }; // reflect (enable) the requested origin in the CORS response
   } else {
     corsOptions = { origin: false }; // disable CORS for this request
   }
