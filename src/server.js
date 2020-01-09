@@ -9,14 +9,7 @@ app.use(require("body-parser").text());
 app.use(
   express.static("/Users/jay/projects/ecommerce/isell/isell/build/index.html")
 );
-app.use((_, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+
 const whitelist = [
   "https://jaybenaim.github.io",
   "https://jaybenaim.github.io/isell/",
@@ -25,11 +18,21 @@ const whitelist = [
   "127.0.0.1"
 ];
 // app.use(cors());
+var corsOptionsDelegate = function(req, callback) {
+  var corsOptions;
+  if (whitelist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true, RegExp: /jaybenaim.github.io$/ }; // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
+};
+
 app.get("/", (req, res) => {
   res.sendFile("/Users/jay/projects/ecommerce/isell/isell/build/index.html");
 });
 
-app.post("/charge", async (req, res) => {
+app.post("/charge", cors(corsOptionsDelegate), async (req, res) => {
   try {
     const data = JSON.parse(req.body);
     let { token, subTotal } = data;
