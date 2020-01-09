@@ -4,5 +4,5 @@ axios.defaults.xsrfCookieName = "csrftoken";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default axios.create({
-  baseURL: "https://isell-development.herokuapp.com"
+  baseURL: "http://localhost:3000"
 });

@@ -1,40 +1,25 @@
-const app = require("express")();
-const express = require(express);
-const cors = require("cors");
+const express = require("express");
+const app = express();
+const path = require("path");
+// const cors = require("cors");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 
 app.use(require("body-parser").text());
-
+app.use(
+  express.static("/Users/jay/projects/ecommerce/isell/isell/build/index.html")
+);
 const whitelist = [
   "https://jaybenaim.github.io",
+  "https://jaybenaim.github.io/isell/",
+  "http://localhost:3000",
   "localhost:3000",
   "127.0.0.1"
 ];
-// const corsOptions = {
-//   origin: function(origin, callback) {
-//     if (whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error("Not allowed by CORS"));
-//     }
-//   }
-// };
-var corsOptions = {
-  origin: "https://jaybenaim.github.io",
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+// app.use(cors());
+app.get("/", (req, res) => {
+  res.sendFile("/Users/jay/projects/ecommerce/isell/isell/build/index.html");
+});
 
-var corsOptionsDelegate = function(req, callback) {
-  var corsOptions;
-  if (whitelist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-  } else {
-    corsOptions = { origin: false }; // disable CORS for this request
-  }
-  callback(null, corsOptions); // callback expects two parameters: error and options
-};
-
-app.options("*", cors());
 app.post("/charge", async (req, res) => {
   try {
     const data = JSON.parse(req.body);

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
 import backend from "../Api/backend";
+import local from "../Api/local";
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -16,12 +17,13 @@ class CheckoutForm extends Component {
     let data = { token: token.id, subTotal };
     data = JSON.stringify(data);
 
-    let response = await backend(`/charge`, {
+    let response = await fetch(`/charge`, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
         Authorization: "Bearer sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH"
       },
+      mode: "no-cors",
       body: data
     });
     console.log();
