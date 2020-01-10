@@ -27,7 +27,6 @@ const whitelist = [
 const corsOptions = {
   origin: "https://jaybenaim.github.io",
   RegExp: /jaybenaim.github.io$/,
-  preflightContinue: true,
   allowedHeaders: ["Content-Type", "Authorization", "data", "x-Trigger"],
   credentials: true
 };
@@ -67,11 +66,11 @@ app.get("/api", async (req, res) => {
 });
 
 app.options("/api/charge", cors(corsOptionsDelegate));
-app.post("/api/charge", cors(corsOptionsDelegate), async (req, res, next) => {
+app.post("/api/charge", cors(corsOptionsDelegate), async (req, res) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
-    console.log(next);
+    console.log();
     let { token, subTotal } = data;
     subTotal = Math.floor(subTotal * 100);
     let { status } = await stripe.charges.create({

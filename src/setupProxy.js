@@ -4,8 +4,7 @@ module.exports = app => {
   app.use(
     proxy("/api/*", {
       target: "https://isell-development.herokuapp.com",
-      changeOrigin: true,
-      ws: false
+      changeOrigin: true
     })
   );
 };
