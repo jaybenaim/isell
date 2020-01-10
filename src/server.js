@@ -27,7 +27,7 @@ const whitelist = [
 const corsOptions = {
   origin: "https://jaybenaim.github.io",
   RegExp: /jaybenaim.github.io$/,
-  allowedHeaders: ["Content-Type", "Authorization", "data", "x-Trigger"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-Trigger"],
   credentials: true
 };
 // app.use(cors());
