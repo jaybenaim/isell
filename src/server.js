@@ -10,6 +10,12 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 
+// app.all("/*", function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//   next();
+// });
+
 const whitelist = [
   "https://jaybenaim.github.io",
   "https://jaybenaim.github.io/isell/",
@@ -22,7 +28,7 @@ const corsOptions = {
   origin: "https://jaybenaim.github.io",
   RegExp: /jaybenaim.github.io$/,
   preflightContinue: true,
-  allowedHeaders: ["Content-Type", "Authorization", "data", "x-trigger"],
+  allowedHeaders: ["Content-Type", "Authorization", "data", "x-Trigger"],
   credentials: true
 };
 // app.use(cors());
