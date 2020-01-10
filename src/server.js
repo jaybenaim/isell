@@ -26,7 +26,6 @@ const whitelist = [
 ];
 const corsOptions = {
   origin: "https://jaybenaim.github.io",
-  RegExp: /jaybenaim.github.io$/,
   allowedHeaders: ["Content-Type", "Authorization", "x-Trigger"],
   credentials: true
 };
@@ -51,7 +50,14 @@ var corsOptionsDelegate = function(req, callback) {
 // app.get("/", function(req, res) {
 //   res.sendFile(path.join(__dirname, "build", "index.html"));
 // });
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.use(
   express.static(path.join(__dirname.replace("http", "https"), "../build"))
 );
