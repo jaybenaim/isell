@@ -32,7 +32,7 @@ class Home extends Component {
               <div
                 className="carousel-item active"
                 style={{
-                  backgroundImage: `url("http://placehold.it/1900x1080")`
+                  backgroundImage: `url("https://placehold.it/1900x1080")`
                 }}
               >
                 <div className="carousel-caption d-none d-md-block">
@@ -45,7 +45,7 @@ class Home extends Component {
               <div
                 className="carousel-item"
                 style={{
-                  backgroundImage: `url("http://placehold.it/1900x1080")`
+                  backgroundImage: `url("https://placehold.it/1900x1080")`
                 }}
               >
                 <div className="carousel-caption d-none d-md-block">
@@ -57,7 +57,7 @@ class Home extends Component {
               <div
                 className="carousel-item"
                 style={{
-                  backgroundImage: `url("http://placehold.it/1900x1080")`
+                  backgroundImage: `url("https://placehold.it/1900x1080")`
                 }}
               >
                 <div className="carousel-caption d-none d-md-block">

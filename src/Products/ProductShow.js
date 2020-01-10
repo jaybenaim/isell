@@ -37,7 +37,7 @@ class ProductShow extends Component {
             <a href="#">
               <img
                 class="img-fluid"
-                src="http://placehold.it/500x300"
+                src="https://placehold.it/500x300"
                 alt={name}
               />
             </a>
@@ -45,19 +45,31 @@ class ProductShow extends Component {
 
           <div class="col-md-3 col-sm-6 mb-4">
             <a href="#">
-              <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
+              <img
+                class="img-fluid"
+                src="https://placehold.it/500x300"
+                alt=""
+              />
             </a>
           </div>
 
           <div class="col-md-3 col-sm-6 mb-4">
             <a href="#">
-              <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
+              <img
+                class="img-fluid"
+                src="https://placehold.it/500x300"
+                alt=""
+              />
             </a>
           </div>
 
           <div class="col-md-3 col-sm-6 mb-4">
             <a href="#">
-              <img class="img-fluid" src="http://placehold.it/500x300" alt="" />
+              <img
+                class="img-fluid"
+                src="https://placehold.it/500x300"
+                alt=""
+              />
             </a>
           </div>
         </div>

@@ -19,7 +19,7 @@ class ProductCard extends Component {
     if (image === undefined) {
       return (
         <img
-          src={"http://placehold.it/700x400"}
+          src={"https://placehold.it/700x400"}
           className="card-img-top"
           alt={name}
         />
