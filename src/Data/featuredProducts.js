@@ -16,11 +16,11 @@ class Product {
 const products = [];
 const product1 = new Product(
   1,
-  "Gucci",
-  "Juul Sticker",
-  "4.99",
+  "TEST",
+  "TEST",
+  ".01",
   "images/img1.jpg",
-  "Phone Accesories"
+  "TEST"
 );
 const product2 = new Product(
   2,
