@@ -59,8 +59,8 @@ app.use(express.static(path.join(__dirname, "build")));
     res.sendFile(path.join(__dirname, "build", "index.html"));
   });
 });
-app.options("/charge", cors(corsOptionsDelegate));
-app.post("/charge", cors(corsOptionsDelegate), async (req, res, next) => {
+app.options("/api/charge", cors(corsOptionsDelegate));
+app.post("/api/charge", cors(corsOptionsDelegate), async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);

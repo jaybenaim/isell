@@ -1,5 +1,7 @@
 const proxy = require("http-proxy-middleware");
 
 module.exports = app => {
-  app.use(proxy("/*", { target: "https://isell-development.herokuapp.com" }));
+  app.use(
+    proxy("/api/*", { target: "https://isell-development.herokuapp.com" })
+  );
 };
