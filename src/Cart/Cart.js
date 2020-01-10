@@ -36,7 +36,7 @@ class Cart extends Component {
   };
   showCheckoutForm = () => {
     const { subTotal } = this.state;
-    const PK_TEST = process.env.PK_TEST;
+    const PK_TEST = "pk_test_N9kQC9mdg8hBiyrLLJ5cbQXo0017dreaCh";
     const PK_LIVE = process.env.PK_LIVE;
 
     return (
