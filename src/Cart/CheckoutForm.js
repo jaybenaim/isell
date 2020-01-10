@@ -3,6 +3,7 @@ import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
 import backend from "../Api/backend";
 import local from "../Api/local";
+import SK_LIVE from "../keys";
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,7 @@ class CheckoutForm extends Component {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
-        Authorization: "Bearer sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH",
+        Authorization: `Bearer ${SK_LIVE}`,
 
         data: token
       },

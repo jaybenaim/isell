@@ -37,7 +37,7 @@ class Cart extends Component {
   showCheckoutForm = () => {
     const { subTotal } = this.state;
     return (
-      <StripeProvider apiKey="pk_test_N9kQC9mdg8hBiyrLLJ5cbQXo0017dreaCh">
+      <StripeProvider apiKey="pk_live_1yBH1kziXVq2auRp81qBWtg7003KempqKb">
         <div className="example">
           <h1>Confirm</h1>
           <Elements>
