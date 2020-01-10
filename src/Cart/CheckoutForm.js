@@ -3,7 +3,7 @@ import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
 import backend from "../Api/backend";
 import local from "../Api/local";
-import SK_LIVE from "../keys";
+
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // user clicked submit
+    const SK_LIVE = process.env.SK_LIVE;
     const { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let data = { token: token.id, subTotal };
