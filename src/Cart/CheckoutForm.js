@@ -24,8 +24,7 @@ class CheckoutForm extends Component {
       headers: {
         "Content-Type": "text/plain",
         Authorization: `Bearer ${SK_LIVE}`,
-
-        data: token
+        data: data
       },
       body: token.id
     });
