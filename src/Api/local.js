@@ -4,5 +4,5 @@ import axios from "axios";
 // axios.defaults.xsrfHeaderName = "X-CSRFToken";
 
 export default axios.create({
-  baseURL: "http://localhost:9000"
+  baseURL: "http://localhost:9000/api"
 });

@@ -23,7 +23,6 @@ class CheckoutForm extends Component {
         "Content-Type": "text/plain",
         Authorization: "Bearer sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH",
         "x-Trigger": "CORS",
-
         data
       },
       body: token.id
