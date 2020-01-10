@@ -1,6 +1,6 @@
 const path = require("path");
 const options = {
-  protocol: window.location.protocol === "https:" ? "wss" : "ws"
+  protocol: window.location.protocol === "https:" ? "WSS" : "WSS"
 };
 module.exports = {
   devtool: false,
