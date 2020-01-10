@@ -13,7 +13,7 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // user clicked submit
-    const SK_LIVE = process.env.SK_LIVE;
+    const { SK_LIVE, SK_TEST } = process.env;
     const { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let data = { token: token.id, subTotal };
@@ -23,7 +23,7 @@ class CheckoutForm extends Component {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
-        Authorization: `Bearer ${SK_LIVE}`,
+        Authorization: `Bearer ${SK_TEST}`,
         data: data
       },
       body: token.id
