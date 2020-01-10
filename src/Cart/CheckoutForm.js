@@ -17,7 +17,7 @@ class CheckoutForm extends Component {
     let data = { token: token.id, subTotal };
     data = JSON.stringify(data);
 
-    let response = await local(`/charge`, {
+    let response = await backend(`/charge`, {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
