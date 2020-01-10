@@ -19,7 +19,7 @@ const product1 = new Product(
   "Gucci",
   "Juul Sticker",
   "4.99",
-  "http://localhost:3000/images/img1.jpg",
+  "/images/img1.jpg",
   "Phone Accesories"
 );
 const product2 = new Product(
@@ -27,7 +27,7 @@ const product2 = new Product(
   "Rick and Morty",
   "Juul Sticker",
   "3.99",
-  "http://localhost:3000/images/img2.jpg",
+  "/images/img2.jpg",
   "Phone Accesories"
 );
 const product3 = new Product(
@@ -35,7 +35,7 @@ const product3 = new Product(
   "Supreme",
   "Juul Sticker",
   "9.99",
-  "http://localhost:3000/images/img3.jpg",
+  "/images/img3.jpg",
   "Phone Accesories"
 );
 products.push(product1, product2, product3);
