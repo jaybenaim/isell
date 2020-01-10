@@ -36,7 +36,8 @@ class Cart extends Component {
   };
   showCheckoutForm = () => {
     const { subTotal } = this.state;
-    const { PK_LIVE, PK_TEST } = process.env;
+    const PK_TEST = process.env.PK_TEST;
+    const PK_LIVE = process.env.PK_LIVE;
 
     return (
       <StripeProvider apiKey={PK_TEST}>

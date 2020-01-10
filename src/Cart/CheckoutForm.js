@@ -13,7 +13,8 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // user clicked submit
-    const { SK_LIVE, SK_TEST } = process.env;
+    const SK_TEST = process.env.SK_TEST;
+    const SK_LIVE = process.env.SK_LIVE;
     const { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let data = { token: token.id, subTotal };
