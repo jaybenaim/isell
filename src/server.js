@@ -5,7 +5,16 @@ const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 app.use(bodyParser.json());
+app.use((req, res, next) => { 
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.options("*", cors());
 
 app.get("/api", async (req, res) => {
@@ -13,12 +22,7 @@ app.get("/api", async (req, res) => {
 });
 
 app.post("/api/charge", cors(), async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
+ 
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
