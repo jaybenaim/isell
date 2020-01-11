@@ -9,7 +9,11 @@ const morgan = require("morgan");
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
 
-app.get("/api", async (req, res) => {
+app.get("/", async (req, res) => {
+  res.send("HOME");
+});
+
+app.get("/api/charge", async (req, res) => {
   res.send("API HOME");
 });
 
