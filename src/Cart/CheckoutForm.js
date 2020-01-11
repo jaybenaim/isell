@@ -21,7 +21,7 @@ class CheckoutForm extends Component {
     data = JSON.stringify(data);
 
     let response = await backend(`/charge`, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "text/plain",
         Authorization: `Bearer ${SK_TEST}`,
