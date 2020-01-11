@@ -24,8 +24,7 @@ class CheckoutForm extends Component {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
-        Authorization: `Bearer ${SK_TEST}`,
-        data: data
+        Authorization: `Bearer ${SK_TEST}`
       },
       body: token.id
     });
