@@ -4,6 +4,11 @@ const path = require("path");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
+
+var corsOptions = {
+  origin: 'https://jaybenaim.github.io',}
+app.use(cors(corsOptions))
 app.use(bodyParser.json());
 app.use((req, res, next) => { 
 
@@ -15,13 +20,13 @@ app.use(function(req, res, next) {
   );
   next();
 });
-app.options("*", cors());
+app.options("*", cors(corsOptions));
 
 app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
 
-app.post("/api/charge", cors(), async (req, res, next) => {
+app.post("/api/charge", cors(corsOptions), async (req, res, next) => {
  
   try {
     // const data = JSON.parse(req.body);
