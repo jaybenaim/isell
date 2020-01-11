@@ -4,7 +4,9 @@ const path = require("path");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const morgan = require("morgan");
 
+app.use(morgan("tiny"));
 app.use(bodyParser.json());
 
 app.get("/api", async (req, res) => {

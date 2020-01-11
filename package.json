@@ -52,5 +52,8 @@
     ]
   },
   "proxy": "https://jaybenaim.github.io",
-  "homepage": "."
+  "homepage": ".",
+  "devDependencies": {
+    "morgan": "^1.9.1"
+  }
 }
