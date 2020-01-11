@@ -3,9 +3,9 @@ const app = express();
 const path = require("path");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 app.use(bodyParser.json());
-
+app.options("*", cors());
 const whitelist = [
   "https://jaybenaim.github.io",
   "https://jaybenaim.github.io/isell/",
@@ -33,16 +33,6 @@ var corsOptionsDelegate = function(req, callback) {
   callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
-app.all("/*", function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "DELETE, PUT, GET, POST");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 app.use(
   express.static(path.join(__dirname.replace("http", "https"), "../build"))
 );
@@ -56,7 +46,7 @@ app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
 
-app.post("/api/charge", async (req, res, next) => {
+app.post("/api/charge", cors(), async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
