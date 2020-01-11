@@ -1,14 +1,10 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const cors = require("cors");
 const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 const bodyParser = require("body-parser");
-// app.use(
-//   express.static("/Users/jay/projects/ecommerce/isell/isell/build/index.html")
-// );
+
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
 
 const whitelist = [
   "https://jaybenaim.github.io",
@@ -28,7 +24,6 @@ const corsOptions = {
   ],
   credentials: true
 };
-// app.use(cors());
 var corsOptionsDelegate = function(req, callback) {
   if (whitelist.indexOf(req.header("Origin")) !== -1) {
     corsOptions; // reflect (enable) the requested origin in the CORS response
@@ -38,11 +33,13 @@ var corsOptionsDelegate = function(req, callback) {
   callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
-app.options("*", cors(corsOptions));
-
-app.all("/*", function(req, res, next) {
+app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Methods", "DELETE, PUT, GET, POST");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
@@ -59,7 +56,7 @@ app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
 
-app.post("/api/charge", cors(corsOptions), async (req, res, next) => {
+app.post("/api/charge", async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
