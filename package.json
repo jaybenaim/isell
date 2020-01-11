@@ -51,5 +51,6 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "https://jaybenaim.github.io",
   "homepage": "."
 }

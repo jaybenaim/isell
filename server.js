@@ -5,29 +5,23 @@ const stripe = require("stripe")("sk_test_VoxUvHXLeE6bdU8xwIsPkX8r00Ab8SeHDH");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-
-var corsOptions = {
-  origin: 'https://jaybenaim.github.io',}
-app.use(cors(corsOptions))
 app.use(bodyParser.json());
-app.use((req, res, next) => { 
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://jaybenaim.github.io"); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-app.options("*", cors(corsOptions));
 
 app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
 
-app.post("/api/charge", cors(corsOptions), async (req, res, next) => {
- 
+var whitelist = ["https://jaybenaim.github.io", "http://localhost:3000"];
+var corsOptionsDelegate = function(req, callback) {
+  var corsOptions;
+  if (whitelist.indexOf(req.header("Origin")) !== -1) {
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false }; // disable CORS for this request
+  }
+  callback(null, corsOptions); // callback expects two parameters: error and options
+};
+app.post("/api/charge", cors(corsOptionsDelegate), async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
