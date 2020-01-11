@@ -20,15 +20,18 @@ class CheckoutForm extends Component {
     let data = { token: token.id, subTotal };
     data = JSON.stringify(data);
 
-    let response = await backend("/charge", {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain",
-        Authorization: `Bearer ${SK_TEST}`,
-        "Access-Control-Allow-Origin": "*"
-      },
-      body: token.id
-    });
+    let response = await fetch(
+      "https://isell-development.herokuapp.com/api/charge",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain",
+          Authorization: `Bearer ${SK_TEST}`,
+          "Access-Control-Allow-Origin": "*"
+        },
+        body: token.id
+      }
+    );
 
     if (response.statusText === "OK") this.setState({ complete: true });
   }
