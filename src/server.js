@@ -31,8 +31,9 @@ const corsOptions = {
 };
 // app.use(cors());
 var corsOptionsDelegate = function(req, callback) {
+  var corsOptions;
   if (whitelist.indexOf(req.header("Origin")) !== -1) {
-    corsOptions; // reflect (enable) the requested origin in the CORS response
+    corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
   } else {
     corsOptions = { origin: false }; // disable CORS for this request
   }
@@ -76,7 +77,7 @@ app.get("/api", async (req, res) => {
 });
 
 app.options("/api/charge", cors(corsOptionsDelegate));
-app.post("/api/charge", cors(corsOptionsDelegate), async (req, res) => {
+app.post("/api/charge", cors(corsOptionsDelegate), async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
