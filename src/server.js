@@ -10,11 +10,11 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.all("/*", function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-//   next();
-// });
+app.all("/*", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 const whitelist = [
   "https://jaybenaim.github.io",
@@ -44,25 +44,6 @@ var corsOptionsDelegate = function(req, callback) {
   callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
-// app.get("/", (req, res) => {
-//   res.sendFile("/Users/jay/projects/ecommerce/isell/isell/build/index.html");
-// });
-// app.get("/", (req, res) => {
-//   res.write("<h1>Home</h1>");
-// });
-
-// app.use(express.static(path.join(__dirname, "build")));
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 app.use(
   express.static(path.join(__dirname.replace("http", "https"), "../build"))
 );
@@ -71,11 +52,7 @@ app.get("/", function(req, res) {
     path.join(__dirname.replace("http", "https"), "../build", "index.html")
   );
 });
-// -app.get("/", function(req, res) {
-//   +app.get("/*", function(req, res) {
-//     res.sendFile(path.join(__dirname, "build", "index.html"));
-//   });
-// });
+
 app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
