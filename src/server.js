@@ -26,12 +26,16 @@ const whitelist = [
 ];
 const corsOptions = {
   origin: "https://jaybenaim.github.io",
-  allowedHeaders: ["Content-Type", "Authorization", "x-Trigger"],
+  allowedHeaders: [
+    "Content-Type",
+    "Authorization",
+    "x-Trigger",
+    "Access-Control-Allow-Headers"
+  ],
   credentials: true
 };
 // app.use(cors());
 var corsOptionsDelegate = function(req, callback) {
-  var corsOptions;
   if (whitelist.indexOf(req.header("Origin")) !== -1) {
     corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
   } else {
