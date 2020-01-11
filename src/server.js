@@ -14,6 +14,8 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.options("*", cors());
+
 app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
