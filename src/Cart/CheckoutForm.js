@@ -21,9 +21,11 @@ class CheckoutForm extends Component {
     data = JSON.stringify(data);
 
     let response = await backend(`/`, {
-      method: "GET",
+      method: "POST",
       headers: {
-        "Content-Type": "text/plain"
+        "Content-Type": "text/plain",
+        Authorization: `Bearer ${SK_TEST}`,
+        "Access-Control-Allow-Origin": "*"
       },
       body: token.id
     });
