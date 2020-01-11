@@ -10,12 +10,6 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: false }));
 
-app.all("/*", function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
-
 const whitelist = [
   "https://jaybenaim.github.io",
   "https://jaybenaim.github.io/isell/",
@@ -44,6 +38,14 @@ var corsOptionsDelegate = function(req, callback) {
   callback(null, corsOptions); // callback expects two parameters: error and options
 };
 
+app.options("*", cors());
+
+app.all("/*", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.use(
   express.static(path.join(__dirname.replace("http", "https"), "../build"))
 );
@@ -57,8 +59,7 @@ app.get("/api", async (req, res) => {
   res.send("API HOME");
 });
 
-app.options("/api/charge", cors(corsOptionsDelegate));
-app.post("/api/charge", cors(corsOptionsDelegate), async (req, res, next) => {
+app.post("/api/charge", cors(corsOptions), async (req, res, next) => {
   try {
     // const data = JSON.parse(req.body);
     const data = JSON.parse(req.headers.data);
