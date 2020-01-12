@@ -22,8 +22,9 @@ var whitelist = [
 ];
 
 var corsOptions = {
-  origin: "http://localhost:3000",
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  origin: true,
+  methods: ["POST"],
+  credentials: true
 };
 app.options("/api/charge", cors(corsOptions));
 app.post("/api/charge", cors(corsOptions), async (req, res, next) => {
