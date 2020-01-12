@@ -30,7 +30,6 @@ class CheckoutForm extends Component {
       },
       body: data
     });
-
     if (response.statusText === "OK") this.setState({ complete: true });
   }
   render() {
