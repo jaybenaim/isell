@@ -15,17 +15,17 @@ class CheckoutForm extends Component {
     // user clicked submit
     const SK_TEST = "sk_test_59y42s9amXyOuAPudcbNBta500g0JElmda";
     const SK_LIVE = process.env.SK_LIVE;
-    let { totalCostBeforeTax } = this.props;
+    let { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
+    subTotal = JSON.stringify(subTotal * 100);
 
-    totalCostBeforeTax = JSON.stringify(totalCostBeforeTax);
     let response = await local("/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
         Authorization: `Bearer ${SK_TEST}`,
         token: token.id,
-        total: totalCostBeforeTax
+        total: subTotal
       }
     });
     if (response.statusText === "OK") this.setState({ complete: true });

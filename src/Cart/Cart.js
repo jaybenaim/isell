@@ -31,13 +31,15 @@ class Cart extends Component {
         <div className="example">
           <h1>Confirm</h1>
           <Elements>
-            <CheckoutForm totalCostBeforeTax={totalCostBeforeTax} />
+            <CheckoutForm
+              subTotal={this.calculateSubTotal(totalCostBeforeTax).subTotal}
+            />
           </Elements>
         </div>
       </StripeProvider>
     );
   };
-  calculateTax = totalCostBeforeTax => {
+  calculateSubTotal = totalCostBeforeTax => {
     const taxPercentage = 0.13;
     let totalTax = totalCostBeforeTax * taxPercentage;
     const proccessFee = 0.37;
@@ -62,14 +64,15 @@ class Cart extends Component {
         <h1>Review Order</h1>
         {params && this.showCheckoutItems()}
         <div className="checkout-total-container">
-          <span> Tax: ${this.calculateTax(totalCostBeforeTax).tax}</span>
+          <span> Tax: ${this.calculateSubTotal(totalCostBeforeTax).tax}</span>
           <span>
             {" "}
-            Process Fee: ${this.calculateTax(totalCostBeforeTax).proccessFee}
+            Process Fee: $
+            {this.calculateSubTotal(totalCostBeforeTax).proccessFee}
           </span>
           <span>
             {" "}
-            SubTotal: ${this.calculateTax(totalCostBeforeTax).subTotal}
+            SubTotal: ${this.calculateSubTotal(totalCostBeforeTax).subTotal}
           </span>
         </div>
         {isCheckedOut && this.showCheckoutForm()}
