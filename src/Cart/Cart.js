@@ -10,8 +10,9 @@ class Cart extends Component {
   };
 
   showCheckoutItems = () => {
-    const { cart, totalCostBeforeTax } = this.props.location.params;
+    const { cart } = this.props.location.params;
     const { items } = cart;
+
     let cartItems = items.map((item, i) => {
       return <CheckoutItem {...item} key={i} />;
     });
@@ -56,7 +57,7 @@ class Cart extends Component {
   componentDidMount() {}
   render() {
     const { params } = this.props.location;
-    const { totalCostBeforeTax } = params;
+    const { totalCostBeforeTax, cart } = params;
     const { subTotal, isCheckedOut } = this.state;
 
     return (
@@ -64,19 +65,29 @@ class Cart extends Component {
         <h1>Review Order</h1>
         {params && this.showCheckoutItems()}
         <div className="checkout-total-container">
-          <span> Tax: ${this.calculateSubTotal(totalCostBeforeTax).tax}</span>
-          <span>
-            {" "}
-            Process Fee: $
+          <div className="checkout-message">
+            You have {cart.qty} items in your cart.
+          </div>
+          <span className="checkout-total-tax">
+            <strong>Tax:</strong> $
+            {this.calculateSubTotal(totalCostBeforeTax).tax}
+          </span>
+          <span className="checkout-total-process-fees">
+            <strong>Process Fee:</strong> $
             {this.calculateSubTotal(totalCostBeforeTax).proccessFee}
           </span>
-          <span>
-            {" "}
-            SubTotal: ${this.calculateSubTotal(totalCostBeforeTax).subTotal}
+          <span className="checkout-total-subtotal">
+            <strong>SubTotal:</strong> $
+            {this.calculateSubTotal(totalCostBeforeTax).subTotal}
           </span>
+          <div
+            className="checkout-btn btn btn-success"
+            onClick={() => this.handleCheckout()}
+          >
+            Proceed to checkout
+          </div>
         </div>
         {isCheckedOut && this.showCheckoutForm()}
-        <div onClick={() => this.handleCheckout()}>Proceed to checkout</div>
       </div>
     );
   }
