@@ -19,7 +19,7 @@ class CheckoutForm extends Component {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
 
     subTotal = JSON.stringify(subTotal);
-    let response = await backend("/charge", {
+    let response = await local("/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",

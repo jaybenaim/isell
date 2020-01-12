@@ -9,3 +9,9 @@
   margin-bottom: 6px;
   padding: 20px;
 }
+@media (min-width: 450px) {
+  .modal-cart-image {
+    height: 100px;
+    width: 80px;
+  }
+}

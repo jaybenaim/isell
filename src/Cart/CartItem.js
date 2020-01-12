@@ -12,18 +12,10 @@ class CartItem extends Component {
           <div>No Items in cart.</div>
         ) : (
           <div className="modal-cart-item">
-            <p>
-              <a
-                href={image}
-                role="button"
-                className="btn btn-secondary popover-test"
-                title="Popover title"
-                data-content={`${description}`}
-              >
-                {name}
-              </a>
-            </p>
-            {price} <span>X</span>
+            <img src={image} alt={name} className="modal-cart-image" />
+            <span>{name}</span>
+            <span>{price}</span>
+            <span>X</span>
           </div>
         )}
       </>

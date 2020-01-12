@@ -16,8 +16,8 @@ class Product {
 const products = [];
 const product1 = new Product(
   1,
-  "TEST",
-  "TEST",
+  "Gucci",
+  "Juul Sticker",
   ".50",
   "images/img1.jpg",
   "TEST"

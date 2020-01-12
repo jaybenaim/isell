@@ -17,7 +17,7 @@ class CartModal extends Component {
     } else {
       return (
         <CartItem
-          item={{ name: null, price: null, description: null }}
+          item={{ name: null, price: null, description: null, image: null }}
           error="No Items Found"
         />
       );
@@ -40,7 +40,9 @@ class CartModal extends Component {
         centered
       >
         <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">My Cart</Modal.Title>
+          <Modal.Title id="contained-modal-title-vcenter">
+            Your Cart
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>{this.showCartItems()}</Modal.Body>
         <Modal.Footer>
@@ -52,7 +54,7 @@ class CartModal extends Component {
               params: cart
             }}
           >
-            Checkout
+            Proceed to checkout
           </Link>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
