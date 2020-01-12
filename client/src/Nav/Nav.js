@@ -14,8 +14,8 @@ class Nav extends Component {
     const { showCart } = this.state;
     return (
       <>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <a className="navbar-brand" href="/">
             Isell
           </a>
 
@@ -34,7 +34,7 @@ class Nav extends Component {
             />
           )}
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-toggle="collapse"
             data-target="#navbarNavDropdown"
@@ -42,12 +42,12 @@ class Nav extends Component {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul className="navbar-nav">
               <li
-                class="nav-item active"
+                className="nav-item active"
                 data-toggle="collapse"
                 data-target="#navbarNavDropdown"
               >
@@ -57,11 +57,11 @@ class Nav extends Component {
                   data-toggle="collapse"
                   data-target="#navbarNavDropdown"
                 >
-                  Isell <span class="sr-only">(current)</span>
+                  Isell <span className="sr-only">(current)</span>
                 </Link>
               </li>
               <li
-                class="nav-item"
+                className="nav-item"
                 data-toggle="collapse"
                 data-target="#navbarNavDropdown"
               >
@@ -69,15 +69,15 @@ class Nav extends Component {
                   Products
                 </Link>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+              <li className="nav-item">
+                <a className="nav-link" href="/">
                   Pricing
                 </a>
               </li>
-              <li class="nav-item dropdown">
+              <li className="nav-item dropdown">
                 <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
+                  className="nav-link dropdown-toggle"
+                  href="/"
                   id="navbarDropdownMenuLink"
                   data-toggle="dropdown"
                   aria-haspopup="true"
@@ -86,16 +86,16 @@ class Nav extends Component {
                   Dropdown link
                 </a>
                 <div
-                  class="dropdown-menu"
+                  className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/">
                     Action
                   </a>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/">
                     Another action
                   </a>
-                  <a class="dropdown-item" href="#">
+                  <a className="dropdown-item" href="/">
                     Something else here
                   </a>
                 </div>

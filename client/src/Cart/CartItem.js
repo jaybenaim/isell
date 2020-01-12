@@ -4,7 +4,7 @@ class CartItem extends Component {
   state = {};
   render() {
     const { error, item } = this.props;
-    const { name, price, description } = item;
+    const { name, price, description, image } = item;
 
     return (
       <>
@@ -14,7 +14,7 @@ class CartItem extends Component {
           <div className="modal-cart-item">
             <p>
               <a
-                href="#"
+                href={image}
                 role="button"
                 class="btn btn-secondary popover-test"
                 title="Popover title"

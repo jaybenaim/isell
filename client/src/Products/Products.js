@@ -10,7 +10,7 @@ class Products extends Component {
     let productList = products.map((product, i) => {
       const { id, image: url } = product;
       if (product.image === undefined) {
-        return;
+        return null;
       } else {
         return (
           <ProductCard

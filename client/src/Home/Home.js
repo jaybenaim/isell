@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FeaturedProducts from "../Products/FeaturedProducts";
+import "./home.css";
 class Home extends Component {
   state = {};
   render() {
@@ -8,24 +9,18 @@ class Home extends Component {
       <>
         <header>
           <div
-            id="carouselExampleIndicators"
+            id="home-carousel"
             className="carousel slide"
             data-ride="carousel"
           >
             <ol className="carousel-indicators">
               <li
-                data-target="#carouselExampleIndicators"
+                data-target="#home-carousel"
                 data-slide-to="0"
                 className="active"
               ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="1"
-              ></li>
-              <li
-                data-target="#carouselExampleIndicators"
-                data-slide-to="2"
-              ></li>
+              <li data-target="#home-carousel" data-slide-to="1"></li>
+              <li data-target="#home-carousel" data-slide-to="2"></li>
             </ol>
             <div className="carousel-inner" role="listbox">
               {/* <!-- Slide One - Set the background image for this slide in the line below --> */}
@@ -68,7 +63,7 @@ class Home extends Component {
             </div>
             <a
               className="carousel-control-prev"
-              href="#carouselExampleIndicators"
+              href="#home-carousel"
               role="button"
               data-slide="prev"
             >
@@ -80,7 +75,7 @@ class Home extends Component {
             </a>
             <a
               className="carousel-control-next"
-              href="#carouselExampleIndicators"
+              href="#home-carousel"
               role="button"
               data-slide="next"
             >

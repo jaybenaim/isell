@@ -4,6 +4,10 @@ import "./index.css";
 import App from "./App/App";
 import * as serviceWorker from "./serviceWorker";
 import "babel-polyfill";
+import { Router } from "react-router";
+import { createBrowserHistory } from "history";
+
+const history = createBrowserHistory();
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

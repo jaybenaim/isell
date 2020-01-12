@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Route, Router } from "react-router-dom";
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -24,7 +24,7 @@ class App extends Component {
     for (let i = 1; i <= qty; i++) {
       items.push(new Product(id + 1, name, description, price, image));
     }
-    if (qty == 0 || qty === undefined) {
+    if (qty === 0 || qty === undefined || qty === "0") {
       qty = 1;
     }
     this.setState(prevState => {
@@ -40,10 +40,9 @@ class App extends Component {
   render() {
     const { cartItems, cartQty } = this.state;
     return (
-      <Router basename="/isell" history={history}>
+      <Router history={history}>
         <div className="App">
           <Nav cart={{ qty: cartQty, items: cartItems }} />
-
           <div className="content">
             <Switch>
               <Route exact path="/">
@@ -53,7 +52,6 @@ class App extends Component {
                 <Products
                   addToCart={this.addToCart}
                   selectProduct={this.setSelectedProduct}
-                  history={history}
                 />
               </Route>
               <Route

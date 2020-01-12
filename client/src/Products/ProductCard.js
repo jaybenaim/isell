@@ -15,7 +15,7 @@ class ProductCard extends Component {
     this.setState({ qty: qty });
   };
   getImageURl = () => {
-    const { image, name, id } = this.props;
+    const { image, name } = this.props;
     if (image === undefined) {
       return (
         <img
@@ -25,7 +25,7 @@ class ProductCard extends Component {
         />
       );
     } else {
-      return <img src={image} className="card-img-top" alt={name} />;
+      return <img src={image} className="card-img-top" alt="none" />;
     }
   };
   render() {
@@ -42,7 +42,7 @@ class ProductCard extends Component {
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
     description = description.replace(/^\w/, c => c.toUpperCase());
-    image ? (image = image) : (image = product.image);
+    !image && (image = product.image);
     return (
       <div className={`${productClass} card`} style={{ width: "18em" }}>
         {this.getImageURl()}

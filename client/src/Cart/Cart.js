@@ -15,6 +15,7 @@ class Cart extends Component {
     let total = 0;
     items.map((item, i) => {
       total += Number(item.price);
+      return total;
     });
     this.setState(prevState => {
       return { subTotal: (prevState.subTotal += total) };
