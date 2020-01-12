@@ -10,12 +10,12 @@ class Nav extends Component {
     this.setState({ showCart: !showCart });
   };
   render() {
-    const { cart } = this.props;
+    const { cart, totalCostBeforeTax } = this.props;
     const { showCart } = this.state;
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="/">
+          <a className="navbar-brand" href="/Isell">
             Isell
           </a>
 
@@ -31,6 +31,7 @@ class Nav extends Component {
               onHide={() => this.handleShowCart()}
               show={showCart}
               cart={cart}
+              totalCostBeforeTax={totalCostBeforeTax}
             />
           )}
           <button
@@ -53,7 +54,7 @@ class Nav extends Component {
               >
                 <Link
                   className="nav-link"
-                  to="/"
+                  to="/Isell"
                   data-toggle="collapse"
                   data-target="#navbarNavDropdown"
                 >

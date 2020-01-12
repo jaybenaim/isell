@@ -11,7 +11,7 @@ class CartModal extends Component {
 
     if (qty >= 1) {
       let cartItems = items.map((item, i) => {
-        return <CartItem item={item} key={i} />;
+        return <CartItem item={item} key={i} hideModal={this.checkout} />;
       });
       return cartItems;
     } else {
@@ -30,7 +30,7 @@ class CartModal extends Component {
 
   render() {
     const { props } = this;
-    const { cart } = props;
+    const { cart, onHide, totalCostBeforeTax } = props;
 
     return (
       <Modal
@@ -50,13 +50,15 @@ class CartModal extends Component {
             className="nav-link"
             onClick={() => this.checkout()}
             to={{
-              pathname: "/ShoppingCart",
-              params: cart
+              pathname: `/ShoppingCart`,
+              params: { cart, totalCostBeforeTax }
             }}
           >
             Proceed to checkout
+            <br />
+            <span>Total: ${totalCostBeforeTax}</span>
           </Link>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

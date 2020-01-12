@@ -1,72 +1,84 @@
 import React, { Component } from "react";
+
 class ProductShow extends Component {
   state = {};
+  getImageOr404 = (image, name) => {
+    if (image === undefined) {
+      return (
+        <img
+          src={"https://placehold.it/700x400"}
+          className="card-img-top"
+          alt="none"
+        />
+      );
+    } else {
+      return <img src={image} className="card-img-top" alt={name} />;
+    }
+  };
   render() {
-    const { name, description, price, image } = this.props.location.state;
-    console.log(this);
+    const { name, description, price, image, id } = this.props.location.state;
+
     return (
-      <div class="container">
-        <h1 class="mt-4 mb-3">
+      <div className="container">
+        <h1 className="mt-4 mb-3">
           <small> {name}</small>
         </h1>
 
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
             <a href="/">Home</a>
           </li>
-          <li class="breadcrumb-item active">{name}</li>
+          <li className="breadcrumb-item active">{name}</li>
         </ol>
 
-        <div class="row">
-          <div class="col-md-8">
-            <img class="img-fluid" src={image} alt={name} />
-          </div>
+        <div className="row">
+          <div className="col-md-8">{this.getImageOr404(image, name)}</div>
 
-          <div class="col-md-4">
-            <h3 class="my-3">Project Description</h3>
+          <div className="col-md-4">
+            <h3 className="my-3">Project Description</h3>
             <p>{description}</p>
 
-            <h3 class="my-3">{price}</h3>
+            <h3 className="my-3">{price}</h3>
           </div>
         </div>
 
-        <h3 class="my-4">Related Projects</h3>
+        <h3 className="my-4">Related Projects</h3>
 
-        <div class="row">
-          <div class="col-md-3 col-sm-6 mb-4">
+        <div className="row">
+          <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                class="img-fluid"
+                className="img-fluid"
                 src="https://placehold.it/500x300"
                 alt={name}
               />
             </a>
           </div>
 
-          <div class="col-md-3 col-sm-6 mb-4">
+          <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                class="img-fluid"
+                className="img-fluid"
                 src="https://placehold.it/500x300"
                 alt=""
               />
             </a>
           </div>
 
-          <div class="col-md-3 col-sm-6 mb-4">
+          <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                class="img-fluid"
+                className="img-fluid"
                 src="https://placehold.it/500x300"
                 alt=""
               />
             </a>
           </div>
 
-          <div class="col-md-3 col-sm-6 mb-4">
+          <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                class="img-fluid"
+                className="img-fluid"
                 src="https://placehold.it/500x300"
                 alt=""
               />

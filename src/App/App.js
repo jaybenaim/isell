@@ -15,9 +15,21 @@ class App extends Component {
   state = {
     cartQty: 0,
     cartItems: [],
-    selectedProduct: null
+    totalCostBeforeTax: 0,
+    selectedProduct: null,
+    addedToCart: false
   };
+
+  calculateTotal = total => {
+    this.setState(prevState => {
+      return {
+        totalCostBeforeTax: (prevState.totalCostBeforeTax += parseFloat(total))
+      };
+    });
+  };
+
   addToCart = (qty, item) => {
+    const { addedToCart } = this.state;
     const { id, name, description, price, image } = item;
 
     const items = [];
@@ -27,22 +39,30 @@ class App extends Component {
     if (qty === 0 || qty === undefined || qty === "0") {
       qty = 1;
     }
+
+    this.calculateTotal(price);
+
     this.setState(prevState => {
       return {
         cartQty: (prevState.cartQty += qty),
-        cartItems: [...prevState.cartItems, ...items]
+        cartItems: [...prevState.cartItems, ...items],
+        addedToCart: !addedToCart
       };
     });
   };
   setSelectedProduct = product => {
     this.setState({ selectProduct: product });
   };
+
   render() {
-    const { cartItems, cartQty } = this.state;
+    const { cartItems, cartQty, totalCostBeforeTax } = this.state;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
-          <Nav cart={{ qty: cartQty, items: cartItems }} />
+          <Nav
+            cart={{ qty: cartQty, items: cartItems }}
+            totalCostBeforeTax={totalCostBeforeTax}
+          />
 
           <div className="content">
             <Switch>

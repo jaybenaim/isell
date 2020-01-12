@@ -70,7 +70,7 @@ class ProductCard extends Component {
           <Link
             to={{
               pathname: `/Products/${id}/show`,
-              state: { name, description, price, image }
+              state: { id, name, description, price, image }
             }}
             className="btn btn-primary"
           >
