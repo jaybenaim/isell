@@ -4,15 +4,15 @@ import "./cartItem.css";
 class CartItem extends Component {
   state = {};
   shortDescription = description => {
-    if (description.length > 15) {
-      return description.slice(0, 15) + "...";
-    } else {
+    if (description.length <= 15) {
       return description;
+    } else {
+      return description.slice(0, 15) + "...";
     }
   };
   render() {
     const { error, item, hideModal } = this.props;
-    const { id, name, price, description, image } = item;
+    const { id, name, price, description, image, qty } = item;
 
     return (
       <>
@@ -36,7 +36,7 @@ class CartItem extends Component {
             </span>
 
             <span className="modal-cart-price">
-              ${price} <span>QTY</span>
+              ${price} <span>QTY: {qty}</span>
             </span>
             <span className="modal-cart-remove-item btn btn-outline-danger">
               Remove Item

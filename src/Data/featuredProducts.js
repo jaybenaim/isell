@@ -16,7 +16,7 @@ class Product {
 }
 const products = [];
 const product1 = new Product(
-  1,
+  10001,
   "Gucci",
   "Juul Sticker",
   "2.00",
@@ -24,7 +24,7 @@ const product1 = new Product(
   "TEST"
 );
 const product2 = new Product(
-  2,
+  10002,
   "Rick and Morty",
   "Juul Sticker",
   "2.00",
@@ -32,7 +32,7 @@ const product2 = new Product(
   "Phone Accesories"
 );
 const product3 = new Product(
-  3,
+  10003,
   "Supreme",
   "Juul Sticker",
   "2.00",

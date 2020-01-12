@@ -14,10 +14,11 @@ const history = createBrowserHistory();
 class App extends Component {
   state = {
     cartQty: 0,
-    cartItems: localStorage.cartItems || [],
+    cartItems: [],
     totalCostBeforeTax: 0,
     selectedProduct: null,
-    addedToCart: false
+    addedToCart: false,
+    valid: false
   };
 
   calculateTotal = total => {
@@ -27,11 +28,46 @@ class App extends Component {
       };
     });
   };
+  checkIfItemIsInCart = item => {
+    const { cartItems } = this.state;
+    let match = false;
+    cartItems.map((cartItem, i) => {
+      if (item.name === cartItem.name) {
+        match = true;
+      } else {
+        return false;
+      }
+    });
+    if (match) {
+      let confirm = prompt(
+        "YOU ALREADY ADDED THIS ITEM DO YOU WISH TO PROCEED?\n y/n to continue"
+      );
+      if (confirm === "y") {
+        return item;
+      } else {
+        // run remove fn()
+        return;
+      }
+    } else {
+      return match;
+    }
+  };
+  removeFromCart = id => {
+    const { cartItems } = this.state;
+    const item = cartItems.filter(item => item.id === id);
 
+    this.calculateTotal(-item[0].price);
+
+    this.setState(prevState => {
+      return {
+        cartItems: [...prevState.cartItems.filter(item => item.id !== id)],
+        cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
+      };
+    });
+  };
   addToCart = (qty, item) => {
     const { addedToCart } = this.state;
     const { id, name, description, price, image } = item;
-
     const items = [];
 
     if (qty === 0 || qty === undefined || qty === "0") {
@@ -63,7 +99,9 @@ class App extends Component {
             cart={{ qty: cartQty, items: cartItems }}
             totalCostBeforeTax={totalCostBeforeTax}
           />
-
+          <button onClick={() => this.removeFromCart(10002)}>
+            Remove Product 1
+          </button>
           <div className="content">
             <Switch>
               <Route exact path="/">

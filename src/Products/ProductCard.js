@@ -14,6 +14,7 @@ class ProductCard extends Component {
     let qty = Number(event.target.value);
     this.setState({ qty: qty });
   };
+
   getImageURl = () => {
     const { image, name } = this.props;
     if (image === undefined) {
