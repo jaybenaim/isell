@@ -20,7 +20,7 @@ const product1 = new Product(
   "Louis Vuitton",
   "Juul Sticker",
   "9.99",
-  "../images/img4.jpg",
+  "images/img4.jpg",
   "Phone Accesories"
 );
 const product2 = new Product(
@@ -28,7 +28,7 @@ const product2 = new Product(
   "Hello",
   "Juul Sticker",
   "3.99",
-  "../images/img5.jpg",
+  "images/img5.jpg",
   "Phone Accesories"
 );
 const product3 = new Product(
@@ -36,7 +36,7 @@ const product3 = new Product(
   "Marble",
   "Juul Sticker",
   "9.99",
-  "../images/img6.jpg",
+  "images/img6.jpg",
   "Phone Accesories"
 );
 const product4 = new Product(
@@ -45,7 +45,7 @@ const product4 = new Product(
   "Juul Holder, Sticks to anywhere! Reusable!",
   "12.99",
 
-  "../images/img7.jpg",
+  "images/img7.jpg",
   "Phone Accesories"
 );
 const product5 = new Product(
@@ -53,7 +53,7 @@ const product5 = new Product(
   "Rick and Morty",
   "Juul Sticker",
   "9.99",
-  "../images/img8.jpg",
+  "images/img8.jpg",
   "Phone Accesories"
 );
 
