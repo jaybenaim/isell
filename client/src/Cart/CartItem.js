@@ -16,7 +16,7 @@ class CartItem extends Component {
               <a
                 href={image}
                 role="button"
-                class="btn btn-secondary popover-test"
+                className="btn btn-secondary popover-test"
                 title="Popover title"
                 data-content={`${description}`}
               >
