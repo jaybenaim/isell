@@ -14,7 +14,7 @@ const history = createBrowserHistory();
 class App extends Component {
   state = {
     cartQty: 0,
-    cartItems: [],
+    cartItems: localStorage.cartItems || [],
     totalCostBeforeTax: 0,
     selectedProduct: null,
     addedToCart: false
@@ -33,14 +33,14 @@ class App extends Component {
     const { id, name, description, price, image } = item;
 
     const items = [];
-    for (let i = 1; i <= qty; i++) {
-      items.push(new Product(id + 1, name, description, price, image));
-    }
+
     if (qty === 0 || qty === undefined || qty === "0") {
       qty = 1;
     }
-
-    this.calculateTotal(price);
+    for (let i = 1; i <= qty; i++) {
+      this.calculateTotal(price);
+    }
+    items.push(new Product(id + 1, name, description, price, image, qty));
 
     this.setState(prevState => {
       return {
