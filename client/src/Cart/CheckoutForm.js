@@ -13,24 +13,23 @@ class CheckoutForm extends Component {
 
   async submit(ev) {
     // user clicked submit
-    const SK_TEST = process.env.SK_TEST;
+    const SK_TEST = "sk_test_59y42s9amXyOuAPudcbNBta500g0JElmda";
     const SK_LIVE = process.env.SK_LIVE;
-    const { subTotal } = this.props;
+    let { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let data = { token: token.id, subTotal };
     data = JSON.stringify(data);
-
-    let response = await fetch(
-      "https://isell-development.herokuapp.com/api/charge",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain",
-          Authorization: `Bearer ${SK_TEST}`
-        },
-        body: token.id
-      }
-    );
+    subTotal = JSON.stringify(subTotal);
+    let response = await local("/charge", {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain",
+        Authorization: `Bearer ${SK_TEST}`,
+        token: token.id,
+        total: subTotal
+      },
+      body: data
+    });
 
     if (response.statusText === "OK") this.setState({ complete: true });
   }
