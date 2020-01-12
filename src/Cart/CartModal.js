@@ -7,11 +7,19 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 class CartModal extends Component {
   state = {};
   showCartItems = () => {
-    const { qty, items } = this.props.cart;
+    const { removeFromCart, cart } = this.props;
+    const { qty, items } = cart;
 
     if (qty >= 1) {
       let cartItems = items.map((item, i) => {
-        return <CartItem item={item} key={i} hideModal={this.checkout} />;
+        return (
+          <CartItem
+            item={item}
+            key={i}
+            hideModal={this.checkout}
+            removeFromCart={removeFromCart}
+          />
+        );
       });
       return cartItems;
     } else {

@@ -11,7 +11,7 @@ class CartItem extends Component {
     }
   };
   render() {
-    const { error, item, hideModal } = this.props;
+    const { error, item, hideModal, removeFromCart } = this.props;
     const { id, name, price, description, image, qty } = item;
 
     return (
@@ -35,10 +35,14 @@ class CartItem extends Component {
               {this.shortDescription(description)}
             </span>
 
-            <span className="modal-cart-price">
-              ${price} <span>QTY: {qty}</span>
+            <span className="modal-cart-price">Cost: ${price * qty} </span>
+            <span lassName="modal-cart-qty">
+              QTY: {qty} @ ${price}
             </span>
-            <span className="modal-cart-remove-item btn btn-outline-danger">
+            <span
+              className="modal-cart-remove-item btn btn-outline-danger"
+              onClick={() => removeFromCart(id)}
+            >
               Remove Item
             </span>
           </div>

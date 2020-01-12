@@ -39,7 +39,8 @@ class ProductCard extends Component {
       id,
       product,
       image,
-      addToCart
+      addToCart,
+      removeFromCart
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
     description = description.replace(/^\w/, c => c.toUpperCase());

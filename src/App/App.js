@@ -9,6 +9,7 @@ import ProductShow from "../Products/ProductShow";
 import Cart from "../Cart/Cart";
 import "./App.css";
 import Product from "../Data/productSchema";
+import CartModal from "../Cart/CartModal";
 
 const history = createBrowserHistory();
 class App extends Component {
@@ -33,23 +34,15 @@ class App extends Component {
     let match = false;
     cartItems.map((cartItem, i) => {
       if (item.name === cartItem.name) {
+        this.removeFromCart(item.id);
         match = true;
       } else {
         return false;
       }
     });
     if (match) {
-      let confirm = prompt(
-        "YOU ALREADY ADDED THIS ITEM DO YOU WISH TO PROCEED?\n y/n to continue"
-      );
-      if (confirm === "y") {
-        return item;
-      } else {
-        // run remove fn()
-        return;
-      }
-    } else {
-      return match;
+      const { showAlert } = this.state;
+      this.setState({ showAlert: !showAlert });
     }
   };
   removeFromCart = id => {
@@ -66,18 +59,16 @@ class App extends Component {
     });
   };
   addToCart = (qty, item) => {
+    this.checkIfItemIsInCart(item);
     const { addedToCart } = this.state;
     const { id, name, description, price, image } = item;
     const items = [];
 
-    if (qty === 0 || qty === undefined || qty === "0") {
-      qty = 1;
-    }
     for (let i = 1; i <= qty; i++) {
       this.calculateTotal(price);
     }
-    items.push(new Product(id + 1, name, description, price, image, qty));
 
+    items.push(new Product(id, name, description, price, image, "", qty));
     this.setState(prevState => {
       return {
         cartQty: (prevState.cartQty += qty),
@@ -91,17 +82,23 @@ class App extends Component {
   };
 
   render() {
-    const { cartItems, cartQty, totalCostBeforeTax } = this.state;
+    const { cartItems, cartQty, totalCostBeforeTax, showAlert } = this.state;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
           <Nav
             cart={{ qty: cartQty, items: cartItems }}
             totalCostBeforeTax={totalCostBeforeTax}
+            removeFromCart={this.removeFromCart}
           />
-          <button onClick={() => this.removeFromCart(10002)}>
-            Remove Product 1
-          </button>
+          {showAlert && (
+            <div className="alert alert-danger" role="alert">
+              YOU ALREADY ADDED THIS ITEM TO YOUR CART!
+              <br />
+              <em>Check your cart for multiples</em>
+              <br />
+            </div>
+          )}
           <div className="content">
             <Switch>
               <Route exact path="/">
@@ -110,6 +107,7 @@ class App extends Component {
               <Route exact path="/Products">
                 <Products
                   addToCart={this.addToCart}
+                  removeFromCart={this.removeFromCart}
                   selectProduct={this.setSelectedProduct}
                   history={history}
                 />
@@ -119,14 +117,20 @@ class App extends Component {
                 path="/Products/:id/Show"
                 component={ProductShow}
                 render={props => (
-                  <ProductShow {...props} addToCart={this.addToCart} />
+                  <ProductShow
+                    {...props}
+                    addToCart={this.addToCart}
+                    removeFromCart={this.removeFromCart}
+                  />
                 )}
               />
               <Route
                 exact
                 path="/ShoppingCart"
                 component={Cart}
-                render={props => <Cart {...props} />}
+                render={props => (
+                  <Cart {...props} removeFromCart={this.removeFromCart} />
+                )}
               />
             </Switch>
           </div>
