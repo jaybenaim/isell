@@ -17,8 +17,7 @@ class CheckoutForm extends Component {
     const SK_LIVE = process.env.SK_LIVE;
     let { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let data = { token: token.id, subTotal };
-    data = JSON.stringify(data);
+
     subTotal = JSON.stringify(subTotal);
     let response = await backend("/charge", {
       method: "POST",
@@ -27,8 +26,7 @@ class CheckoutForm extends Component {
         Authorization: `Bearer ${SK_TEST}`,
         token: token.id,
         total: subTotal
-      },
-      body: data
+      }
     });
     if (response.statusText === "OK") this.setState({ complete: true });
   }

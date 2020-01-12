@@ -18,7 +18,7 @@ const product1 = new Product(
   1,
   "TEST",
   "TEST",
-  ".01",
+  ".50",
   "images/img1.jpg",
   "TEST"
 );
