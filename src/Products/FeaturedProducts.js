@@ -10,15 +10,15 @@ class FeaturedProducts extends Component {
     return (
       <div className="featured-products-container">
         <div className="card text-center">
-          <div className="card-header">Featured</div>
-          <div className="card-body">
+          <div className="card-header">
             <h5 className="card-title">Featured Products</h5>
             <p className="card-text">
               Take an additional 10% when using the code{" "}
               <span className="text-secondary">FREESTUFF </span>
               <br />
-              NOT A REAL ECOMMERCE SITE DO NOT TRY TO PURCHASE
             </p>
+          </div>
+          <div className="card-body">
             <div className="featured-products-grid">
               <div className="card-1">
                 <ProductCard

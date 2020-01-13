@@ -46,13 +46,14 @@ class ProductCard extends Component {
     description = description.replace(/^\w/, c => c.toUpperCase());
     !image && (image = product.image);
     return (
-      <div className={`${productClass} card`} style={{ width: "18em" }}>
+      <div className={`${productClass} card`}>
         {this.getImageURl()}
 
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
           <p className="card-text">{description}</p>
           <p> {price}</p>
+          <label htmlFor="qty-integer">Qty: </label>
           <input
             className="qty-input"
             type="number"
