@@ -42,12 +42,13 @@
 }
 @media (min-width: 798px) {
   .modal-cart-price {
-    grid-row: 1;
-    grid-column: 4;
+    grid-area: 1 / 3 / 1 / 4;
+    margin-top: 70px;
+    font-size: 1.8em;
   }
   .modal-cart-qty {
-    grid-row: 4;
-    grid-column: 4;
+    grid-area: 1 / 3 / 1 / 4;
+    font-size: 1.3em;
   }
   .modal-cart-remove-item {
     margin-top: -60%;

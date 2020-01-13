@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -10,7 +10,11 @@ import Cart from "../Cart/Cart";
 import "./App.css";
 import Product from "../Data/productSchema";
 import CartModal from "../Cart/CartModal";
-
+import local from "../Api/local";
+import Login from "../Register/Login";
+import withAuth from "../Register/WithAuth";
+import Secret from "../Register/Secret";
+import Signup from "../Register/Signup";
 const history = createBrowserHistory();
 class App extends Component {
   state = {
@@ -91,6 +95,7 @@ class App extends Component {
             totalCostBeforeTax={totalCostBeforeTax}
             removeFromCart={this.removeFromCart}
           />
+
           {showAlert && (
             <div className="alert alert-danger" role="alert">
               YOU ALREADY ADDED THIS ITEM TO YOUR CART!
@@ -100,10 +105,16 @@ class App extends Component {
             </div>
           )}
           <div className="content">
+            <Link to="/secret">Secret</Link>
             <Switch>
               <Route exact path="/">
                 <Home addToCart={this.addToCart} />
               </Route>
+
+              <Route path="/signup" component={Signup} />
+              <Route path="/login" component={Login} />
+              <Route path="/secret" component={withAuth(Secret)} />
+
               <Route exact path="/Products">
                 <Products
                   addToCart={this.addToCart}

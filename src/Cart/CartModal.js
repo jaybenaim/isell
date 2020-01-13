@@ -68,7 +68,9 @@ class CartModal extends Component {
           >
             Proceed to checkout
             <br />
-            <span>Total: ${totalCostBeforeTax}</span>
+            <span className="proceed-to-checkout-total">
+              Total: ${totalCostBeforeTax}
+            </span>
           </Link>
         </Modal.Footer>
       </Modal>
