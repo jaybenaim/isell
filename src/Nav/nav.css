@@ -1,0 +1,16 @@
+@media (max-width: 450px) {
+  .cart-btn-expanded {
+    margin-left: 2% !important;
+    background: #eee;
+    border: 1px solid #eee;
+    border-radius: 3px;
+  }
+  .cart-btn-1 {
+    border: 1px solid #eee;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+  .cart-btn-2 {
+    display: none;
+  }
+}

@@ -1,17 +1,25 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
+import "./nav.css";
 class Nav extends Component {
   state = {
-    showCart: false
+    showCart: false,
+    expanded: false
   };
   handleShowCart = event => {
     const { showCart } = this.state;
     this.setState({ showCart: !showCart });
   };
+
+  handleToggler = () => {
+    const { expanded } = this.state;
+    this.setState({ expanded: !expanded });
+  };
+
   render() {
     const { cart, totalCostBeforeTax, removeFromCart } = this.props;
-    const { showCart } = this.state;
+    const { showCart, expanded } = this.state;
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,7 +28,11 @@ class Nav extends Component {
           </a>
 
           <button
-            className="cart-btn cart-btn-1 btn"
+            className={
+              expanded
+                ? "cart-btn cart-btn-1 btn cart-btn-expanded"
+                : "cart-btn cart-btn-1 btn"
+            }
             onClick={() => this.handleShowCart()}
           >
             Cart &nbsp; <span>{cart.qty}</span>
@@ -43,6 +55,7 @@ class Nav extends Component {
             aria-controls="navbarNavDropdown"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            onClick={() => this.handleToggler()}
           >
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -90,7 +103,7 @@ class Nav extends Component {
               </li>
               <li data-toggle="collapse" data-target="#navbarNavDropdown">
                 <button
-                  className="cart-btn btn"
+                  className="cart-btn btn cart-btn-2"
                   onClick={() => this.handleShowCart()}
                 >
                   Cart &nbsp; <span>{cart.qty}</span>
