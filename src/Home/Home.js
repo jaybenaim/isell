@@ -25,20 +25,20 @@ class Home extends Component {
             <div className="carousel-inner" role="listbox">
               {/* <!-- Slide One - Set the background image for this slide in the line below --> */}
               <div
-                className="carousel-item active"
+                className="carousel-item active carousel-item-1"
                 style={{
                   backgroundImage: `url("https://placehold.it/1900x1080")`
                 }}
               >
                 <div className="carousel-caption d-none d-md-block">
-                  <h3>First Slide</h3>
+                  <h3>50% OFF</h3>
 
-                  <p className="discount">50% OFF</p>
+                  <p className="discount">Use code SALETIME for 50%</p>
                 </div>
               </div>
               {/* <!-- Slide Two - Set the background image for this slide in the line below --> */}
               <div
-                className="carousel-item"
+                className="carousel-item carousel-item-2"
                 style={{
                   backgroundImage: `url("https://placehold.it/1900x1080")`
                 }}
@@ -50,7 +50,7 @@ class Home extends Component {
               </div>
               {/* <!-- Slide Three - Set the background image for this slide in the line below --> */}
               <div
-                className="carousel-item"
+                className="carousel-item carousel-item-3"
                 style={{
                   backgroundImage: `url("https://placehold.it/1900x1080")`
                 }}

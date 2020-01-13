@@ -1,5 +1,40 @@
 @media (max-width: 450px) {
   #home-carousel {
     /* make smaller */
+    height: 15em;
+  }
+  .carousel-item-1 {
+    background: url(./homeImgs/sale.jpg) !important;
+    background-size: contain !important;
+    background-position-y: -40px !important;
+  }
+  .carousel-item-2 {
+    background: url(./homeImgs/randomItems.jpg) !important;
+    background-size: contain !important;
+  }
+  .carousel-item-3 {
+    background: url(./homeImgs/buySell.jpg) !important;
+    background-size: contain !important;
+  }
+}
+@media (min-width: 451px) {
+  .carousel-item-1 {
+    background: url(./homeImgs/sale.jpg) !important;
+    background-size: cover !important;
+    background-position-y: 60% !important;
+    background-repeat: no-repeat;
+  }
+  .carousel-item-2 {
+    background: url(./homeImgs/randomItems.jpg) !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+  }
+  .carousel-item-3 {
+    background: url(./homeImgs/buySell.jpg) !important;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+  }
+  .discount {
+    text-transform: uppercase;
   }
 }
