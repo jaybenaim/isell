@@ -3,8 +3,9 @@
   z-index: 3;
   margin-left: 40px;
 }
+
 /* change with window scroll */
-@media (min-width: 450px) {
+@media (min-width: 451px) {
   .checkout-total-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -49,5 +50,50 @@
   }
   .cart-btn-1 {
     display: none;
+  }
+}
+@media (max-width: 450px) {
+  .checkout-total-container {
+    margin-bottom: 4%;
+    border: 2px solid black;
+    padding: 20px;
+    margin: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .checkout-message {
+    grid-area: 1 / 1 / 1 / 5;
+  }
+  .checkout-label-tax {
+    margin-top: 16%;
+    grid-area: 2 / 3 / 2 / 4;
+    text-align: left !important;
+  }
+  .checkout-amount-tax {
+    grid-area: 2 / 5 / 3 / 5;
+    font-size: 0.9em;
+    margin-top: 30%;
+  }
+  .checkout-label-process-fees {
+    text-align: left !important;
+    grid-area: 3 / 3 / 4 / span 4;
+  }
+  .checkout-amount-fees {
+    grid-area: 3 / 5 / 4 / 5;
+    font-size: 0.9em;
+    margin-top: 7%;
+  }
+  .checkout-label-subtotal {
+    margin-top: 30%;
+    grid-area: 4 / 3 / 5 / 5;
+  }
+  .checkout-subtotal {
+    grid-area: 4 / 5 / 5 / 5;
+    margin-top: 35%;
+    font-size: 1.5em;
+    font-weight: 600;
+  }
+  .checkout-btn {
+    margin-bottom: 40%;
   }
 }

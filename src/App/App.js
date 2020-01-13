@@ -117,20 +117,14 @@ class App extends Component {
                 path="/Products/:id/Show"
                 component={ProductShow}
                 render={props => (
-                  <ProductShow
-                    {...props}
-                    addToCart={this.addToCart}
-                    removeFromCart={this.removeFromCart}
-                  />
+                  <ProductShow {...props} addToCart={this.addToCart} />
                 )}
               />
               <Route
                 exact
                 path="/ShoppingCart"
                 component={Cart}
-                render={props => (
-                  <Cart {...props} removeFromCart={this.removeFromCart} />
-                )}
+                render={props => <Cart {...props} />}
               />
             </Switch>
           </div>

@@ -14,3 +14,15 @@
 .checkout-item-price {
   grid-area: 1/4;
 }
+.checkout-item-delete-btn {
+  grid-area: 2/4;
+  width: 20%;
+  margin: 0 auto;
+}
+@media (max-width: 450px) {
+  .checkout-item-delete-btn {
+    grid-area: 2/4;
+    width: 50%;
+    margin: 0 auto;
+  }
+}

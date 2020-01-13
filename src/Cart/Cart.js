@@ -10,11 +10,18 @@ class Cart extends Component {
   };
 
   showCheckoutItems = () => {
-    const { cart } = this.props.location.params;
-    const { items } = cart;
+    const { cart, removeFromCart } = this.props.location.params;
+    const { items, qty } = cart;
 
     let cartItems = items.map((item, i) => {
-      return <CheckoutItem {...item} key={i} />;
+      return (
+        <CheckoutItem
+          {...item}
+          key={i}
+          removeFromCart={removeFromCart}
+          cartQty={qty}
+        />
+      );
     });
     return cartItems;
   };
@@ -58,8 +65,9 @@ class Cart extends Component {
   render() {
     const { params } = this.props.location;
     const { totalCostBeforeTax, cart } = params;
-    const { subTotal, isCheckedOut } = this.state;
-
+    const { isCheckedOut } = this.state;
+    const total = this.calculateSubTotal(totalCostBeforeTax);
+    const { tax, proccessFee, subTotal } = total;
     return (
       <div className="cart-container">
         <h1>Review Order</h1>
@@ -68,24 +76,22 @@ class Cart extends Component {
           <div className="checkout-message">
             You have {cart.qty} items in your cart.
           </div>
-          <span className="checkout-total-tax">
-            <strong>Tax:</strong> $
-            {this.calculateSubTotal(totalCostBeforeTax).tax}
-          </span>
-          <span className="checkout-total-process-fees">
-            <strong>Process Fee:</strong> $
-            {this.calculateSubTotal(totalCostBeforeTax).proccessFee}
-          </span>
-          <span className="checkout-total-subtotal">
-            <strong>SubTotal:</strong> $
-            {this.calculateSubTotal(totalCostBeforeTax).subTotal}
-          </span>
-          <div
-            className="checkout-btn btn btn-success"
-            onClick={() => this.handleCheckout()}
-          >
-            Proceed to checkout
+          <span className="checkout-label-tax">Tax:</span>
+          <span className="checkout-amount-tax"> {tax}</span>
+          <div className="checkout-label-process-fees">Process Fee:</div>
+          <span className="checkout-amount-fees">{proccessFee}</span>
+
+          <div className="checkout-label-subtotal">
+            <strong>SubTotal:</strong>
           </div>
+          <span className="checkout-subtotal">${subTotal}</span>
+        </div>
+
+        <div
+          className="checkout-btn btn btn-success"
+          onClick={() => this.handleCheckout()}
+        >
+          Proceed to checkout
         </div>
         {isCheckedOut && this.showCheckoutForm()}
       </div>

@@ -39,12 +39,12 @@ class CartItem extends Component {
             <span lassName="modal-cart-qty">
               QTY: {qty} @ ${price}
             </span>
-            <span
+            <button
               className="modal-cart-remove-item btn btn-outline-danger"
               onClick={() => removeFromCart(id)}
             >
               Remove Item
-            </span>
+            </button>
           </div>
         )}
       </>

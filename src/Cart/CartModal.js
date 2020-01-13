@@ -38,7 +38,7 @@ class CartModal extends Component {
 
   render() {
     const { props } = this;
-    const { cart, onHide, totalCostBeforeTax } = props;
+    const { cart, onHide, totalCostBeforeTax, removeFromCart } = props;
 
     return (
       <Modal
@@ -59,7 +59,7 @@ class CartModal extends Component {
             onClick={() => this.checkout()}
             to={{
               pathname: `/ShoppingCart`,
-              params: { cart, totalCostBeforeTax }
+              params: { cart, totalCostBeforeTax, removeFromCart }
             }}
           >
             Proceed to checkout
