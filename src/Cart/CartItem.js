@@ -19,13 +19,13 @@ class CartItem extends Component {
         {error ? (
           <div>No Items in cart.</div>
         ) : (
-          <div className="modal-cart-item">
+          <div className="modal-cart-item-container">
             <Link
               to={{
                 pathname: `/Products/${id}/show`,
                 state: { name, description, price, image }
               }}
-              className="modal-cart-image"
+              className="modal-link-to-product-show"
               onClick={() => hideModal()}
             >
               <img src={image} alt={name} className="modal-cart-image" />
@@ -35,9 +35,11 @@ class CartItem extends Component {
               {this.shortDescription(description)}
             </span>
 
-            <span className="modal-cart-price">Cost: ${price * qty} </span>
-            <span lassName="modal-cart-qty">
-              QTY: {qty} @ ${price}
+            <span className="modal-cart-price">
+              CAD <strong>${price * qty}</strong>{" "}
+            </span>
+            <span className="modal-cart-qty">
+              QTY {qty} @ ${price}
             </span>
             <button
               className="modal-cart-remove-item btn btn-outline-danger"

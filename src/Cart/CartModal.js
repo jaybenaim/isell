@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 import CartItem from "./CartItem";
+import "./cartModal.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -51,11 +52,14 @@ class CartModal extends Component {
           <Modal.Title id="contained-modal-title-vcenter">
             Your Cart
           </Modal.Title>
+          <Button onClick={onHide} variant="outline-danger">
+            X
+          </Button>
         </Modal.Header>
         <Modal.Body>{this.showCartItems()}</Modal.Body>
         <Modal.Footer>
           <Link
-            className="nav-link"
+            className="nav-link btn-success proceed-to-checkout-btn"
             onClick={() => this.checkout()}
             to={{
               pathname: `/ShoppingCart`,
@@ -66,7 +70,6 @@ class CartModal extends Component {
             <br />
             <span>Total: ${totalCostBeforeTax}</span>
           </Link>
-          <Button onClick={onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     );

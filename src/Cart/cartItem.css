@@ -1,4 +1,4 @@
-.modal-cart-item {
+.modal-cart-item-container {
   width: 90%;
   margin: 0 auto;
   background: #eee;
@@ -10,7 +10,7 @@
   padding: 20px;
 }
 @media (min-width: 450px) {
-  .modal-cart-item {
+  .modal-cart-item-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -55,5 +55,38 @@
     grid-column: 4;
     font-weight: 700;
     height: 3em;
+  }
+}
+@media (max-width: 451px) {
+  .modal-cart-item-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .modal-cart-image {
+    grid-area: 1 / 1;
+    width: 4em;
+  }
+  .modal-cart-name {
+    font-weight: 700;
+    font-size: 1.4em;
+    grid-area: 1 / 2 / 1 / 5;
+    margin-left: 2%;
+  }
+  .modal-cart-price {
+    grid-area: 1 / 4 / 1 / 6;
+    margin-top: 80%;
+  }
+  .modal-cart-short-desc {
+    grid-area: 1 / 2 / 1 / 5;
+    margin-top: 20%;
+    margin-left: 4%;
+  }
+  .modal-cart-qty {
+    grid-area: 1 / 4 / 1 / 6;
+    margin-top: 60%;
+  }
+  .modal-cart-remove-item {
+    grid-area: 2 / 4 / 2 / 6;
+    font-size: 0.9em;
   }
 }
