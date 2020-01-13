@@ -4,9 +4,20 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 class ProductCard extends Component {
   state = {
     isLoaded: false,
+    showDesc: false,
     qty: 1
   };
-
+  shortDescription = description => {
+    if (description.length <= 15) {
+      return description;
+    } else {
+      return description.slice(0, 15) + "...";
+    }
+  };
+  showDescription = () => {
+    const { showDesc } = this.state;
+    this.setState({ showDesc: !showDesc });
+  };
   componentDidMount() {
     this.setState({ image: true });
   }
@@ -30,7 +41,7 @@ class ProductCard extends Component {
     }
   };
   render() {
-    const { qty } = this.state;
+    const { qty, showDesc } = this.state;
     let {
       name,
       description,
@@ -39,8 +50,7 @@ class ProductCard extends Component {
       id,
       product,
       image,
-      addToCart,
-      removeFromCart
+      addToCart
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
     description = description.replace(/^\w/, c => c.toUpperCase());
@@ -51,7 +61,9 @@ class ProductCard extends Component {
 
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <p className="card-text">{description}</p>
+          <p className="card-text" onClick={() => this.showDescription()}>
+            {showDesc ? description : this.shortDescription(description)}
+          </p>
           <p> {price}</p>
           <label htmlFor="qty-integer">Qty: </label>
           <input

@@ -8,14 +8,17 @@
     grid-area: 1 / 1;
     width: 10em;
     padding-bottom: 40px;
+    margin-left: 4%;
   }
   .card-2 {
     grid-area: 1 / 2;
     width: 10em;
+    margin-left: 9%;
   }
   .card-3 {
     grid-area: 2 / 1;
     width: 10em;
+    margin-left: 4%;
   }
   .card-1 .card-body h5 {
     padding-bottom: 24px;
