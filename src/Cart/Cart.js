@@ -50,7 +50,7 @@ class Cart extends Component {
   calculateSubTotal = totalCostBeforeTax => {
     const taxPercentage = 0.13;
     let totalTax = totalCostBeforeTax * taxPercentage;
-    const proccessFee = 0.37;
+    const proccessFee = totalCostBeforeTax ? 0.37 : 0;
     const subTotal = totalCostBeforeTax + totalTax + proccessFee;
 
     const results = {

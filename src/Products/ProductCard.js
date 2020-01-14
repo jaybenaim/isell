@@ -64,7 +64,7 @@ class ProductCard extends Component {
           <p className="card-text" onClick={() => this.showDescription()}>
             {showDesc ? description : this.shortDescription(description)}
           </p>
-          <p> {price}</p>
+          <p>CAD ${price}</p>
           <label htmlFor="qty-integer">Qty: </label>
           <input
             className="qty-input"
