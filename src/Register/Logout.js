@@ -4,8 +4,9 @@ import Cookies from "js-cookie";
 class Secret extends Component {
   state = {};
   handleLogout = () => {
+    const { handleLogin } = this.props;
+    handleLogin();
     Cookies.remove("token");
-    this.props.history.push("/");
   };
   render() {
     return <button onClick={() => this.handleLogout()}>Logout</button>;

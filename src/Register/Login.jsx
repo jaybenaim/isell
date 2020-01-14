@@ -17,6 +17,7 @@ export default class Login extends Component {
     });
   };
   onSubmit = event => {
+    const { handleLogin } = this.props;
     event.preventDefault();
     axios("http://localhost:5000/api/authenticate", {
       method: "POST",
@@ -26,10 +27,9 @@ export default class Login extends Component {
       }
     })
       .then(res => {
-        Cookies.set("token", res.data, { expires: 7 });
         if (res.status === 200) {
-          console.log(Cookies.get("token"));
-          this.props.history.push("/");
+          Cookies.set("token", res.data.token, { expires: 7 });
+          handleLogin("");
         } else {
           const error = new Error(res.error);
           throw error;
@@ -41,7 +41,6 @@ export default class Login extends Component {
       });
   };
   render() {
-    console.log(Cookies.get("token"));
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Login Below!</h1>

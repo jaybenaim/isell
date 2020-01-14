@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import local from "../Api/local";
+import Cookies from "js-cookie";
+
 import axios from "axios";
 export default class Signup extends Component {
   constructor(props) {
@@ -16,6 +18,7 @@ export default class Signup extends Component {
     });
   };
   onSubmit = event => {
+    const { handleLogin } = this.props;
     event.preventDefault();
     axios("http://localhost:5000/api/register", {
       method: "POST",
@@ -25,9 +28,9 @@ export default class Signup extends Component {
       }
     })
       .then(res => {
-        console.log(res.data);
         if (res.status === 200) {
-          this.props.history.push("/");
+          Cookies.set("token", res.data.token, { expires: 7 });
+          handleLogin();
         } else {
           const error = new Error(res.error);
           throw error;
