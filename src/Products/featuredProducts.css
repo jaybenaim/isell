@@ -59,3 +59,6 @@
 }
 @media (min-width: 989px) {
 }
+.card-header h5 {
+  background: rgba(17, 145, 221, 0.2);
+}

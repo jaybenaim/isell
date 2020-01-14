@@ -22,3 +22,6 @@
     border-radius: 3px;
   }
 }
+.navbar {
+  background: rgba(17, 145, 221, 0.7) !important;
+}
