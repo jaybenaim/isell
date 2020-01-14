@@ -13,8 +13,9 @@ import CartModal from "../Cart/CartModal";
 import local from "../Api/local";
 import Login from "../Register/Login";
 import withAuth from "../Register/WithAuth";
-import Secret from "../Register/Secret";
+import Secret from "../Register/Logout";
 import Signup from "../Register/Signup";
+import axios from "axios";
 const history = createBrowserHistory();
 class App extends Component {
   state = {
@@ -84,7 +85,11 @@ class App extends Component {
   setSelectedProduct = product => {
     this.setState({ selectProduct: product });
   };
-
+  handleSecret = () => {
+    axios.get("http://localhost:5000/checkToken").then(res => {
+      console.log(res);
+    });
+  };
   render() {
     const { cartItems, cartQty, totalCostBeforeTax, showAlert } = this.state;
     return (
@@ -105,15 +110,13 @@ class App extends Component {
             </div>
           )}
           <div className="content">
-            <Link to="/secret">Secret</Link>
+            <button onClick={() => this.handleSecret()}>
+              Click to see my secret.
+            </button>
             <Switch>
               <Route exact path="/">
                 <Home addToCart={this.addToCart} />
               </Route>
-
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route path="/secret" component={withAuth(Secret)} />
 
               <Route exact path="/Products">
                 <Products

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import local from "../Api/local";
 import axios from "axios";
+import Cookies from "js-cookie";
 export default class Login extends Component {
   constructor(props) {
     super(props);
@@ -25,8 +26,9 @@ export default class Login extends Component {
       }
     })
       .then(res => {
-        console.log(res.data);
+        Cookies.set("token", res.data, { expires: 7 });
         if (res.status === 200) {
+          console.log(Cookies.get("token"));
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);
@@ -39,6 +41,7 @@ export default class Login extends Component {
       });
   };
   render() {
+    console.log(Cookies.get("token"));
     return (
       <form onSubmit={this.onSubmit}>
         <h1>Login Below!</h1>
