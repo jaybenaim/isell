@@ -41,16 +41,23 @@
   }
 }
 @media (min-width: 798px) {
+  .modal-cart-item-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .modal-cart-image {
+  }
   .modal-cart-price {
     grid-row: 1;
     grid-column: 4;
   }
   .modal-cart-qty {
-    grid-row: 4;
+    grid-row: 1;
     grid-column: 4;
+    margin-top: 40px;
   }
   .modal-cart-remove-item {
-    margin-top: -60%;
     grid-row: 3;
     grid-column: 4;
     font-weight: 700;
