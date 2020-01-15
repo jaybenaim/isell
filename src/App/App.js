@@ -9,13 +9,6 @@ import ProductShow from "../Products/ProductShow";
 import Cart from "../Cart/Cart";
 import "./App.css";
 import Product from "../Data/productSchema";
-import CartModal from "../Cart/CartModal";
-import local from "../Api/local";
-import Login from "../Register/Login";
-import withAuth from "../Register/WithAuth";
-import Secret from "../Register/Logout";
-import Signup from "../Register/Signup";
-import axios from "axios";
 import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
 const history = createBrowserHistory();
@@ -88,9 +81,11 @@ class App extends Component {
   setSelectedProduct = product => {
     this.setState({ selectProduct: product });
   };
-
+  toggleAlert = () => {
+    const { showAlert } = this.state;
+    this.setState({ showAlert: !showAlert });
+  };
   render() {
-    console.log(Cookies.get("token"));
     const {
       cartItems,
       cartQty,
@@ -109,6 +104,13 @@ class App extends Component {
 
           {showAlert && (
             <div className="alert alert-danger" role="alert">
+              <button
+                className="btn-danger alert-close-btn"
+                onClick={() => this.toggleAlert()}
+              >
+                X
+              </button>
+              <br />
               YOU ALREADY ADDED THIS ITEM TO YOUR CART!
               <br />
               <em>Check your cart for multiples</em>
@@ -134,24 +136,15 @@ class App extends Component {
                 />
               </Route>
 
-              <ProtectedRoute path="/Products/:id/Show" isLoggedIn={isLoggedIn}>
-                <Route
-                  exact
-                  path="/Products/:id/Show"
-                  component={ProductShow}
-                  render={props => (
-                    <ProductShow {...props} addToCart={this.addToCart} />
-                  )}
-                />
-              </ProtectedRoute>
-              {/* <Route
+              <Route
                 exact
                 path="/Products/:id/Show"
                 component={ProductShow}
                 render={props => (
                   <ProductShow {...props} addToCart={this.addToCart} />
                 )}
-              /> */}
+              />
+
               <ProtectedRoute path="/ShoppingCart" isLoggedIn={isLoggedIn}>
                 <Route
                   exact

@@ -19,7 +19,7 @@ function PrivateRoute({ isLoggedIn, children, ...rest }) {
         ) : (
           <Redirect
             to={{
-              pathname: "/",
+              pathname: "/Products",
               state: { from: location }
             }}
           />

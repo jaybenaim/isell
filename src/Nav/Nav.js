@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
 import Register from "../Register/Register";
+import ProtectedRoute from "../Register/ProtectedRoute";
 import "./nav.css";
 class Nav extends Component {
   state = {
