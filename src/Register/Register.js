@@ -9,7 +9,7 @@ import Axios from "axios";
 
 class Register extends Component {
   state = {
-    isLoggedIn: Cookies.get("token") === "undefined" ? false : true,
+    isLoggedIn: Cookies.get("token") === undefined ? false : true,
     userSelected: ""
   };
   showForm = userAction => {

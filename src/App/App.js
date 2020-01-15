@@ -17,9 +17,11 @@ import Secret from "../Register/Logout";
 import Signup from "../Register/Signup";
 import axios from "axios";
 import Cookies from "js-cookie";
+import ProtectedRoute from "../Register/ProtectedRoute";
 const history = createBrowserHistory();
 class App extends Component {
   state = {
+    isLoggedIn: Cookies.get("token") === undefined ? false : true,
     cartQty: 0,
     cartItems: [],
     totalCostBeforeTax: 0,
@@ -88,7 +90,14 @@ class App extends Component {
   };
 
   render() {
-    const { cartItems, cartQty, totalCostBeforeTax, showAlert } = this.state;
+    console.log(Cookies.get("token"));
+    const {
+      cartItems,
+      cartQty,
+      totalCostBeforeTax,
+      showAlert,
+      isLoggedIn
+    } = this.state;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -112,7 +121,7 @@ class App extends Component {
             </button> */}
             <Switch>
               <Route exact path="/">
-                <Home addToCart={this.addToCart} />
+                <Home addToCart={this.addToCart} isLoggedIn={isLoggedIn} />
               </Route>
 
               <Route exact path="/Products">
@@ -121,23 +130,33 @@ class App extends Component {
                   removeFromCart={this.removeFromCart}
                   selectProduct={this.setSelectedProduct}
                   history={history}
+                  isLoggedIn={isLoggedIn}
                 />
               </Route>
-              <Route
+
+              <ProtectedRoute path="/Products/:id/Show" isLoggedIn={isLoggedIn}>
+                <Route
+                  exact
+                  path="/Products/:id/Show"
+                  component={ProductShow}
+                  render={props => (
+                    <ProductShow {...props} addToCart={this.addToCart} />
+                  )}
+                />
+              </ProtectedRoute>
+              {/* <Route
                 exact
                 path="/Products/:id/Show"
                 component={ProductShow}
-                render={props =>
-                  withAuth(
-                    <ProductShow {...props} addToCart={this.addToCart} />
-                  )
-                }
-              />
+                render={props => (
+                  <ProductShow {...props} addToCart={this.addToCart} />
+                )}
+              /> */}
               <Route
                 exact
                 path="/ShoppingCart"
                 component={Cart}
-                render={props => withAuth(<Cart {...props} />)}
+                render={props => <Cart {...props} />}
               />
             </Switch>
           </div>

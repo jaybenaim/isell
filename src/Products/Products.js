@@ -6,7 +6,7 @@ import "./products.css";
 class Products extends Component {
   state = {};
   render() {
-    const { addToCart } = this.props;
+    const { addToCart, isLoggedIn } = this.props;
     let productList = products.map((product, i) => {
       const { id, image: url } = product;
       if (product.image === undefined) {
@@ -20,6 +20,7 @@ class Products extends Component {
             url={url}
             productClass={`product-card-${id} product-card`}
             addToCart={addToCart}
+            isLoggedIn={isLoggedIn}
           />
         );
       }
