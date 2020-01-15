@@ -17,9 +17,12 @@ class CheckoutForm extends Component {
     const SK_LIVE = process.env.SK_LIVE;
     let { subTotal } = this.props;
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    subTotal = JSON.stringify(subTotal * 100);
+    console.log(subTotal);
+    subTotal = Math.round(subTotal);
+    subTotal = JSON.stringify(subTotal);
+    console.log(subTotal);
 
-    let response = await backend("/charge", {
+    let response = await local("/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",

@@ -34,33 +34,37 @@ class Cart extends Component {
     const { totalCostBeforeTax } = this.props.location.params;
     const PK_TEST = "pk_test_kUyitnXXbG5Rg8HhhfYhnklR00qMm6iAaZ";
     const PK_LIVE = process.env.PK_LIVE;
+    const validTotal = (
+      this.calculateSubTotal(totalCostBeforeTax).subTotal * 100
+    ).toFixed(2);
     return (
       <StripeProvider apiKey={PK_TEST}>
         <div className="example">
           <h1>Confirm</h1>
           <Elements>
-            <CheckoutForm
-              subTotal={this.calculateSubTotal(totalCostBeforeTax).subTotal}
-            />
+            <CheckoutForm subTotal={validTotal} />
           </Elements>
         </div>
       </StripeProvider>
     );
   };
+
   calculateSubTotal = totalCostBeforeTax => {
     const taxPercentage = 0.13;
-    let totalTax = totalCostBeforeTax * taxPercentage;
-    const proccessFee = totalCostBeforeTax ? 0.37 : 0;
-    const subTotal = totalCostBeforeTax + totalTax + proccessFee;
+    let totalWithTax = Number(totalCostBeforeTax) * taxPercentage;
+    let proccessFee = totalCostBeforeTax * 0.029 + 0.35;
+    console.log(totalWithTax * 0.029);
+    let subTotal = totalCostBeforeTax + totalWithTax + proccessFee;
 
     const results = {
-      tax: totalTax.toFixed(2),
-      proccessFee: proccessFee,
+      tax: totalWithTax.toFixed(2),
+      proccessFee: proccessFee.toFixed(2),
       subTotal: subTotal.toFixed(2)
     };
 
     return results;
   };
+
   componentDidMount() {}
   render() {
     const { params } = this.props.location;
