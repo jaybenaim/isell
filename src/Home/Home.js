@@ -4,7 +4,7 @@ import "./home.css";
 class Home extends Component {
   state = {};
   render() {
-    const { addToCart } = this.props;
+    const { addToCart, isLoggedIn } = this.props;
     return (
       <>
         <header>
@@ -88,7 +88,7 @@ class Home extends Component {
           </div>
         </header>
         <div>
-          <FeaturedProducts addToCart={addToCart} />
+          <FeaturedProducts addToCart={addToCart} isLoggedIn={isLoggedIn} />
         </div>
       </>
     );

@@ -6,7 +6,7 @@ import "./featuredProducts.css";
 class FeaturedProducts extends Component {
   state = {};
   render() {
-    const { addToCart } = this.props;
+    const { addToCart, isLoggedIn } = this.props;
     return (
       <div className="featured-products-container">
         <div className="card text-center">
@@ -26,6 +26,7 @@ class FeaturedProducts extends Component {
                   product={featuredProducts[0]}
                   productClass={`product-card-${featuredProducts[0].id} product-card`}
                   addToCart={addToCart}
+                  isLoggedIn={isLoggedIn}
                 />
               </div>
               <div className="card-2">
@@ -34,6 +35,7 @@ class FeaturedProducts extends Component {
                   product={featuredProducts[1]}
                   productClass={`product-card-${featuredProducts[1].id} product-card`}
                   addToCart={addToCart}
+                  isLoggedIn={isLoggedIn}
                 />
               </div>
               <div className="card-3">
@@ -42,6 +44,7 @@ class FeaturedProducts extends Component {
                   product={featuredProducts[2]}
                   productClass={`product-card-${featuredProducts[2].id} product-card`}
                   addToCart={addToCart}
+                  isLoggedIn={isLoggedIn}
                 />
               </div>
             </div>

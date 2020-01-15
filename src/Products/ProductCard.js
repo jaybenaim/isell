@@ -50,7 +50,8 @@ class ProductCard extends Component {
       id,
       product,
       image,
-      addToCart
+      addToCart,
+      isLoggedIn
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
     description = description.replace(/^\w/, c => c.toUpperCase());
@@ -85,7 +86,7 @@ class ProductCard extends Component {
           <Link
             to={{
               pathname: `/Products/${id}/show`,
-              state: { id, name, description, price, image }
+              state: { id, name, description, price, image, isLoggedIn }
             }}
             className="btn btn-primary"
           >

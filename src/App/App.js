@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -10,10 +10,18 @@ import Cart from "../Cart/Cart";
 import "./App.css";
 import Product from "../Data/productSchema";
 import CartModal from "../Cart/CartModal";
-
+import local from "../Api/local";
+import Login from "../Register/Login";
+import withAuth from "../Register/WithAuth";
+import Secret from "../Register/Logout";
+import Signup from "../Register/Signup";
+import axios from "axios";
+import Cookies from "js-cookie";
+import ProtectedRoute from "../Register/ProtectedRoute";
 const history = createBrowserHistory();
 class App extends Component {
   state = {
+    isLoggedIn: Cookies.get("token") === undefined ? false : true,
     cartQty: 0,
     cartItems: [],
     totalCostBeforeTax: 0,
@@ -82,7 +90,14 @@ class App extends Component {
   };
 
   render() {
-    const { cartItems, cartQty, totalCostBeforeTax, showAlert } = this.state;
+    console.log(Cookies.get("token"));
+    const {
+      cartItems,
+      cartQty,
+      totalCostBeforeTax,
+      showAlert,
+      isLoggedIn
+    } = this.state;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -91,6 +106,7 @@ class App extends Component {
             totalCostBeforeTax={totalCostBeforeTax}
             removeFromCart={this.removeFromCart}
           />
+
           {showAlert && (
             <div className="alert alert-danger" role="alert">
               YOU ALREADY ADDED THIS ITEM TO YOUR CART!
@@ -100,26 +116,42 @@ class App extends Component {
             </div>
           )}
           <div className="content">
+            {/* <button onClick={() => this.checkForUser()}>
+              Click to see my secret.
+            </button> */}
             <Switch>
               <Route exact path="/">
-                <Home addToCart={this.addToCart} />
+                <Home addToCart={this.addToCart} isLoggedIn={isLoggedIn} />
               </Route>
+
               <Route exact path="/Products">
                 <Products
                   addToCart={this.addToCart}
                   removeFromCart={this.removeFromCart}
                   selectProduct={this.setSelectedProduct}
                   history={history}
+                  isLoggedIn={isLoggedIn}
                 />
               </Route>
-              <Route
+
+              <ProtectedRoute path="/Products/:id/Show" isLoggedIn={isLoggedIn}>
+                <Route
+                  exact
+                  path="/Products/:id/Show"
+                  component={ProductShow}
+                  render={props => (
+                    <ProductShow {...props} addToCart={this.addToCart} />
+                  )}
+                />
+              </ProtectedRoute>
+              {/* <Route
                 exact
                 path="/Products/:id/Show"
                 component={ProductShow}
                 render={props => (
                   <ProductShow {...props} addToCart={this.addToCart} />
                 )}
-              />
+              /> */}
               <Route
                 exact
                 path="/ShoppingCart"

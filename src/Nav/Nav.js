@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
+import Register from "../Register/Register";
 import "./nav.css";
 class Nav extends Component {
   state = {
@@ -26,7 +27,7 @@ class Nav extends Component {
           <a className="navbar-brand" href="/isell">
             Isell
           </a>
-
+          <Register />
           <button
             className={
               expanded
