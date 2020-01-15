@@ -152,12 +152,14 @@ class App extends Component {
                   <ProductShow {...props} addToCart={this.addToCart} />
                 )}
               /> */}
-              <Route
-                exact
-                path="/ShoppingCart"
-                component={Cart}
-                render={props => <Cart {...props} />}
-              />
+              <ProtectedRoute path="/ShoppingCart" isLoggedIn={isLoggedIn}>
+                <Route
+                  exact
+                  path="/ShoppingCart"
+                  component={Cart}
+                  render={props => <Cart {...props} />}
+                />
+              </ProtectedRoute>
             </Switch>
           </div>
           {/* <!-- Footer --> */}
