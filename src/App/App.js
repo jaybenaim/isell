@@ -127,15 +127,17 @@ class App extends Component {
                 exact
                 path="/Products/:id/Show"
                 component={ProductShow}
-                render={props => (
-                  <ProductShow {...props} addToCart={this.addToCart} />
-                )}
+                render={props =>
+                  withAuth(
+                    <ProductShow {...props} addToCart={this.addToCart} />
+                  )
+                }
               />
               <Route
                 exact
                 path="/ShoppingCart"
                 component={Cart}
-                render={props => <Cart {...props} />}
+                render={props => withAuth(<Cart {...props} />)}
               />
             </Switch>
           </div>

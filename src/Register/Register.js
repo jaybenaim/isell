@@ -3,6 +3,8 @@ import Cookies from "js-cookie";
 import Signup from "./Signup";
 import Login from "./Login";
 import Logout from "./Logout";
+import local from "../Api/local";
+import backend from "../Api/backend";
 import Axios from "axios";
 
 class Register extends Component {
@@ -26,7 +28,7 @@ class Register extends Component {
 
   getSecret = () => {
     console.log(Cookies.get("token"));
-    Axios.post("http://localhost:5000/api/home").then(res => {
+    local.get("/checkToken", { withCredentials: true }).then(res => {
       console.log(res);
     });
   };

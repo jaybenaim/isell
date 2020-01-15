@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import local from "../Api/local";
 export default function withAuth(ComponentToProtect) {
-  return class extends Component {
+  return class withAuth extends Component {
     constructor() {
       super();
       this.state = {
@@ -10,7 +11,8 @@ export default function withAuth(ComponentToProtect) {
       };
     }
     componentDidMount() {
-      fetch("/checkToken")
+      local
+        .get("/checkToken", { withCredentials: true })
         .then(res => {
           if (res.status === 200) {
             this.setState({ loading: false });
@@ -30,7 +32,7 @@ export default function withAuth(ComponentToProtect) {
         return null;
       }
       if (redirect) {
-        return <Redirect to="/login" />;
+        return <Redirect to="/" />;
       }
       return <ComponentToProtect {...this.props} />;
     }
