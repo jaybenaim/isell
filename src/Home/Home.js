@@ -44,8 +44,8 @@ class Home extends Component {
                 }}
               >
                 <div className="carousel-caption d-none d-md-block">
-                  <h3>Second Slide</h3>
-                  <p>This is a description for the second slide.</p>
+                  <h3>Got a Product?</h3>
+                  <p>Let us help you get is sold for top dollar</p>
                 </div>
               </div>
               {/* <!-- Slide Three - Set the background image for this slide in the line below --> */}
@@ -56,8 +56,8 @@ class Home extends Component {
                 }}
               >
                 <div className="carousel-caption d-none d-md-block">
-                  <h3>Third Slide</h3>
-                  <p>This is a description for the third slide.</p>
+                  <h3>Local Products</h3>
+                  <p>All sellers are in your current area</p>
                 </div>
               </div>
             </div>

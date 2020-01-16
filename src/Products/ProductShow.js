@@ -38,7 +38,7 @@ class ProductShow extends Component {
             <h3 className="my-3">Project Description</h3>
             <p>{description}</p>
 
-            <h3 className="my-3">{price}</h3>
+            <h3 className="my-3">${price}</h3>
           </div>
         </div>
 
