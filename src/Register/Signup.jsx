@@ -43,26 +43,28 @@ export default class Signup extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <h1>Signup!</h1>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={this.state.email}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={this.state.password}
-          onChange={this.handleInputChange}
-          required
-        />
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="register-form-container">
+        <form className="login-form" onSubmit={this.onSubmit}>
+          <h1>Signup!</h1>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter email"
+            value={this.state.email}
+            onChange={this.handleInputChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            value={this.state.password}
+            onChange={this.handleInputChange}
+            required
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }
