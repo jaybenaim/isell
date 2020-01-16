@@ -15,13 +15,18 @@
     display: none;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 451px) {
   .cart-btn-2 {
     background: #eee;
     border: 1px solid #eee;
     border-radius: 3px;
   }
+  .navbar-toggler {
+    margin-left: 91%;
+    margin-top: -8%;
+  }
 }
 .navbar {
-  background: rgba(17, 145, 221, 0.7) !important;
+  height: 4.6em;
+  background: transparent;
 }

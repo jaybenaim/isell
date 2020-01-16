@@ -6,6 +6,7 @@ import Logout from "./Logout";
 import local from "../Api/local";
 import backend from "../Api/backend";
 import Axios from "axios";
+import "./register.css";
 
 class Register extends Component {
   state = {
@@ -26,22 +27,21 @@ class Register extends Component {
     this.setState({ isLoggedIn: !isLoggedIn, userSelected: "" });
   };
 
-  getSecret = () => {
-    console.log(Cookies.get("token"));
-    local.get("/checkToken", { withCredentials: true }).then(res => {
-      console.log(res);
-    });
-  };
-  componentDidMount() {
-    console.log(Cookies.get("token"));
-  }
+  // getSecret = () => {
+  //   console.log(Cookies.get("token"));
+  //   local.get("/checkToken", { withCredentials: true }).then(res => {
+  //     console.log(res);
+  //   });
+  // };
+  // componentDidMount() {
+  //   console.log(Cookies.get("token"));
+  // }
 
   render() {
     const { userSelected, isLoggedIn } = this.state;
 
     return (
       <div className="auth">
-        <button onClick={() => this.getSecret()}>GET</button>
         {isLoggedIn ? (
           <div>
             <Logout handleLogin={this.handleLogin} />
@@ -49,8 +49,21 @@ class Register extends Component {
           </div>
         ) : (
           <>
-            <button onClick={() => this.showForm("login")}>Login</button>
-            <button onClick={() => this.showForm("signup")}>Signup</button>
+            <div className="login-container">
+              <button
+                className="login-btn"
+                onClick={() => this.showForm("login")}
+              >
+                Login
+              </button>
+              <br />
+              <button
+                className="signup-btn"
+                onClick={() => this.showForm("signup")}
+              >
+                Signup
+              </button>
+            </div>
           </>
         )}
 

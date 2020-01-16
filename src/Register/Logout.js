@@ -9,7 +9,11 @@ class Secret extends Component {
     Cookies.remove("token");
   };
   render() {
-    return <button onClick={() => this.handleLogout()}>Logout</button>;
+    return (
+      <button className="logout-btn" onClick={() => this.handleLogout()}>
+        Logout
+      </button>
+    );
   }
 }
 

@@ -28,7 +28,6 @@ class Nav extends Component {
           <a className="navbar-brand" href="/isell">
             Isell
           </a>
-          <Register />
           <button
             className={
               expanded
@@ -61,6 +60,8 @@ class Nav extends Component {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
+          <Register />
+
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li

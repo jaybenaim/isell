@@ -1,0 +1,47 @@
+@media (max-width: 450px) {
+  .login-container {
+    position: absolute;
+  }
+  .login-btn {
+    position: relative;
+    top: -45px;
+    z-index: 5;
+    left: -180%;
+  }
+  .signup-btn {
+    position: relative;
+    top: -50px;
+    left: -180%;
+  }
+  .logout-btn {
+  }
+  .navbar-toggler {
+    margin-left: 85%;
+    margin-top: -8%;
+  }
+}
+@media (min-width: 451px) {
+  .login-container {
+    position: absolute;
+  }
+  .login-btn {
+    float: right;
+    position: relative;
+    margin-right: 220%;
+    margin-top: -80%;
+    border: none;
+  }
+  .signup-btn {
+    float: right;
+    position: relative;
+    margin-right: 220%;
+    margin-top: -70%;
+    border: none;
+  }
+  .login-btn:hover,
+  .signup-btn:hover {
+    background-color: #eee;
+  }
+  .logout-btn {
+  }
+}
