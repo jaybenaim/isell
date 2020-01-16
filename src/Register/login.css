@@ -31,3 +31,7 @@
     background: rgba(0, 0, 0, 0.3);
   }
 }
+.login-btn a,
+.signup-btn a {
+  color: black;
+}

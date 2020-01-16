@@ -60,9 +60,6 @@
   }
 }
 @media (min-width: 900px) {
-  .cart-btn {
-    margin-left: 66%;
-  }
   .cart-btn-1 {
     display: none;
   }
