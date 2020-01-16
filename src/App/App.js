@@ -7,6 +7,8 @@ import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
 import ProductShow from "../Products/ProductShow";
 import Cart from "../Cart/Cart";
+import Login from "../Register/Login";
+import Signup from "../Register/Signup";
 import "./App.css";
 import Product from "../Data/productSchema";
 import Cookies from "js-cookie";
@@ -125,7 +127,16 @@ class App extends Component {
               <Route exact path="/">
                 <Home addToCart={this.addToCart} isLoggedIn={isLoggedIn} />
               </Route>
-
+              <Route
+                exact
+                path="/login"
+                render={props => <Login {...props} />}
+              />
+              <Route
+                exact
+                path="/signup"
+                render={props => <Signup {...props} />}
+              />
               <Route exact path="/Products">
                 <Products
                   addToCart={this.addToCart}

@@ -60,7 +60,6 @@ class Nav extends Component {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <Register />
 
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
@@ -114,6 +113,7 @@ class Nav extends Component {
               </li>
             </ul>
           </div>
+          <Register />
         </nav>
       </>
     );

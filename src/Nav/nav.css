@@ -27,6 +27,7 @@
   }
 }
 .navbar {
-  height: 4.6em;
-  background: transparent;
+  z-index: 9;
+}
+.navbar-collapse {
 }
