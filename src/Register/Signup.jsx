@@ -18,9 +18,8 @@ export default class Signup extends Component {
     });
   };
   onSubmit = event => {
-    const { handleLogin } = this.props;
     event.preventDefault();
-    axios("http://localhost:5000/api/register", {
+    axios("http://localhost:5000/api/signup", {
       method: "POST",
       data: JSON.stringify(this.state),
       headers: {
@@ -29,13 +28,17 @@ export default class Signup extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          Cookies.set("token", res.data.token, { expires: 7 });
-          handleLogin();
+          console.log(res.data);
+          Cookies.set("token", res.data.token, {
+            expires: 7
+          });
+          this.props.history.push("/");
         } else {
           const error = new Error(res.error);
           throw error;
         }
       })
+
       .catch(err => {
         console.error(err);
         alert("Error creating user, please try again.");

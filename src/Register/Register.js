@@ -15,30 +15,37 @@ class Register extends Component {
     userSelected: ""
   };
 
-  handleLogin = () => {
-    const { isLoggedIn } = this.state;
-    this.setState({ isLoggedIn: !isLoggedIn, userSelected: "" });
-  };
-
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, redirect } = this.state;
 
     return (
       <div className="auth">
         {isLoggedIn ? (
           <div>
-            <Logout handleLogin={this.handleLogin} />
+            <Logout />
             Logged In
           </div>
         ) : (
           <>
             <div className="login-container">
               <div className="login-btn">
-                <Link to={{ pathname: "/login" }}>Login</Link>
+                <Link
+                  to={{
+                    pathname: "/login"
+                  }}
+                >
+                  Login
+                </Link>
               </div>
               <br />
               <div className="signup-btn">
-                <Link to={{ pathname: "/signup" }}>Signup</Link>
+                <Link
+                  to={{
+                    pathname: "/signup"
+                  }}
+                >
+                  Signup
+                </Link>
               </div>
             </div>
           </>

@@ -13,6 +13,7 @@ import "./App.css";
 import Product from "../Data/productSchema";
 import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
+import ProfileForm from "../Profile/ProfileForm";
 const history = createBrowserHistory();
 class App extends Component {
   state = {
@@ -87,6 +88,7 @@ class App extends Component {
     const { showAlert } = this.state;
     this.setState({ showAlert: !showAlert });
   };
+  componentDidMount() {}
   render() {
     const {
       cartItems,
@@ -162,6 +164,13 @@ class App extends Component {
                   path="/ShoppingCart"
                   component={Cart}
                   render={props => <Cart {...props} />}
+                />
+              </ProtectedRoute>
+              <ProtectedRoute path="/profiles/new" isLoggedIn={isLoggedIn}>
+                <Route
+                  exact
+                  path="/profiles/new"
+                  render={props => <ProfileForm {...props} />}
                 />
               </ProtectedRoute>
             </Switch>
