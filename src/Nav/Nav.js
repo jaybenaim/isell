@@ -20,7 +20,13 @@ class Nav extends Component {
   };
 
   render() {
-    const { cart, totalCostBeforeTax, removeFromCart } = this.props;
+    const {
+      cart,
+      totalCostBeforeTax,
+      removeFromCart,
+      isLoggedIn,
+      handleLogin
+    } = this.props;
     const { showCart, expanded } = this.state;
     return (
       <>
@@ -113,7 +119,7 @@ class Nav extends Component {
               </li>
             </ul>
           </div>
-          <Register />
+          <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
         </nav>
       </>
     );

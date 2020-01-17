@@ -19,6 +19,8 @@ export default class Login extends Component {
     });
   };
   onSubmit = event => {
+    const { handleLogin } = this.props;
+
     event.preventDefault();
     axios("http://localhost:5000/api/authenticate", {
       method: "POST",
@@ -29,7 +31,10 @@ export default class Login extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          Cookies.set("token", res.data.token, { expires: 7 });
+          Cookies.set("token", res.data.token, {
+            expires: 7
+          });
+          handleLogin(res.data.token);
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);

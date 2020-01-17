@@ -15,9 +15,10 @@ import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
 const history = createBrowserHistory();
+const { token } = Cookies.get();
 class App extends Component {
   state = {
-    isLoggedIn: Cookies.get("token") === undefined ? false : true,
+    isLoggedIn: token === undefined ? false : true,
     cartQty: 0,
     cartItems: [],
     totalCostBeforeTax: 0,
@@ -88,7 +89,13 @@ class App extends Component {
     const { showAlert } = this.state;
     this.setState({ showAlert: !showAlert });
   };
-  componentDidMount() {}
+  handleLogin = token => {
+    this.setState({
+      isLoggedIn: token ? token : false
+    });
+  };
+
+  componentDidUpdate() {}
   render() {
     const {
       cartItems,
@@ -104,6 +111,8 @@ class App extends Component {
             cart={{ qty: cartQty, items: cartItems }}
             totalCostBeforeTax={totalCostBeforeTax}
             removeFromCart={this.removeFromCart}
+            isLoggedIn={isLoggedIn}
+            handleLogin={this.handleLogin}
           />
 
           {showAlert && (
@@ -132,12 +141,16 @@ class App extends Component {
               <Route
                 exact
                 path="/login"
-                render={props => <Login {...props} />}
+                render={props => (
+                  <Login {...props} handleLogin={this.handleLogin} />
+                )}
               />
               <Route
                 exact
                 path="/signup"
-                render={props => <Signup {...props} />}
+                render={props => (
+                  <Signup {...props} handleLogin={this.handleLogin} />
+                )}
               />
               <Route exact path="/Products">
                 <Products

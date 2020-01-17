@@ -18,6 +18,7 @@ export default class Signup extends Component {
     });
   };
   onSubmit = event => {
+    const { handleLogin } = this.props;
     event.preventDefault();
     axios("http://localhost:5000/api/signup", {
       method: "POST",
@@ -28,10 +29,11 @@ export default class Signup extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data);
-          Cookies.set("token", res.data.token, {
+          Cookies.set("token", res.data.userId, {
             expires: 7
           });
+
+          handleLogin(res.data.userId);
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);
