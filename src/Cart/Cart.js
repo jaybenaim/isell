@@ -12,7 +12,6 @@ class Cart extends Component {
   showCheckoutItems = () => {
     const { cart, removeFromCart } = this.props.location.params;
     const { items, qty } = cart;
-
     let cartItems = items.map((item, i) => {
       return (
         <CheckoutItem
@@ -67,8 +66,8 @@ class Cart extends Component {
 
   componentDidMount() {}
   render() {
-    const { params } = this.props.location;
-    const { totalCostBeforeTax, cart } = params;
+    const { params = 0 } = this.props.location;
+    const { totalCostBeforeTax = 0, cart = { qty: 0 } } = params;
     const { isCheckedOut } = this.state;
     const total = this.calculateSubTotal(totalCostBeforeTax);
     const { tax, proccessFee, subTotal } = total;

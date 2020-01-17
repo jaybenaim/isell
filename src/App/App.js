@@ -37,6 +37,7 @@ class App extends Component {
   checkIfItemIsInCart = item => {
     const { cartItems } = this.state;
     let match = false;
+
     cartItems.map((cartItem, i) => {
       if (item.name === cartItem.name) {
         this.removeFromCart(item.id);
@@ -53,9 +54,7 @@ class App extends Component {
   removeFromCart = id => {
     const { cartItems } = this.state;
     const item = cartItems.filter(item => item.id === id);
-
     this.calculateTotalBeforeTax(-item[0].price);
-
     this.setState(prevState => {
       return {
         cartItems: [...prevState.cartItems.filter(item => item.id !== id)],
@@ -91,7 +90,7 @@ class App extends Component {
   };
   handleLogin = token => {
     this.setState({
-      isLoggedIn: token ? token : false
+      isLoggedIn: token ? true : false
     });
   };
 
@@ -176,7 +175,9 @@ class App extends Component {
                   exact
                   path="/ShoppingCart"
                   component={Cart}
-                  render={props => <Cart {...props} />}
+                  render={props => (
+                    <Cart {...props} removeFromCart={this.removeFromCart} />
+                  )}
                 />
               </ProtectedRoute>
               <ProtectedRoute path="/profiles/new" isLoggedIn={isLoggedIn}>

@@ -16,7 +16,7 @@ const product1 = new Product(
   "Louis Vuitton",
   "Juul Sticker",
   "2.00",
-  "images/img4.jpg",
+  "https://jaybenaim.github.io/isell/images/img4.jpg",
   "Phone Accesories"
 );
 const product2 = new Product(
@@ -24,7 +24,7 @@ const product2 = new Product(
   "Hello",
   "Juul Sticker",
   "2.00",
-  "images/img5.jpg",
+  "https://jaybenaim.github.io/isell/images/img5.jpg",
   "Phone Accesories"
 );
 const product3 = new Product(
@@ -32,7 +32,7 @@ const product3 = new Product(
   "Marble",
   "Juul Sticker",
   "2.00",
-  "images/img6.jpg",
+  "https://jaybenaim.github.io/isell/images/img6.jpg",
   "Phone Accesories"
 );
 const product4 = new Product(
@@ -41,7 +41,7 @@ const product4 = new Product(
   "Juul Holder, Sticks to anywhere! Reusable!",
   "2.00",
 
-  "images/img7.jpg",
+  "https://jaybenaim.github.io/isell/images/img7.jpg",
   "Phone Accesories"
 );
 const product5 = new Product(
@@ -49,7 +49,7 @@ const product5 = new Product(
   "Rick and Morty",
   "Juul Sticker",
   "2.00",
-  "images/img8.jpg",
+  "https://jaybenaim.github.io/isell/images/img8.jpg",
   "Phone Accesories"
 );
 
