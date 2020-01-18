@@ -53,7 +53,7 @@ class App extends Component {
   };
   removeFromCart = id => {
     const { cartItems } = this.state;
-    const item = cartItems.filter(item => item.id === id);
+    const item = cartItems.filter(item => (item.id === id ? item : 0));
     this.calculateTotalBeforeTax(-item[0].price);
     this.setState(prevState => {
       return {
