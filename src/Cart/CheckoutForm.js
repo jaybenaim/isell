@@ -20,7 +20,7 @@ class CheckoutForm extends Component {
     console.log(subTotal);
     subTotal = Math.round(subTotal);
     subTotal = JSON.stringify(subTotal);
-    console.log(subTotal);
+    console.log(ev);
 
     let response = await local("/charge", {
       method: "POST",
