@@ -55,3 +55,34 @@ describe("add item to state when clicking addToCart", () => {
     );
   });
 });
+describe("addToCart increases qty of items", () => {
+  test("increase the qty according to the param", () => {
+    const app = create(<App cartQty={0} />);
+    const instance = app.getInstance();
+    const item = {
+      id: 1,
+      name: "test",
+      price: 4.99,
+      image: "https://jaybenaim.github.io/isell/images/img4.jpg",
+      description: "test description",
+      category: "misc",
+      qty: 1
+    };
+    const qty = 4;
+    instance.addToCart(qty, item);
+    expect(instance.state.cartQty).toStrictEqual(qty);
+  });
+});
+
+// ALERT TOGGLER
+describe("toggleAlert function", () => {
+  test("hides alert message", () => {
+    const app = create(<App />);
+    const instance = app.getInstance();
+
+    instance.toggleAlert(); // show
+    instance.toggleAlert(); // hide
+
+    expect(instance.state.showAlert).toBeFalsy();
+  });
+});

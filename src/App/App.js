@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route, Link } from "react-router-dom";
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -24,11 +24,12 @@ class App extends Component {
     totalCostBeforeTax: 0,
     selectedProduct: null,
     addedToCart: false,
-    valid: false
+    valid: false,
+    showAlert: false
   };
 
   calculateTotalBeforeTax = total => {
-    total = total.toFixed(2);
+    total = Number(total).toFixed(2);
     this.setState(prevState => {
       return {
         totalCostBeforeTax: (prevState.totalCostBeforeTax += parseFloat(total))

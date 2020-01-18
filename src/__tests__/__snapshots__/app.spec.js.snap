@@ -50,7 +50,7 @@ exports[`app with login and protected routes Matches the snapshot 1`] = `
         >
           <a
             className="nav-link"
-            href="/isell/Products"
+            href="/Products"
             onClick={[Function]}
           >
             Products
@@ -134,7 +134,7 @@ exports[`app with login and protected routes Matches the snapshot 1`] = `
           className="login-btn"
         >
           <a
-            href="/isell/login"
+            href="/login"
             onClick={[Function]}
           >
             Login
@@ -145,7 +145,7 @@ exports[`app with login and protected routes Matches the snapshot 1`] = `
           className="signup-btn"
         >
           <a
-            href="/isell/signup"
+            href="/signup"
             onClick={[Function]}
           >
             Signup
@@ -363,7 +363,7 @@ exports[`app with login and protected routes Matches the snapshot 1`] = `
                     </button>
                     <a
                       className="btn btn-primary"
-                      href="/isell/Products/10001/show"
+                      href="/Products/10001/show"
                       onClick={[Function]}
                     >
                       Show Details
@@ -422,7 +422,7 @@ exports[`app with login and protected routes Matches the snapshot 1`] = `
                     </button>
                     <a
                       className="btn btn-primary"
-                      href="/isell/Products/10002/show"
+                      href="/Products/10002/show"
                       onClick={[Function]}
                     >
                       Show Details
@@ -481,7 +481,7 @@ exports[`app with login and protected routes Matches the snapshot 1`] = `
                     </button>
                     <a
                       className="btn btn-primary"
-                      href="/isell/Products/10003/show"
+                      href="/Products/10003/show"
                       onClick={[Function]}
                     >
                       Show Details
