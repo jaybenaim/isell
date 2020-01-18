@@ -162,7 +162,6 @@ class App extends Component {
               <Route
                 exact
                 path="/Products"
-                component={Products}
                 render={props => (
                   <Products
                     {...props}
