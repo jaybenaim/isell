@@ -57,7 +57,11 @@ class App extends Component {
     this.calculateTotalBeforeTax(-item[0].price);
     this.setState(prevState => {
       return {
-        cartItems: [...prevState.cartItems.filter(item => item.id !== id)],
+        cartItems: [
+          ...prevState.cartItems.filter(item =>
+            item.id !== id ? item.id : null
+          )
+        ],
         cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
       };
     });
@@ -129,6 +133,9 @@ class App extends Component {
               <br />
             </div>
           )}
+          <Link to={{ pathname: "/profiles/new", state: { text: "hello" } }}>
+            NEW PROFILE
+          </Link>
           <div className="content">
             {/* <button onClick={() => this.checkForUser()}>
               Click to see my secret.
@@ -151,15 +158,20 @@ class App extends Component {
                   <Signup {...props} handleLogin={this.handleLogin} />
                 )}
               />
-              <Route exact path="/Products">
-                <Products
-                  addToCart={this.addToCart}
-                  removeFromCart={this.removeFromCart}
-                  selectProduct={this.setSelectedProduct}
-                  history={history}
-                  isLoggedIn={isLoggedIn}
-                />
-              </Route>
+
+              <Route
+                exact
+                path="/Products"
+                component={Products}
+                render={props => (
+                  <Products
+                    {...props}
+                    addToCart={this.addToCart}
+                    removeFromCart={this.removeFromCart}
+                    selectProduct={this.setSelectedProduct}
+                  />
+                )}
+              />
 
               <Route
                 exact

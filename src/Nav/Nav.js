@@ -74,7 +74,10 @@ class Nav extends Component {
                 data-toggle="collapse"
                 data-target="#navbarNavDropdown"
               >
-                <Link className="nav-link" to="/Products">
+                <Link
+                  className="nav-link"
+                  to={{ pathname: "/Products", state: { isLoggedIn } }}
+                >
                   Products<span className="sr-only">(current)</span>
                 </Link>
               </li>

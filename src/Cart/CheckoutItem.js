@@ -6,7 +6,7 @@ class CheckoutItem extends Component {
     const { removeFromCart, cartQty } = this.props;
     removeFromCart(id);
     if (cartQty <= 1) {
-      this.props.history.goBack();
+      window.location.href = "/";
     }
   };
   render() {

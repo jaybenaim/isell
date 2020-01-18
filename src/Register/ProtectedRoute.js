@@ -9,18 +9,17 @@ import {
   useLocation
 } from "react-router-dom";
 
-function PrivateRoute({ isLoggedIn, children, ...rest }) {
+function PrivateRoute({ isLoggedIn, children: Component, ...rest }) {
   return (
     <Route
       {...rest}
-      render={({ location }) =>
+      render={props =>
         isLoggedIn ? (
-          children
+          Component
         ) : (
           <Redirect
             to={{
-              pathname: "/Products",
-              state: { from: location }
+              pathname: "/"
             }}
           />
         )
