@@ -28,6 +28,7 @@ class App extends Component {
   };
 
   calculateTotalBeforeTax = total => {
+    total = total.toFixed(2);
     this.setState(prevState => {
       return {
         totalCostBeforeTax: (prevState.totalCostBeforeTax += parseFloat(total))
@@ -65,14 +66,14 @@ class App extends Component {
   addToCart = (qty, item) => {
     this.checkIfItemIsInCart(item);
     const { addedToCart } = this.state;
-    const { id, name, description, price, image } = item;
+    const { id, name, description, price, image, category } = item;
     const items = [];
 
     for (let i = 1; i <= qty; i++) {
       this.calculateTotalBeforeTax(price);
     }
 
-    items.push(new Product(id, name, description, price, image, "", qty));
+    items.push(new Product(id, name, description, price, image, category, qty));
     this.setState(prevState => {
       return {
         cartQty: (prevState.cartQty += qty),

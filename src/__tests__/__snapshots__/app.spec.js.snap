@@ -1,0 +1,517 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`app with login and protected routes Matches the snapshot 1`] = `
+<div
+  className="App"
+>
+  <nav
+    className="navbar navbar-expand-lg navbar-light bg-light"
+  >
+    <a
+      className="navbar-brand"
+      href="/isell"
+    >
+      Isell
+    </a>
+    <button
+      className="cart-btn cart-btn-1 btn"
+      onClick={[Function]}
+    >
+      Cart   
+      <span>
+        0
+      </span>
+    </button>
+    <button
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      className="navbar-toggler"
+      data-target="#navbarNavDropdown"
+      data-toggle="collapse"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      id="navbarNavDropdown"
+    >
+      <ul
+        className="navbar-nav"
+      >
+        <li
+          className="nav-item active"
+          data-target="#navbarNavDropdown"
+          data-toggle="collapse"
+        >
+          <a
+            className="nav-link"
+            href="/isell/Products"
+            onClick={[Function]}
+          >
+            Products
+            <span
+              className="sr-only"
+            >
+              (current)
+            </span>
+          </a>
+        </li>
+        <li
+          className="nav-item"
+        >
+          <a
+            className="nav-link"
+            href="/"
+          >
+            Pricing
+          </a>
+        </li>
+        <li
+          className="nav-item dropdown"
+        >
+          <a
+            aria-expanded="false"
+            aria-haspopup="true"
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            href="/"
+            id="navbarDropdownMenuLink"
+          >
+            Dropdown link
+          </a>
+          <div
+            aria-labelledby="navbarDropdownMenuLink"
+            className="dropdown-menu"
+          >
+            <a
+              className="dropdown-item"
+              href="/"
+            >
+              Action
+            </a>
+            <a
+              className="dropdown-item"
+              href="/"
+            >
+              Another action
+            </a>
+            <a
+              className="dropdown-item"
+              href="/"
+            >
+              Something else here
+            </a>
+          </div>
+        </li>
+        <li
+          data-target="#navbarNavDropdown"
+          data-toggle="collapse"
+        >
+          <button
+            className="cart-btn btn cart-btn-2"
+            onClick={[Function]}
+          >
+            Cart   
+            <span>
+              0
+            </span>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="auth"
+    >
+      <div
+        className="login-container"
+      >
+        <div
+          className="login-btn"
+        >
+          <a
+            href="/isell/login"
+            onClick={[Function]}
+          >
+            Login
+          </a>
+        </div>
+        <br />
+        <div
+          className="signup-btn"
+        >
+          <a
+            href="/isell/signup"
+            onClick={[Function]}
+          >
+            Signup
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div
+    className="content"
+  >
+    <header>
+      <div
+        className="carousel slide"
+        data-ride="carousel"
+        id="home-carousel"
+      >
+        <ol
+          className="carousel-indicators"
+        >
+          <li
+            className="active"
+            data-slide-to="0"
+            data-target="#home-carousel"
+          />
+          <li
+            data-slide-to="1"
+            data-target="#home-carousel"
+          />
+          <li
+            data-slide-to="2"
+            data-target="#home-carousel"
+          />
+        </ol>
+        <div
+          className="carousel-inner"
+          role="listbox"
+        >
+          <div
+            className="carousel-item active carousel-item-1"
+            style={
+              Object {
+                "backgroundImage": "url(\\"https://placehold.it/1900x1080\\")",
+              }
+            }
+          >
+            <div
+              className="carousel-caption d-none d-md-block"
+            >
+              <h3>
+                50% OFF
+              </h3>
+              <p
+                className="discount"
+              >
+                Use code SALETIME for 50%
+              </p>
+            </div>
+          </div>
+          <div
+            className="carousel-item carousel-item-2"
+            style={
+              Object {
+                "backgroundImage": "url(\\"https://placehold.it/1900x1080\\")",
+              }
+            }
+          >
+            <div
+              className="carousel-caption d-none d-md-block"
+            >
+              <h3>
+                Got a Product?
+              </h3>
+              <p>
+                Let us help you get is sold for top dollar
+              </p>
+            </div>
+          </div>
+          <div
+            className="carousel-item carousel-item-3"
+            style={
+              Object {
+                "backgroundImage": "url(\\"https://placehold.it/1900x1080\\")",
+              }
+            }
+          >
+            <div
+              className="carousel-caption d-none d-md-block"
+            >
+              <h3>
+                Local Products
+              </h3>
+              <p>
+                All sellers are in your current area
+              </p>
+            </div>
+          </div>
+        </div>
+        <a
+          className="carousel-control-prev"
+          data-slide="prev"
+          href="#home-carousel"
+          role="button"
+        >
+          <span
+            aria-hidden="true"
+            className="carousel-control-prev-icon"
+          />
+          <span
+            className="sr-only"
+          >
+            Previous
+          </span>
+        </a>
+        <a
+          className="carousel-control-next"
+          data-slide="next"
+          href="#home-carousel"
+          role="button"
+        >
+          <span
+            aria-hidden="true"
+            className="carousel-control-next-icon"
+          />
+          <span
+            className="sr-only"
+          >
+            Next
+          </span>
+        </a>
+      </div>
+    </header>
+    <div>
+      <div
+        className="featured-products-container"
+      >
+        <div
+          className="card text-center"
+        >
+          <div
+            className="card-header"
+          >
+            <h5
+              className="card-title"
+            >
+              Featured Products
+            </h5>
+            <p
+              className="card-text"
+            >
+              Take an additional 10% when using the code
+               
+              <span
+                className="text-secondary"
+              >
+                FREESTUFF 
+              </span>
+              <br />
+            </p>
+          </div>
+          <div
+            className="card-body"
+          >
+            <div
+              className="featured-products-grid"
+            >
+              <div
+                className="card-1"
+              >
+                <div
+                  className="product-card-10001 product-card card"
+                >
+                  <img
+                    alt="none"
+                    className="card-img-top"
+                    src="https://jaybenaim.github.io/isell/images/img1.jpg"
+                  />
+                  <div
+                    className="card-body"
+                  >
+                    <h5
+                      className="card-title"
+                    >
+                      Gucci
+                    </h5>
+                    <p
+                      className="card-text"
+                      onClick={[Function]}
+                    >
+                      Juul Sticker
+                    </p>
+                    <p>
+                      CAD $
+                      2.00
+                    </p>
+                    <label
+                      htmlFor="qty-integer"
+                    >
+                      Qty: 
+                    </label>
+                    <input
+                      className="qty-input"
+                      max="10"
+                      min="1"
+                      name="quantity"
+                      onChange={[Function]}
+                      placeholder="1"
+                      type="number"
+                    />
+                    <button
+                      className="add-to-cart-btn"
+                      onClick={[Function]}
+                    >
+                      Add to cart
+                    </button>
+                    <a
+                      className="btn btn-primary"
+                      href="/isell/Products/10001/show"
+                      onClick={[Function]}
+                    >
+                      Show Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="card-2"
+              >
+                <div
+                  className="product-card-10002 product-card card"
+                >
+                  <img
+                    alt="none"
+                    className="card-img-top"
+                    src="https://jaybenaim.github.io/isell/images/img2.jpg"
+                  />
+                  <div
+                    className="card-body"
+                  >
+                    <h5
+                      className="card-title"
+                    >
+                      Rick and Morty
+                    </h5>
+                    <p
+                      className="card-text"
+                      onClick={[Function]}
+                    >
+                      Juul Sticker
+                    </p>
+                    <p>
+                      CAD $
+                      2.00
+                    </p>
+                    <label
+                      htmlFor="qty-integer"
+                    >
+                      Qty: 
+                    </label>
+                    <input
+                      className="qty-input"
+                      max="10"
+                      min="1"
+                      name="quantity"
+                      onChange={[Function]}
+                      placeholder="1"
+                      type="number"
+                    />
+                    <button
+                      className="add-to-cart-btn"
+                      onClick={[Function]}
+                    >
+                      Add to cart
+                    </button>
+                    <a
+                      className="btn btn-primary"
+                      href="/isell/Products/10002/show"
+                      onClick={[Function]}
+                    >
+                      Show Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="card-3"
+              >
+                <div
+                  className="product-card-10003 product-card card"
+                >
+                  <img
+                    alt="none"
+                    className="card-img-top"
+                    src="https://jaybenaim.github.io/isell/images/img3.jpg"
+                  />
+                  <div
+                    className="card-body"
+                  >
+                    <h5
+                      className="card-title"
+                    >
+                      Supreme
+                    </h5>
+                    <p
+                      className="card-text"
+                      onClick={[Function]}
+                    >
+                      Juul Sticker
+                    </p>
+                    <p>
+                      CAD $
+                      2.00
+                    </p>
+                    <label
+                      htmlFor="qty-integer"
+                    >
+                      Qty: 
+                    </label>
+                    <input
+                      className="qty-input"
+                      max="10"
+                      min="1"
+                      name="quantity"
+                      onChange={[Function]}
+                      placeholder="1"
+                      type="number"
+                    />
+                    <button
+                      className="add-to-cart-btn"
+                      onClick={[Function]}
+                    >
+                      Add to cart
+                    </button>
+                    <a
+                      className="btn btn-primary"
+                      href="/isell/Products/10003/show"
+                      onClick={[Function]}
+                    >
+                      Show Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="card-footer text-muted"
+          >
+            2 days ago
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer
+    className="py-5 bg-dark"
+  >
+    <div
+      className="container"
+    >
+      <p
+        className="m-0 text-center text-white"
+      >
+        Copyright © Your Website 2019 NOT A REAL ECOMMERCE SITE DO NOT TRY TO PURCHASE
+      </p>
+    </div>
+  </footer>
+</div>
+`;
