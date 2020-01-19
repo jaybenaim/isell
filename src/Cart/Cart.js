@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CheckoutItem from "./CheckoutItem";
 import { Elements, StripeProvider } from "react-stripe-elements";
+import { Redirect } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import "./cart.css";
 import axios from "axios";
@@ -10,7 +11,8 @@ class Cart extends Component {
   };
 
   showCheckoutItems = () => {
-    const { cart, removeFromCart } = this.props.location.params;
+    const { removeFromCart } = this.props.location.params;
+    const { cart } = this.props.location.state;
     const { items, qty } = cart;
     let cartItems = items.map((item, i) => {
       return (
@@ -52,7 +54,6 @@ class Cart extends Component {
     const taxPercentage = 0.13;
     let totalWithTax = Number(totalCostBeforeTax) * taxPercentage;
     let proccessFee = totalCostBeforeTax * 0.029 + 0.35;
-    console.log(totalWithTax * 0.029);
     let subTotal = totalCostBeforeTax + totalWithTax + proccessFee;
 
     const results = {
@@ -63,18 +64,29 @@ class Cart extends Component {
 
     return results;
   };
+  // handleDelete = id => {
+  //   const { cart, removeFromCart } = this.props.location.params;
 
-  componentDidMount() {}
+  //   removeFromCart(id);
+
+  //   return cart.qty <= 1 ? (
+  //     <Redirect to="/" />
+  //   ) : (
+  //     <Redirect to={{ pathname: "/ShoppingCart", state: { cart } }} />
+  //   );
+  // };
+  componentDidUpdate() {}
   render() {
-    const { params = 0 } = this.props.location;
-    const { totalCostBeforeTax = 0, cart = { qty: 0 } } = params;
+    const { params = 0, state } = this.props.location;
+    const { cart } = state;
+    const { totalCostBeforeTax = 0 } = params;
     const { isCheckedOut } = this.state;
     const total = this.calculateSubTotal(totalCostBeforeTax);
     const { tax, proccessFee, subTotal } = total;
     return (
       <div className="cart-container">
         <h1>Review Order</h1>
-        {params && this.showCheckoutItems()}
+        {state && this.showCheckoutItems()}
         <div className="checkout-total-container">
           <div className="checkout-message">
             You have {cart.qty} items in your cart.

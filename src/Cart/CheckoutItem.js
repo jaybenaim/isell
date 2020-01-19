@@ -1,14 +1,18 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import "./checkoutItem.css";
 class CheckoutItem extends Component {
   state = {};
-  handleDelete = id => {
-    const { removeFromCart, cartQty } = this.props;
-    removeFromCart(id);
-    if (cartQty <= 1) {
-      this.props.history.goBack();
-    }
-  };
+  // handleDelete = id => {
+  //   const { removeFromCart, cartQty, cart } = this.props;
+  //   removeFromCart(id);
+  //   return cartQty <= 1 ? (
+  //     <Redirect to="/" />
+  //   ) : (
+  //     <Redirect to={{ pathname: "/ShoppingCart", state: { cart: cart } }} />
+  //   );
+  // };
+  // move to cart componemt
   render() {
     const { id, name, description, price, image, qty } = this.props;
     return (
@@ -22,7 +26,7 @@ class CheckoutItem extends Component {
         <div className="checkout-item-price">${price * qty}</div>
         <button
           className="btn btn-outline-danger checkout-item-delete-btn"
-          onClick={() => this.handleDelete(id)}
+          onClick={() => this.props.removeFromCart(id)}
         >
           X
         </button>

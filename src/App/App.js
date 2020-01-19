@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
+<<<<<<< HEAD
 import { Router, Switch, Route, Link } from "react-router-dom";
+=======
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+>>>>>>> bug
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -55,14 +60,22 @@ class App extends Component {
   };
   removeFromCart = id => {
     const { cartItems } = this.state;
-    const item = cartItems.filter(item => item.id === id);
+    const item = cartItems.filter(item =>
+      item.id === id ? item : "No items in cart"
+    );
     this.calculateTotalBeforeTax(-item[0].price);
+
     this.setState(prevState => {
       return {
-        cartItems: [...prevState.cartItems.filter(item => item.id !== id)],
+        cartItems: [
+          ...prevState.cartItems.filter(item =>
+            item.id !== id ? item.id : null
+          )
+        ],
         cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
       };
     });
+    return cartItems.qty <= 1 ? <Redirect to="/" /> : this.forceUpdate();
   };
   addToCart = (qty, item) => {
     this.checkIfItemIsInCart(item);
@@ -96,7 +109,12 @@ class App extends Component {
     });
   };
 
+  // storeCartToLocal = () =>  {
+  // items disapear from cart when refrresh
+  // }
+  // items need to refresh on delete
   componentDidUpdate() {}
+
   render() {
     const {
       cartItems,
@@ -105,6 +123,7 @@ class App extends Component {
       showAlert,
       isLoggedIn
     } = this.state;
+
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -131,6 +150,9 @@ class App extends Component {
               <br />
             </div>
           )}
+          <Link to={{ pathname: "/profiles/new", state: { text: "hello" } }}>
+            NEW PROFILE
+          </Link>
           <div className="content">
             {/* <button onClick={() => this.checkForUser()}>
               Click to see my secret.
@@ -153,15 +175,19 @@ class App extends Component {
                   <Signup {...props} handleLogin={this.handleLogin} />
                 )}
               />
-              <Route exact path="/Products">
-                <Products
-                  addToCart={this.addToCart}
-                  removeFromCart={this.removeFromCart}
-                  selectProduct={this.setSelectedProduct}
-                  history={history}
-                  isLoggedIn={isLoggedIn}
-                />
-              </Route>
+
+              <Route
+                exact
+                path="/Products"
+                render={props => (
+                  <Products
+                    {...props}
+                    addToCart={this.addToCart}
+                    removeFromCart={this.removeFromCart}
+                    selectProduct={this.setSelectedProduct}
+                  />
+                )}
+              />
 
               <Route
                 exact
@@ -178,7 +204,12 @@ class App extends Component {
                   path="/ShoppingCart"
                   component={Cart}
                   render={props => (
-                    <Cart {...props} removeFromCart={this.removeFromCart} />
+                    <Cart
+                      {...props}
+                      timestamp={new Date().toString()}
+                      removeFromCart={this.removeFromCart}
+                      cartItems={cartItems}
+                    />
                   )}
                 />
               </ProtectedRoute>
