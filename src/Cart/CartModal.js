@@ -63,7 +63,8 @@ class CartModal extends Component {
             onClick={() => this.checkout()}
             to={{
               pathname: `/ShoppingCart`,
-              params: { cart, totalCostBeforeTax, removeFromCart }
+              params: { totalCostBeforeTax, removeFromCart },
+              state: { cart }
             }}
           >
             Proceed to checkout
