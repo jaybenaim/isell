@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,21 +8,32 @@ import {
   useHistory,
   useLocation
 } from "react-router-dom";
+import Login from "../Register/Login";
+import "./protectedRoute.css";
 
 function PrivateRoute({ isLoggedIn, children: Component, ...rest }) {
+  const [showAlert, setShowAlert] = useState(true);
+
   return (
     <Route
       {...rest}
       render={props =>
-        isLoggedIn ? (
-          Component
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/"
-            }}
-          />
-        )
+        isLoggedIn
+          ? Component
+          : showAlert && (
+              <>
+                <div className="alert alert-danger login-alert" role="alert">
+                  Please login first!
+                  <button
+                    className="btn-danger alert-close-btn"
+                    onClick={() => setShowAlert(false)}
+                  >
+                    X
+                  </button>
+                </div>
+                <Login redirect={true} />
+              </>
+            )
       }
     />
   );

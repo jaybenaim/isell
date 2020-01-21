@@ -17,6 +17,12 @@
 }
 @media (min-width: 751px) {
 }
+@media (min-width: 451px) {
+  .signup-redirect-btn {
+    margin-top: 20px;
+    font-size: 2em;
+  }
+}
 .login-btn a,
 .signup-btn a {
   color: black;

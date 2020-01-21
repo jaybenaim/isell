@@ -3,7 +3,6 @@
   z-index: 3;
   /* margin-left: 40px; */
 }
-
 /* change with window scroll */
 @media (min-width: 451px) {
   .checkout-total-container {

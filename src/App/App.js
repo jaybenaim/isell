@@ -73,8 +73,9 @@ class App extends Component {
         cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
       };
     });
+
     return cartItems.qty <= 1 ? (
-      <Redirect to="/" />
+      <Redirect to={{ pathname: "/" }} />
     ) : (
       <Redirect to={{ pathname: "/ShoppingCar", state: { cart: cartItems } }} />
     );
@@ -122,7 +123,8 @@ class App extends Component {
       cartQty,
       totalCostBeforeTax,
       showAlert,
-      isLoggedIn
+      isLoggedIn,
+      redirect
     } = this.state;
 
     return (
