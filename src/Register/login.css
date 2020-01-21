@@ -16,6 +16,7 @@
   }
 }
 @media (min-width: 751px) {
+<<<<<<< HEAD
   /*
   .register-form-container {
      position: absolute;
@@ -31,6 +32,8 @@
     margin-left: -400%;
     background: rgba(0, 0, 0, 0.3);
   } */
+=======
+>>>>>>> master
 }
 .login-btn a,
 .signup-btn a {
