@@ -123,8 +123,7 @@ class App extends Component {
       cartQty,
       totalCostBeforeTax,
       showAlert,
-      isLoggedIn,
-      redirect
+      isLoggedIn
     } = this.state;
 
     return (

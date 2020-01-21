@@ -26,9 +26,9 @@ class Cart extends Component {
     });
     return cartItems;
   };
-  handleCheckout = () => {
+  handleCheckout = value => {
     const { isCheckedOut } = this.state;
-    this.setState({ isCheckedOut: !isCheckedOut });
+    this.setState({ isCheckedOut: !isCheckedOut || value });
   };
   showCheckoutForm = () => {
     const { totalCostBeforeTax } = this.props.location.params;
@@ -40,10 +40,19 @@ class Cart extends Component {
     return (
       <StripeProvider apiKey={PK_TEST}>
         <div className="stripe-container">
+          <button
+            className="outline-danger btn"
+            onClick={() => this.handleCheckout(false)}
+          >
+            x
+          </button>
+
           <h1>Confirm</h1>
-          <Elements>
-            <CheckoutForm subTotal={validTotal} />
-          </Elements>
+          <div className="checkout-container">
+            <Elements>
+              <CheckoutForm subTotal={validTotal} />
+            </Elements>
+          </div>
         </div>
       </StripeProvider>
     );
