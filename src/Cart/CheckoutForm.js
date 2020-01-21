@@ -22,7 +22,7 @@ class CheckoutForm extends Component {
     subTotal = JSON.stringify(subTotal);
     console.log(ev);
 
-    let response = await local("/charge", {
+    let response = await backend("/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
@@ -34,12 +34,17 @@ class CheckoutForm extends Component {
     if (response.statusText === "OK") this.setState({ complete: true });
   }
   render() {
+    let { subTotal } = this.props;
+    subTotal = Math.round(subTotal);
+    subTotal = JSON.stringify(subTotal);
     if (this.state.complete) return <h1>Purchase Complete</h1>;
     return (
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
+        <p>Would you like to complete the purchase for ${subTotal / 100}? </p>
         <CardElement />
-        <button onClick={this.submit}>Purchase</button>
+        <button onClick={this.submit} class="btn btn-outline-success">
+          Purchase
+        </button>
       </div>
     );
   }

@@ -53,17 +53,38 @@
     position: absolute;
     z-index: 33;
     padding: 20%;
-    margin-left: 1%;
-    margin-top: -140%;
+    margin-left: 4%;
+    margin-top: -90%;
     background: rgba(0, 0, 0, 0.7);
     color: white;
     height: 100%;
+    width: 92%;
+  }
+  .stripe-container h1 {
+    margin-top: -30%;
+    font-size: 4em;
+  }
+
+  .stripe-container .outline-danger {
+    color: white;
+    font-size: 2.5em;
+    position: absolute;
+    top: 4%;
+    right: 2%;
   }
   .checkout-container {
     background: #eee;
-    color: black;
-    padding: 20px;
+    padding: 8%;
     margin-top: 30%;
+    background: #eee;
+    padding: 0 5% 5% 5%;
+  }
+  .checkout p {
+    background: #eee;
+    color: black;
+    padding: 8%;
+    margin-top: 30%;
+    font-size: 2.4em;
   }
 }
 .checkout-btn:hover {
