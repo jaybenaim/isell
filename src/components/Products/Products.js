@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FeaturedProducts from "./FeaturedProducts";
-import products from "../Data/products";
+import products from "../../Data/products";
 import ProductCard from "./ProductCard";
 import "./products.css";
 class Products extends Component {

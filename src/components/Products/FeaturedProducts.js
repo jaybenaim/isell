@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import featuredProducts from "../Data/featuredProducts";
+import featuredProducts from "../../Data/featuredProducts";
 import ProductCard from "./ProductCard";
 import "./featuredProducts.css";
 

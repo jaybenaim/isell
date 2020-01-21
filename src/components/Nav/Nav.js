@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import CartModal from "../Cart/CartModal";
 import Register from "../Register/Register";
 import ProtectedRoute from "../Register/ProtectedRoute";
+import { addUser } from "../../redux/actions";
+
 import "./nav.css";
 class Nav extends Component {
   state = {
@@ -122,11 +125,18 @@ class Nav extends Component {
               </li>
             </ul>
           </div>
+          <button onClick={() => addUser()}>Add User</button>
+          {mapStateToProps(this.state)}
+
           <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
         </nav>
       </>
     );
   }
 }
+const mapStateToProps = state => {
+  const users = state.userDataReducer;
+  return users;
+};
 
-export default Nav;
+export default connect(mapStateToProps, { addUser })(Nav);

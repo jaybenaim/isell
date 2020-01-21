@@ -11,11 +11,12 @@ import Cart from "../Cart/Cart";
 import Login from "../Register/Login";
 import Signup from "../Register/Signup";
 import "./App.css";
-import Product from "../Data/productSchema";
+import Product from "../../Data/productSchema";
 import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
-import local from "../../../Api/local";
+import local from "../../Api/local";
+
 const history = createBrowserHistory();
 const { token } = Cookies.get();
 
@@ -30,7 +31,6 @@ class App extends Component {
     valid: false,
     showAlert: false
   };
-
   calculateTotalBeforeTax = total => {
     total = Number(total).toFixed(2);
     this.setState(prevState => {
