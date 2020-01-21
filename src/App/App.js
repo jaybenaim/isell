@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
-<<<<<<< HEAD
-import { Router, Switch, Route, Link } from "react-router-dom";
-=======
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
->>>>>>> bug
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -19,8 +15,10 @@ import Product from "../Data/productSchema";
 import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
+import local from "../Api/local";
 const history = createBrowserHistory();
 const { token } = Cookies.get();
+
 class App extends Component {
   state = {
     isLoggedIn: token === undefined ? false : true,
@@ -75,7 +73,11 @@ class App extends Component {
         cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
       };
     });
-    return cartItems.qty <= 1 ? <Redirect to="/" /> : this.forceUpdate();
+    return cartItems.qty <= 1 ? (
+      <Redirect to="/" />
+    ) : (
+      <Redirect to={{ pathname: "/ShoppingCar", state: { cart: cartItems } }} />
+    );
   };
   addToCart = (qty, item) => {
     this.checkIfItemIsInCart(item);
@@ -113,7 +115,6 @@ class App extends Component {
   // items disapear from cart when refrresh
   // }
   // items need to refresh on delete
-  componentDidUpdate() {}
 
   render() {
     const {
@@ -150,9 +151,9 @@ class App extends Component {
               <br />
             </div>
           )}
-          <Link to={{ pathname: "/profiles/new", state: { text: "hello" } }}>
+          {/* <Link to={{ pathname: "/profiles/new", state: { text: "hello" } }}>
             NEW PROFILE
-          </Link>
+          </Link> */}
           <div className="content">
             {/* <button onClick={() => this.checkForUser()}>
               Click to see my secret.

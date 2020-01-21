@@ -28,7 +28,6 @@ class Cart extends Component {
   };
   handleCheckout = () => {
     const { isCheckedOut } = this.state;
-
     this.setState({ isCheckedOut: !isCheckedOut });
   };
   showCheckoutForm = () => {
