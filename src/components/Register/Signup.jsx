@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import local from "../Api/local";
-import axios from "axios";
+import local from "../../Api/local";
 import Cookies from "js-cookie";
-import "./login.css";
 
-export default class Login extends Component {
+import axios from "axios";
+export default class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
-      password: "",
-      containerClass: !this.props.redirect
-        ? "register-form-container"
-        : "register-form-container login-redirect"
+      password: ""
     };
   }
   handleInputChange = event => {
@@ -24,39 +19,38 @@ export default class Login extends Component {
   };
   onSubmit = event => {
     const { handleLogin } = this.props;
-
     event.preventDefault();
-    axios("http://localhost:5000/api/authenticate", {
+    axios("http://localhost:5000/api/signup", {
       method: "POST",
-      data: this.state,
+      data: JSON.stringify(this.state),
       headers: {
         "Content-Type": "application/json"
       }
     })
       .then(res => {
         if (res.status === 200) {
-          Cookies.set("token", res.data.token, {
+          Cookies.set("token", res.data.userId, {
             expires: 7
           });
-          handleLogin(res.data.token);
+
+          handleLogin(res.data.userId);
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);
           throw error;
         }
       })
+
       .catch(err => {
         console.error(err);
-        alert("Error logging in please try again");
+        alert("Error creating user, please try again.");
       });
   };
   render() {
-    const { redirect } = this.props;
-    const { containerClass } = this.state;
     return (
-      <div className={containerClass}>
+      <div className="register-form-container">
         <form className="login-form" onSubmit={this.onSubmit}>
-          <h1>Login Below!</h1>
+          <h1>Signup!</h1>
           <input
             type="email"
             name="email"
@@ -75,11 +69,6 @@ export default class Login extends Component {
           />
           <input type="submit" value="Submit" />
         </form>
-        {redirect && (
-          <Link to="/signup" className="signup-redirect-btn">
-            Signup
-          </Link>
-        )}
       </div>
     );
   }

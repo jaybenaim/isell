@@ -15,7 +15,7 @@ import Product from "../Data/productSchema";
 import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
-import local from "../Api/local";
+import local from "../../../Api/local";
 const history = createBrowserHistory();
 const { token } = Cookies.get();
 

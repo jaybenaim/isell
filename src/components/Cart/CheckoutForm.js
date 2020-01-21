@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
-import backend from "../Api/backend";
-import local from "../Api/local";
+import backend from "../../Api/backend";
+import local from "../../Api/local";
 
 class CheckoutForm extends Component {
   constructor(props) {
