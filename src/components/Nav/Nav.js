@@ -28,7 +28,9 @@ class Nav extends Component {
       totalCostBeforeTax,
       removeFromCart,
       isLoggedIn,
-      handleLogin
+      handleLogin,
+      users,
+      addUser
     } = this.props;
     const { showCart, expanded } = this.state;
     return (
@@ -125,8 +127,11 @@ class Nav extends Component {
               </li>
             </ul>
           </div>
-          <button onClick={() => addUser()}>Add User</button>
-          {mapStateToProps(this.state)}
+
+          <button onClick={() => addUser({ name: "jay" })}>
+            Add User
+            {users.length >= 1 && users.map(user => <div>{user}</div>)}
+          </button>
 
           <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
         </nav>
@@ -134,9 +139,9 @@ class Nav extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  const users = state.userDataReducer;
-  return users;
+const mapStateToProps = (state, ownProps) => {
+  const users = state;
+  return { users };
 };
 
 export default connect(mapStateToProps, { addUser })(Nav);
