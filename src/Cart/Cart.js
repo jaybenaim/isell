@@ -39,7 +39,7 @@ class Cart extends Component {
     ).toFixed(2);
     return (
       <StripeProvider apiKey={PK_TEST}>
-        <div className="example">
+        <div className="stripe-container">
           <h1>Confirm</h1>
           <Elements>
             <CheckoutForm subTotal={validTotal} />

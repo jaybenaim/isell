@@ -50,6 +50,9 @@
   .checkout-btn {
     margin-bottom: 40%;
   }
+  .stripe-container {
+    margin-top: -40%;
+  }
 }
 .checkout-btn:hover {
   cursor: pointer;
