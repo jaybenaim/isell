@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
-<<<<<<< HEAD
-import { Router, Switch, Route, Link } from "react-router-dom";
-=======
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
->>>>>>> bug
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
