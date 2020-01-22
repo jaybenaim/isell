@@ -16,6 +16,8 @@ import Cookies from "js-cookie";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
 import local from "../../Api/local";
+import { connect } from "react-redux";
+import { addItem as addItemToCart } from "../../redux/actions";
 
 const history = createBrowserHistory();
 const { token } = Cookies.get();
@@ -23,8 +25,8 @@ const { token } = Cookies.get();
 class App extends Component {
   state = {
     isLoggedIn: token === undefined ? false : true,
-    cartQty: 0,
-    cartItems: [],
+    // cartQty: 0,
+    // cartItems: [],
     totalCostBeforeTax: 0,
     selectedProduct: null,
     addedToCart: false,
@@ -56,49 +58,49 @@ class App extends Component {
       this.setState({ showAlert: !showAlert });
     }
   };
-  removeFromCart = id => {
-    const { cartItems } = this.state;
-    const item = cartItems.filter(item =>
-      item.id === id ? item : "No items in cart"
-    );
-    this.calculateTotalBeforeTax(-item[0].price);
+  // removeFromCart = id => {
+  //   const { cartItems } = this.state;
+  //   const item = cartItems.filter(item =>
+  //     item.id === id ? item : "No items in cart"
+  //   );
+  //   this.calculateTotalBeforeTax(-item[0].price);
 
-    this.setState(prevState => {
-      return {
-        cartItems: [
-          ...prevState.cartItems.filter(item =>
-            item.id !== id ? item.id : null
-          )
-        ],
-        cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
-      };
-    });
+  //   this.setState(prevState => {
+  //     return {
+  //       cartItems: [
+  //         ...prevState.cartItems.filter(item =>
+  //           item.id !== id ? item.id : null
+  //         )
+  //       ],
+  //       cartQty: (prevState.cartQty -= prevState.cartQty >= 1 ? 1 : 0)
+  //     };
+  //   });
 
-    return cartItems.qty <= 1 ? (
-      <Redirect to={{ pathname: "/" }} />
-    ) : (
-      <Redirect to={{ pathname: "/ShoppingCar", state: { cart: cartItems } }} />
-    );
-  };
-  addToCart = (qty, item) => {
-    this.checkIfItemIsInCart(item);
-    const { addedToCart } = this.state;
-    const { id, name, description, price, image, category } = item;
-    const items = [];
+  //   return cartItems.qty <= 1 ? (
+  //     <Redirect to={{ pathname: "/" }} />
+  //   ) : (
+  //     <Redirect to={{ pathname: "/ShoppingCar", state: { cart: cartItems } }} />
+  //   );
+  // };
+  // addToCart = (qty, item) => {
+  //   this.checkIfItemIsInCart(item);
+  //   const { addedToCart } = this.state;
+  //   const { id, name, description, price, image, category } = item;
+  //   const items = [];
 
-    for (let i = 1; i <= qty; i++) {
-      this.calculateTotalBeforeTax(price);
-    }
+  //   for (let i = 1; i <= qty; i++) {
+  //     this.calculateTotalBeforeTax(price);
+  //   }
 
-    items.push(new Product(id, name, description, price, image, category, qty));
-    this.setState(prevState => {
-      return {
-        cartQty: (prevState.cartQty += qty),
-        cartItems: [...prevState.cartItems, ...items],
-        addedToCart: !addedToCart
-      };
-    });
-  };
+  //   items.push(new Product(id, name, description, price, image, category, qty));
+  //   this.setState(prevState => {
+  //     return {
+  //       cartQty: (prevState.cartQty += qty),
+  //       cartItems: [...prevState.cartItems, ...items],
+  //       addedToCart: !addedToCart
+  //     };
+  //   });
+  // };
   setSelectedProduct = product => {
     this.setState({ selectProduct: product });
   };
@@ -112,25 +114,20 @@ class App extends Component {
     });
   };
 
-  // storeCartToLocal = () =>  {
-  // items disapear from cart when refrresh
-  // }
-  // items need to refresh on delete
-
   render() {
     const {
-      cartItems,
-      cartQty,
+      // cartItems,
+      // cartQty,
       totalCostBeforeTax,
       showAlert,
       isLoggedIn
     } = this.state;
-
+    const { items, qty } = this.props.cart;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
           <Nav
-            cart={{ qty: cartQty, items: cartItems }}
+            cart={{ qty, items }}
             totalCostBeforeTax={totalCostBeforeTax}
             removeFromCart={this.removeFromCart}
             isLoggedIn={isLoggedIn}
@@ -156,12 +153,10 @@ class App extends Component {
             NEW PROFILE
           </Link> */}
           <div className="content">
-            {/* <button onClick={() => this.checkForUser()}>
-              Click to see my secret.
-            </button> */}
             <Switch>
               <Route exact path="/">
-                <Home addToCart={this.addToCart} isLoggedIn={isLoggedIn} />
+                {/* grab add from redux in home */}
+                <Home addToCart={addItemToCart} isLoggedIn={isLoggedIn} />
               </Route>
               <Route
                 exact
@@ -184,7 +179,7 @@ class App extends Component {
                 render={props => (
                   <Products
                     {...props}
-                    addToCart={this.addToCart}
+                    addToCart={addItemToCart}
                     removeFromCart={this.removeFromCart}
                     selectProduct={this.setSelectedProduct}
                   />
@@ -196,7 +191,7 @@ class App extends Component {
                 path="/Products/:id/Show"
                 component={ProductShow}
                 render={props => (
-                  <ProductShow {...props} addToCart={this.addToCart} />
+                  <ProductShow {...props} addToCart={addItemToCart} />
                 )}
               />
 
@@ -210,7 +205,7 @@ class App extends Component {
                       {...props}
                       timestamp={new Date().toString()}
                       removeFromCart={this.removeFromCart}
-                      cartItems={cartItems}
+                      items={items}
                     />
                   )}
                 />
@@ -239,5 +234,9 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  const cart = { items: state.items, qty: state.qty };
+  return { cart };
+};
 
-export default App;
+export default connect(mapStateToProps, { addItemToCart })(App);

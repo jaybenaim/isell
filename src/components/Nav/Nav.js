@@ -31,9 +31,10 @@ class Nav extends Component {
       handleLogin,
       users,
       addUser,
-      qty,
+
       addItem
     } = this.props;
+    const { items, qty } = cart;
     const { showCart, expanded } = this.state;
     return (
       <>
@@ -130,10 +131,10 @@ class Nav extends Component {
             </ul>
           </div>
 
-          <button onClick={() => this.props.addItem(3, { name: "jay" })}>
+          {/* <button onClick={() => this.props.addItem(3, { name: "jay" })}>
             Add User
-            {/* {users.length >= 1 && users.map(user => <div>{user}</div>)} */}
-          </button>
+          </button> */}
+          {/* {users.length >= 1 && users.map(user => <div>{user}</div>)} */}
 
           <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
         </nav>
@@ -141,9 +142,5 @@ class Nav extends Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  const cart = { items: state.items, qty: state.qty };
-  return { cart };
-};
 
-export default connect(mapStateToProps, { addItem })(Nav);
+export default Nav;

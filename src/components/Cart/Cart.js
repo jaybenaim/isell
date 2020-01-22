@@ -3,6 +3,9 @@ import CheckoutItem from "./CheckoutItem";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import { Redirect } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
+import { connect } from "react-redux";
+import { addItem as addItemToCart } from "../../redux/actions";
+
 import "./cart.css";
 import axios from "axios";
 class Cart extends Component {
@@ -12,7 +15,7 @@ class Cart extends Component {
 
   showCheckoutItems = () => {
     const { removeFromCart } = this.props.location.params;
-    const { cart } = this.props.location.state;
+    const { cart } = this.props; // grab from redux
     const { items, qty } = cart;
     let cartItems = items.map((item, i) => {
       return (
@@ -122,4 +125,9 @@ class Cart extends Component {
   }
 }
 
-export default Cart;
+const mapStateToProps = (state, ownProps) => {
+  const cart = { items: state.items, qty: state.qty };
+  return { cart };
+};
+
+export default connect(mapStateToProps, { addItemToCart })(Cart);

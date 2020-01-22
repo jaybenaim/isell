@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addItem as addItemToCart } from "../../redux/actions";
 
 class ProductCard extends Component {
   state = {
@@ -77,9 +79,10 @@ class ProductCard extends Component {
             ref={this.qtyRef}
             onChange={this.handleSetQty}
           ></input>
+          {/* <button onClick={() => addToCart(qty, product)}>Add to cart</button> */}
           <button
             className="add-to-cart-btn"
-            onClick={() => addToCart(qty, product)}
+            onClick={() => this.props.addItemToCart(qty, product)}
           >
             Add to cart
           </button>
@@ -98,4 +101,9 @@ class ProductCard extends Component {
   }
 }
 
-export default ProductCard;
+const mapStateToProps = (state, ownProps) => {
+  const cart = { items: state.items, qty: state.qty };
+  return { cart };
+};
+
+export default connect(mapStateToProps, { addItemToCart })(ProductCard);
