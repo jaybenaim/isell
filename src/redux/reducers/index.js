@@ -1,12 +1,5 @@
-import { ADD_USER } from "../actionTypes";
+import { combineReducers } from "redux";
+import addUser from "./addUser";
+import addItem from "./addItem";
 
-export const userDataReducer = (state = { users: [] }, action) => {
-  switch (action.type) {
-    case "ADD_USER":
-      return Object.assign({}, state, {
-        users: [...state.users, action.user]
-      });
-    default:
-      return state;
-  }
-};
+export default combineReducers({ addUser, addItem });

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import CartModal from "../Cart/CartModal";
 import Register from "../Register/Register";
 import ProtectedRoute from "../Register/ProtectedRoute";
-import { addUser } from "../../redux/actions";
+import { addItem } from "../../redux/actions";
 
 import "./nav.css";
 class Nav extends Component {
@@ -30,7 +30,9 @@ class Nav extends Component {
       isLoggedIn,
       handleLogin,
       users,
-      addUser
+      addUser,
+      qty,
+      addItem
     } = this.props;
     const { showCart, expanded } = this.state;
     return (
@@ -47,7 +49,7 @@ class Nav extends Component {
             }
             onClick={() => this.handleShowCart()}
           >
-            Cart &nbsp; <span>{cart.qty}</span>
+            Cart &nbsp; <span>{qty}</span>
           </button>
 
           {showCart && (
@@ -122,15 +124,15 @@ class Nav extends Component {
                   className="cart-btn btn cart-btn-2"
                   onClick={() => this.handleShowCart()}
                 >
-                  Cart &nbsp; <span>{cart.qty}</span>
+                  Cart &nbsp; <span>{qty}</span>
                 </button>
               </li>
             </ul>
           </div>
 
-          <button onClick={() => addUser({ name: "jay" })}>
+          <button onClick={() => this.props.addItem(3, { name: "jay" })}>
             Add User
-            {users.length >= 1 && users.map(user => <div>{user}</div>)}
+            {/* {users.length >= 1 && users.map(user => <div>{user}</div>)} */}
           </button>
 
           <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
@@ -140,8 +142,8 @@ class Nav extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const users = state;
-  return { users };
+  const cart = { items: state.items, qty: state.qty };
+  return { cart };
 };
 
-export default connect(mapStateToProps, { addUser })(Nav);
+export default connect(mapStateToProps, { addItem })(Nav);
