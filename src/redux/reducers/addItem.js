@@ -10,9 +10,10 @@ export const addItemToCartReducer = (
       let total = 0;
 
       for (let i = 1; i <= qty; i++) {
-        total += item.price;
+        total += Number(item.price);
       }
-      console.log(state.totalCostBeforeTax);
+      //// move checkItemIsInCart here
+      // create REMOVE TO CART REDUCER FIRST
       return Object.assign({}, state, {
         items: [...state.items, action.payload.item],
         qty: state.qty + qty,
