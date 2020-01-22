@@ -7,13 +7,22 @@ export const addItemToCartReducer = (
   switch (action.type) {
     case "ADD_ITEM":
       const { item, qty } = action.payload;
+      let total = 0;
+
+      for (let i = 1; i <= qty; i++) {
+        total += item.price;
+      }
+      console.log(state.totalCostBeforeTax);
       return Object.assign({}, state, {
         items: [...state.items, action.payload.item],
         qty: state.qty + qty,
-        totalCostBeforeTax: state.totalCostBeforeTax + parseFloat(item.price)
+        totalCostBeforeTax: Number(
+          Number(state.totalCostBeforeTax + Number(total)).toFixed(2)
+        )
       });
     default:
       return state;
   }
 };
+
 export default addItemToCartReducer;

@@ -25,21 +25,10 @@ const { token } = Cookies.get();
 class App extends Component {
   state = {
     isLoggedIn: token === undefined ? false : true,
-    // cartQty: 0,
-    // cartItems: [],
-    totalCostBeforeTax: 0,
     selectedProduct: null,
     addedToCart: false,
     valid: false,
     showAlert: false
-  };
-  calculateTotalBeforeTax = total => {
-    total = Number(total).toFixed(2);
-    this.setState(prevState => {
-      return {
-        totalCostBeforeTax: (prevState.totalCostBeforeTax += parseFloat(total))
-      };
-    });
   };
 
   checkIfItemIsInCart = item => {

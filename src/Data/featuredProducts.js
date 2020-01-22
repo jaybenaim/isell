@@ -14,7 +14,7 @@ const product1 = new Product(
   10001,
   "Gucci",
   "Juul Sticker",
-  "2.00",
+  "2.53",
   "https://jaybenaim.github.io/isell/images/img1.jpg",
   "TEST"
 );
