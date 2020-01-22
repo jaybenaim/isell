@@ -41,6 +41,7 @@ class App extends Component {
       };
     });
   };
+
   checkIfItemIsInCart = item => {
     const { cartItems } = this.state;
     let match = false;
@@ -115,14 +116,9 @@ class App extends Component {
   };
 
   render() {
-    const {
-      // cartItems,
-      // cartQty,
-      totalCostBeforeTax,
-      showAlert,
-      isLoggedIn
-    } = this.state;
-    const { items, qty } = this.props.cart;
+    const { showAlert, isLoggedIn } = this.state;
+    const { totalCostBeforeTax, cart } = this.props;
+    const { items, qty } = cart;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -235,8 +231,11 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const cart = { items: state.items, qty: state.qty };
-  return { cart };
+  const cart = {
+    items: state.items,
+    qty: state.qty
+  };
+  return { cart, totalCostBeforeTax: state.totalCostBeforeTax };
 };
 
 export default connect(mapStateToProps, { addItemToCart })(App);
