@@ -4,7 +4,7 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 import { Redirect } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { connect } from "react-redux";
-import { addItem as addItemToCart } from "../../redux/actions";
+import { addItem, removeItem } from "../../redux/actions";
 
 import "./cart.css";
 import axios from "axios";
@@ -14,18 +14,10 @@ class Cart extends Component {
   };
 
   showCheckoutItems = () => {
-    const { removeFromCart } = this.props.location.params;
-    const { cart } = this.props; // grab from redux
+    const { cart } = this.props;
     const { items, qty } = cart;
     let cartItems = items.map((item, i) => {
-      return (
-        <CheckoutItem
-          {...item}
-          key={i}
-          removeFromCart={removeFromCart}
-          cartQty={qty}
-        />
-      );
+      return <CheckoutItem {...item} key={i} cartQty={qty} />;
     });
     return cartItems;
   };
@@ -124,10 +116,10 @@ class Cart extends Component {
     );
   }
 }
-
-const mapStateToProps = (state, ownProps) => {
-  const cart = { items: state.items, qty: state.qty };
+const mapStateToProps = state => {
+  const { items, qty } = state.handleItem;
+  const cart = { items, qty };
   return { cart };
 };
 
-export default connect(mapStateToProps, { addItemToCart })(Cart);
+export default connect(mapStateToProps, { addItem, removeItem })(Cart);

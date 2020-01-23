@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Route, Switch, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { removeItem } from "../../redux/actions";
 import "./cartItem.css";
 class CartItem extends Component {
   state = {};
@@ -17,7 +19,15 @@ class CartItem extends Component {
     return (
       <>
         {error ? (
-          <div>No Items in cart.</div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "2.6em"
+            }}
+          >
+            {error}
+          </div>
         ) : (
           <div className="modal-cart-item-container">
             <Link
@@ -43,7 +53,7 @@ class CartItem extends Component {
             </span>
             <button
               className="modal-cart-remove-item btn btn-outline-danger"
-              onClick={() => removeFromCart(id)}
+              onClick={() => this.props.removeItem(id)}
             >
               Remove Item
             </button>
@@ -54,4 +64,11 @@ class CartItem extends Component {
   }
 }
 
-export default CartItem;
+const mapStateToProps = state => {
+  const { items, qty } = state.handleItem;
+  const cart = { items, qty };
+  console.log(state);
+  return { cart };
+};
+
+export default connect(mapStateToProps, { removeItem })(CartItem);

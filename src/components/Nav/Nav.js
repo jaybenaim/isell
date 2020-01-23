@@ -29,8 +29,6 @@ class Nav extends Component {
       removeFromCart,
       isLoggedIn,
       handleLogin,
-      users,
-      addUser,
 
       addItem
     } = this.props;

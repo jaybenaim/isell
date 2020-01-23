@@ -1,11 +1,5 @@
-import { ADD_USER, ADD_ITEM } from "./actionTypes";
+import { ADD_ITEM, REMOVE_ITEM } from "./actionTypes";
 
-export const addUser = user => {
-  return {
-    type: ADD_USER,
-    user
-  };
-};
 // make api calls here for simple calls
 // use react-thunk as package?
 export const addItem = (qty, item) => {
@@ -14,6 +8,15 @@ export const addItem = (qty, item) => {
     payload: {
       qty,
       item
+    }
+  };
+};
+
+export const removeItem = id => {
+  return {
+    type: REMOVE_ITEM,
+    payload: {
+      id
     }
   };
 };

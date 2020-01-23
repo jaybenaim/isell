@@ -17,7 +17,10 @@ import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
 import local from "../../Api/local";
 import { connect } from "react-redux";
-import { addItem as addItemToCart } from "../../redux/actions";
+import {
+  addItem as addItemToCart,
+  removeItem as removeItemFromCart
+} from "../../redux/actions";
 
 const history = createBrowserHistory();
 const { token } = Cookies.get();
@@ -220,11 +223,11 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const cart = {
-    items: state.items,
-    qty: state.qty
-  };
-  return { cart, totalCostBeforeTax: state.totalCostBeforeTax };
+  const { items, qty } = state.handleItem;
+  const cart = { items, qty };
+  return { cart };
 };
 
-export default connect(mapStateToProps, { addItemToCart })(App);
+export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
+  App
+);

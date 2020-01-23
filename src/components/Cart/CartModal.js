@@ -27,7 +27,7 @@ class CartModal extends Component {
       return (
         <CartItem
           item={{ name: null, price: null, description: null, image: null }}
-          error="No Items Found"
+          error="Your cart is empty"
         />
       );
     }

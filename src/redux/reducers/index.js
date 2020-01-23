@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
-import addUser from "./addUser";
-import addItem from "./addItem";
+import handleItem from "./handleItem";
 
-export default combineReducers({ addUser, addItem });
+const rootReducer = combineReducers({ handleItem });
+
+export default rootReducer;

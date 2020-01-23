@@ -1,5 +1,4 @@
 import { createStore } from "redux";
-import { userDataReducer } from "./reducers/addUser";
-import { addItemToCartReducer } from "./reducers/addItem";
+import rootReducer from "./reducers";
 
-export default createStore(addItemToCartReducer);
+export default createStore(rootReducer);
