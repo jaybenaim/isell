@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addItem as addItemToCart } from "../../redux/actions";
-
+import {
+  addItem as addItemToCart,
+  removeItem as removeItemFromCart
+} from "../../redux/actions";
 class ProductCard extends Component {
   state = {
     isLoaded: false,
     showDesc: false,
-    qty: 1
+    qty: 1,
+    addToCartButtonText: "Add to cart",
+    addToCartButtonDisabled: false
   };
   shortDescription = description => {
     if (description.length <= 15) {
@@ -42,8 +46,21 @@ class ProductCard extends Component {
       return <img src={image} className="card-img-top" alt="none" />;
     }
   };
+  handleAddProduct = (qty, product) => {
+    const { addItemToCart: addItem } = this.props;
+    addItem(qty, product);
+    this.setState({
+      addToCartButtonText: "Added to cart",
+      addToCartButtonDisabled: true
+    });
+  };
   render() {
-    const { qty, showDesc } = this.state;
+    const {
+      qty,
+      showDesc,
+      addToCartButtonText,
+      addToCartButtonDisabled
+    } = this.state;
     let {
       name,
       description,
@@ -78,13 +95,15 @@ class ProductCard extends Component {
             placeholder="1"
             ref={this.qtyRef}
             onChange={this.handleSetQty}
+            disabled={addToCartButtonDisabled}
           ></input>
           {/* <button onClick={() => addToCart(qty, product)}>Add to cart</button> */}
           <button
-            className="add-to-cart-btn"
-            onClick={() => this.props.addItemToCart(qty, product)}
+            disabled={addToCartButtonDisabled}
+            className="add-to-cart-btn "
+            onClick={() => this.handleAddProduct(qty, product)}
           >
-            Add to cart
+            {addToCartButtonText}
           </button>
           <Link
             to={{
@@ -102,8 +121,11 @@ class ProductCard extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const cart = { items: state.items, qty: state.qty };
+  const { items, qty } = state.handleItem;
+  const cart = { items, qty };
   return { cart };
 };
 
-export default connect(mapStateToProps, { addItemToCart })(ProductCard);
+export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
+  ProductCard
+);

@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
+import {
+  addItem as addItemToCart,
+  removeItem as removeItemFromCart
+} from "../../redux/actions";
+
 import "./cartModal.css";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -8,19 +14,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 class CartModal extends Component {
   state = {};
   showCartItems = () => {
-    const { removeFromCart, cart } = this.props;
+    const { cart } = this.props;
     const { qty, items } = cart;
 
     if (qty >= 1) {
       let cartItems = items.map((item, i) => {
-        return (
-          <CartItem
-            item={item}
-            key={i}
-            hideModal={this.checkout}
-            removeFromCart={removeFromCart}
-          />
-        );
+        return <CartItem item={item} key={i} hideModal={this.checkout} />;
       });
       return cartItems;
     } else {
@@ -79,4 +78,12 @@ class CartModal extends Component {
   }
 }
 
-export default CartModal;
+const mapStateToProps = (state, ownProps) => {
+  const { items, qty, totalCostBeforeTax } = state.handleItem;
+  const cart = { items, qty };
+  return { cart, totalCostBeforeTax };
+};
+
+export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
+  CartModal
+);

@@ -13,7 +13,7 @@ class CartItem extends Component {
     }
   };
   render() {
-    const { error, item, hideModal, removeFromCart } = this.props;
+    const { error, item, hideModal } = this.props;
     const { id, name, price, description, image, qty } = item;
 
     return (

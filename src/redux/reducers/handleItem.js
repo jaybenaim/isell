@@ -6,34 +6,49 @@ const handleItem = (
 ) => {
   switch (action.type) {
     case ADD_ITEM:
-      const { item, qty } = action.payload;
+      let { item, qty } = action.payload;
+      const { id: itemId } = item;
+      const { items: prevItems, totalCostBeforeTax, qty: prevQty } = state;
       let total = 0;
+      item.qty = qty;
 
       for (let i = 1; i <= qty; i++) {
         total += Number(item.price);
       }
-      //// move checkItemIsInCart here
-      // create REMOVE TO CART REDUCER FIRST
-      return Object.assign({}, state, {
-        items: [...state.items, action.payload.item],
-        qty: state.qty + qty,
-        totalCostBeforeTax: Number(
-          Number(state.totalCostBeforeTax + Number(total)).toFixed(2)
-        )
-      });
-    case REMOVE_ITEM:
-      const { id } = action.payload;
-      const { items, totalCostBeforeTax, qty: prevQty } = state;
-      const itemBeingRemoved = items.filter(item =>
-        item.id === id ? item : {}
-      );
 
       return Object.assign({}, state, {
-        items: [...items.filter(item => (item.id !== id ? item.id : null))],
-        qty: prevQty - 1,
+        items: [
+          ...prevItems.filter(item => (item.id !== itemId ? item : null)),
+          item
+        ],
+        qty: prevQty + qty,
         totalCostBeforeTax: Number(
-          Number(totalCostBeforeTax - Number(itemBeingRemoved.price)).toFixed(2)
+          Number(totalCostBeforeTax + Number(total)).toFixed(2)
         )
+      });
+
+    case REMOVE_ITEM:
+      const { id } = action.payload;
+
+      const {
+        items: stateItems,
+        totalCostBeforeTax: totalBeforeTax,
+        qty: stateQty
+      } = state;
+      const itemBeingRemoved = stateItems.filter(item => {
+        console.log(item);
+        return item.id === id ? item : { price: 0 };
+      });
+      console.log(stateItems);
+      console.log(itemBeingRemoved.price);
+      return Object.assign({}, state, {
+        items: [
+          ...stateItems.filter(item => (item.id !== id ? item.id : null))
+        ],
+        qty: stateQty - 1,
+        totalCostBeforeTax: Number(
+          totalBeforeTax - itemBeingRemoved.price
+        ).toFixed(2)
       });
     default:
       return state;

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { connect } from "react-redux";
 import CartModal from "../Cart/CartModal";
 import Register from "../Register/Register";
 import ProtectedRoute from "../Register/ProtectedRoute";
-import { addItem } from "../../redux/actions";
+import { connect } from "react-redux";
+import {
+  addItem as addItemToCart,
+  removeItem as removeItemFromCart
+} from "../../redux/actions";
 
 import "./nav.css";
 class Nav extends Component {
@@ -23,16 +26,8 @@ class Nav extends Component {
   };
 
   render() {
-    const {
-      cart,
-      totalCostBeforeTax,
-      removeFromCart,
-      isLoggedIn,
-      handleLogin,
-
-      addItem
-    } = this.props;
-    const { items, qty } = cart;
+    const { isLoggedIn, handleLogin, cart } = this.props;
+    const { qty } = cart;
     const { showCart, expanded } = this.state;
     return (
       <>
@@ -52,13 +47,7 @@ class Nav extends Component {
           </button>
 
           {showCart && (
-            <CartModal
-              onHide={() => this.handleShowCart()}
-              show={showCart}
-              cart={cart}
-              totalCostBeforeTax={totalCostBeforeTax}
-              removeFromCart={removeFromCart}
-            />
+            <CartModal onHide={() => this.handleShowCart()} show={showCart} />
           )}
           <button
             className="navbar-toggler"
@@ -140,5 +129,12 @@ class Nav extends Component {
     );
   }
 }
+const mapStateToProps = (state, ownProps) => {
+  const { items, qty } = state.handleItem;
+  const cart = { items, qty };
+  return { cart };
+};
 
-export default Nav;
+export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
+  Nav
+);

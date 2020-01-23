@@ -114,13 +114,7 @@ class App extends Component {
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
-          <Nav
-            cart={{ qty, items }}
-            totalCostBeforeTax={totalCostBeforeTax}
-            removeFromCart={this.removeFromCart}
-            isLoggedIn={isLoggedIn}
-            handleLogin={this.handleLogin}
-          />
+          <Nav isLoggedIn={isLoggedIn} handleLogin={this.handleLogin} />
 
           {showAlert && (
             <div className="alert alert-danger" role="alert">
@@ -223,9 +217,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const { items, qty } = state.handleItem;
+  const { items, qty, totalCostBeforeTax } = state.handleItem;
   const cart = { items, qty };
-  return { cart };
+  return { cart, totalCostBeforeTax };
 };
 
 export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
