@@ -1,20 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import "./checkoutItem.css";
+import { connect } from "react-redux";
+import { removeItem } from "../../redux/actions";
+
 class CheckoutItem extends Component {
   state = {};
-  // handleDelete = id => {
-  //   const { removeFromCart, cartQty, cart } = this.props;
-  //   removeFromCart(id);
-  //   return cartQty <= 1 ? (
-  //     <Redirect to="/" />
-  //   ) : (
-  //     <Redirect to={{ pathname: "/ShoppingCart", state: { cart: cart } }} />
-  //   );
-  // };
-  // move to cart componemt
+
   render() {
-    const { id, name, description, price, image, qty } = this.props;
+    const { id, name, description, price, image, qty, removeItem } = this.props;
     return (
       <div className="checkout-item">
         <img className="checkout-item-image" src={image} alt={name} />
@@ -26,7 +20,7 @@ class CheckoutItem extends Component {
         <div className="checkout-item-price">${price * qty}</div>
         <button
           className="btn btn-outline-danger checkout-item-delete-btn"
-          onClick={() => this.props.removeFromCart(id)}
+          onClick={() => removeItem(id, price)}
         >
           X
         </button>
@@ -35,4 +29,11 @@ class CheckoutItem extends Component {
   }
 }
 
-export default CheckoutItem;
+const mapStateToProps = state => {
+  const { items, qty } = state.handleItem;
+  const cart = { items, qty };
+
+  return { cart };
+};
+
+export default connect(mapStateToProps, { removeItem })(CheckoutItem);

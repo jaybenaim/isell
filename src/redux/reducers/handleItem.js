@@ -28,27 +28,19 @@ const handleItem = (
       });
 
     case REMOVE_ITEM:
-      const { id } = action.payload;
-
+      const { id, price } = action.payload;
       const {
         items: stateItems,
         totalCostBeforeTax: totalBeforeTax,
         qty: stateQty
       } = state;
-      const itemBeingRemoved = stateItems.filter(item => {
-        console.log(item);
-        return item.id === id ? item : { price: 0 };
-      });
-      console.log(stateItems);
-      console.log(itemBeingRemoved.price);
+
       return Object.assign({}, state, {
         items: [
           ...stateItems.filter(item => (item.id !== id ? item.id : null))
         ],
         qty: stateQty - 1,
-        totalCostBeforeTax: Number(
-          totalBeforeTax - itemBeingRemoved.price
-        ).toFixed(2)
+        totalCostBeforeTax: Number(Number(totalBeforeTax - price).toFixed(2))
       });
     default:
       return state;

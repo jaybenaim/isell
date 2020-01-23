@@ -12,11 +12,12 @@ export const addItem = (qty, item) => {
   };
 };
 
-export const removeItem = id => {
+export const removeItem = (id, price) => {
   return {
     type: REMOVE_ITEM,
     payload: {
-      id
+      id,
+      price
     }
   };
 };

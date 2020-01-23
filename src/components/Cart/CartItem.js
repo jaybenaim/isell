@@ -53,7 +53,7 @@ class CartItem extends Component {
             </span>
             <button
               className="modal-cart-remove-item btn btn-outline-danger"
-              onClick={() => this.props.removeItem(id)}
+              onClick={() => this.props.removeItem(id, price)}
             >
               Remove Item
             </button>

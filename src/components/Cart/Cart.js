@@ -4,7 +4,7 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 import { Redirect } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { connect } from "react-redux";
-import { addItem, removeItem } from "../../redux/actions";
+import { removeItem } from "../../redux/actions";
 
 import "./cart.css";
 import axios from "axios";
@@ -80,16 +80,14 @@ class Cart extends Component {
   // };
   componentDidUpdate() {}
   render() {
-    const { params = 0, state } = this.props.location;
-    const { cart } = state;
-    const { totalCostBeforeTax = 0 } = params;
+    const { cart, totalCostBeforeTax } = this.props;
     const { isCheckedOut } = this.state;
     const total = this.calculateSubTotal(totalCostBeforeTax);
     const { tax, proccessFee, subTotal } = total;
     return (
       <div className="cart-container">
         <h1>Review Order</h1>
-        {state && this.showCheckoutItems()}
+        {cart && this.showCheckoutItems()}
         <div className="checkout-total-container">
           <div className="checkout-message">
             You have {cart.qty} items in your cart.
@@ -117,9 +115,9 @@ class Cart extends Component {
   }
 }
 const mapStateToProps = state => {
-  const { items, qty } = state.handleItem;
+  const { items, qty, totalCostBeforeTax } = state.handleItem;
   const cart = { items, qty };
-  return { cart };
+  return { cart, totalCostBeforeTax };
 };
 
-export default connect(mapStateToProps, { addItem, removeItem })(Cart);
+export default connect(mapStateToProps, { removeItem })(Cart);
