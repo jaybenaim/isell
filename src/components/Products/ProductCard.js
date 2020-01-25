@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 import { connect } from "react-redux";
 import {
   addItem as addItemToCart,
@@ -49,6 +50,7 @@ class ProductCard extends Component {
   handleAddProduct = (qty, product) => {
     const { addItemToCart: addItem } = this.props;
     addItem(qty, product);
+
     this.setState({
       addToCartButtonText: "Added to cart",
       addToCartButtonDisabled: true

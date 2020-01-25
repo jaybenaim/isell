@@ -38,6 +38,10 @@ export default class Login extends Component {
           Cookies.set("token", res.data.token, {
             expires: 7
           });
+          Cookies.set("id", res.data.id, {
+            expires: 7
+          });
+
           handleLogin(res.data.token);
           this.props.history.push("/");
         } else {

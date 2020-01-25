@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
 import Register from "../Register/Register";
-import ProtectedRoute from "../Register/ProtectedRoute";
 import { connect } from "react-redux";
-import {
-  addItem as addItemToCart,
-  removeItem as removeItemFromCart
-} from "../../redux/actions";
 
 import "./nav.css";
 class Nav extends Component {
@@ -118,11 +113,6 @@ class Nav extends Component {
             </ul>
           </div>
 
-          {/* <button onClick={() => this.props.addItem(3, { name: "jay" })}>
-            Add User
-          </button> */}
-          {/* {users.length >= 1 && users.map(user => <div>{user}</div>)} */}
-
           <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
         </nav>
       </>
@@ -135,6 +125,4 @@ const mapStateToProps = (state, ownProps) => {
   return { cart };
 };
 
-export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
-  Nav
-);
+export default connect(mapStateToProps, {})(Nav);

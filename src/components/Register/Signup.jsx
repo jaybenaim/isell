@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import local from "../../Api/local";
 import Cookies from "js-cookie";
-
+import { connect } from "react-redux";
+import { createCart } from "../../redux/actions";
 import axios from "axios";
-export default class Signup extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +33,9 @@ export default class Signup extends Component {
           Cookies.set("token", res.data.userId, {
             expires: 7
           });
-
+          Cookies.set("id", res.data.id, {
+            expires: 7
+          });
           handleLogin(res.data.userId);
           this.props.history.push("/");
         } else {
@@ -73,3 +76,10 @@ export default class Signup extends Component {
     );
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  console.log(state);
+  return { item: "item" };
+};
+
+export default connect(mapStateToProps, { createCart })(Signup);

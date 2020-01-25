@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import { Modal, Button } from "react-bootstrap";
 import CartItem from "./CartItem";
 import { connect } from "react-redux";
-import {
-  addItem as addItemToCart,
-  removeItem as removeItemFromCart
-} from "../../redux/actions";
 
 import "./cartModal.css";
 
@@ -84,6 +80,4 @@ const mapStateToProps = (state, ownProps) => {
   return { cart, totalCostBeforeTax };
 };
 
-export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
-  CartModal
-);
+export default connect(mapStateToProps, {})(CartModal);

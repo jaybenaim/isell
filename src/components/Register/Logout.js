@@ -6,6 +6,7 @@ class Secret extends Component {
   handleLogout = () => {
     const { handleLogin } = this.props;
     Cookies.remove("token");
+    Cookies.remove("id");
     handleLogin();
   };
   render() {
