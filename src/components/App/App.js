@@ -30,24 +30,6 @@ class App extends Component {
     showAlert: false
   };
 
-  checkIfItemIsInCart = item => {
-    const { cartItems } = this.state;
-    let match = false;
-
-    cartItems.map((cartItem, i) => {
-      if (item.name === cartItem.name) {
-        this.removeFromCart(item.id);
-        match = true;
-      } else {
-        return false;
-      }
-    });
-    if (match) {
-      const { showAlert } = this.state;
-      this.setState({ showAlert: !showAlert });
-    }
-  };
-
   setSelectedProduct = product => {
     this.setState({ selectProduct: product });
   };
@@ -72,7 +54,7 @@ class App extends Component {
   render() {
     const { showAlert, isLoggedIn } = this.state;
     const { cart } = this.props;
-    const { items, qty } = cart;
+    const { items } = cart;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -175,11 +157,10 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   const { totalCostBeforeTax } = state.handleItem;
-
   const { cart, user } = state.createCart;
-  return { cart, totalCostBeforeTax, user, state };
+  return { cart, totalCostBeforeTax, user };
 };
 
 export default connect(mapStateToProps, { createCart })(App);
