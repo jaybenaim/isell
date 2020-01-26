@@ -179,7 +179,7 @@ const mapStateToProps = (state, ownProps) => {
   const { totalCostBeforeTax } = state.handleItem;
 
   const { cart, user } = state.createCart;
-  return { cart, totalCostBeforeTax, user };
+  return { cart, totalCostBeforeTax, user, state };
 };
 
 export default connect(mapStateToProps, { createCart })(App);

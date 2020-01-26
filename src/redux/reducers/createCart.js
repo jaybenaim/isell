@@ -4,8 +4,11 @@ const createCart = (state = { cart: [] }, action) => {
   switch (action.type) {
     case CREATE_CART:
       const data = action.data;
-      const id = data.user;
-      const { items, qty } = data;
+      const {
+        items = [],
+        qty = 0,
+        user: { id }
+      } = data;
 
       return Object.assign({}, state, {
         user: { id },
