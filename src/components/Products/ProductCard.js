@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import Cookies from "js-cookie";
 import { connect } from "react-redux";
+import local from "../../Api/local";
 import {
   addItem as addItemToCart,
   removeItem as removeItemFromCart
@@ -47,8 +47,16 @@ class ProductCard extends Component {
       return <img src={image} className="card-img-top" alt="none" />;
     }
   };
-  handleAddProduct = (qty, product) => {
-    const { addItemToCart: addItem } = this.props;
+  handleAddProduct = (qtyRef, product) => {
+    const {
+      addItemToCart: addItem,
+      cart: { items, qty }
+    } = this.props;
+    const data = { user: qty };
+    local.post("/carts", data, {}).then(res => {
+      this.props.createCart(res.data);
+    });
+
     addItem(qty, product);
 
     this.setState({
@@ -122,10 +130,10 @@ class ProductCard extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const { items, qty } = state.handleItem;
-  const cart = { items, qty };
-  return { cart };
+const mapStateToProps = state => {
+  const { totalCostBeforeTax } = state.handleItem;
+  const { cart, user } = state.createCart;
+  return { cart, totalCostBeforeTax, user };
 };
 
 export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
