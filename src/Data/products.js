@@ -1,6 +1,5 @@
 class Product {
   constructor(id, name, description, price, image, category, qty = 2) {
-    this.id = id;
     this.name = name;
     this.description = description;
     this.price = price;
@@ -12,7 +11,7 @@ class Product {
 const products = [];
 
 const product1 = new Product(
-  1,
+  "5e2e3e3d50d8891b1cd5d9e4",
   "Louis Vuitton",
   "Juul Sticker",
   "2.00",
@@ -20,7 +19,7 @@ const product1 = new Product(
   "Phone Accesories"
 );
 const product2 = new Product(
-  2,
+  "5e2e3e6d50d8891b1cd5d9e5",
   "Hello",
   "Juul Sticker",
   "2.00",
@@ -28,7 +27,7 @@ const product2 = new Product(
   "Phone Accesories"
 );
 const product3 = new Product(
-  3,
+  "5e2e3ea050d8891b1cd5d9e6",
   "Marble",
   "Juul Sticker",
   "2.00",
@@ -36,16 +35,15 @@ const product3 = new Product(
   "Phone Accesories"
 );
 const product4 = new Product(
-  4,
+  "5e2e3ef050d8891b1cd5d9e7",
   "Juul Holder",
   "Juul Holder, Sticks to anywhere! Reusable!",
   "2.00",
-
   "https://jaybenaim.github.io/isell/images/img7.jpg",
   "Phone Accesories"
 );
 const product5 = new Product(
-  5,
+  "5e2e3f2350d8891b1cd5d9e8",
   "Rick and Morty",
   "Juul Sticker",
   "2.00",

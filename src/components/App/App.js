@@ -47,9 +47,14 @@ class App extends Component {
     const data = { user: { id } };
     const { isLoggedIn } = this.state;
     isLoggedIn &&
-      local.post("/carts", data, {}).then(res => {
-        this.props.createCart(res.data);
-      });
+      local
+        .post("/carts", data, {})
+        .then(res => {
+          this.props.createCart(res.data);
+        })
+        .catch(err => {
+          alert("Error creating cart");
+        });
   }
   render() {
     const { showAlert, isLoggedIn } = this.state;

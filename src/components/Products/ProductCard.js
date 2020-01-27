@@ -50,14 +50,28 @@ class ProductCard extends Component {
   handleAddProduct = (qtyRef, product) => {
     const {
       addItemToCart: addItem,
-      cart: { items, qty }
+      cart: { id, qty, items }
     } = this.props;
-    const data = { user: qty };
-    local.post("/carts", data, {}).then(res => {
-      this.props.createCart(res.data);
-    });
+    let itemIds = items.map(id => id);
+    console.log(itemIds);
+    itemIds.push(product.id);
+    console.log(itemIds);
+    const data = {
+      user: { id },
+      products: [...itemIds]
+    };
+    console.log(product.id);
+    local
+      .patch(`/carts/${id}`, data, {})
+      .then(res => {
+        console.log(res.data + "Item added");
+        addItem(qty, product);
+      })
+      .catch(err => {
+        alert("Error adding item");
+      });
 
-    addItem(qty, product);
+    // addItem(qty, product);
 
     this.setState({
       addToCartButtonText: "Added to cart",
