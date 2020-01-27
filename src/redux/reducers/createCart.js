@@ -8,10 +8,9 @@ const createCart = (state = { cart: [] }, action) => {
       const {
         _id: cartId,
         products: items,
-        qty = 0,
         user: { id }
       } = data;
-
+      const qty = items.length >= 1 ? items.length : 0;
       return Object.assign({}, state, {
         user: { id },
         cart: { items, qty, id: cartId }
