@@ -51,15 +51,16 @@ class App extends Component {
         .post("/carts", data, {})
         .then(res => {
           this.props.createCart(res.data);
+          console.log(res.data);
         })
         .catch(err => {
-          alert("Error creating cart");
+          alert("Error creating cart", err);
         });
   }
   render() {
     const { showAlert, isLoggedIn } = this.state;
-    const { cart } = this.props;
-    const { items } = cart;
+    // const { cart } = this.props;
+    // const { items  } = cart;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -133,7 +134,7 @@ class App extends Component {
                       {...props}
                       timestamp={new Date().toString()}
                       removeFromCart={this.removeFromCart}
-                      items={items}
+                      // items={items}
                     />
                   )}
                 />
@@ -163,9 +164,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  const { totalCostBeforeTax } = state.handleItem;
-  const { cart, user } = state.createCart;
-  return { cart, totalCostBeforeTax, user };
+  const { totalCostBeforeTax, cart, user } = state.handleItem;
+
+  return { totalCostBeforeTax, cart, user };
 };
 
 export default connect(mapStateToProps, { createCart })(App);

@@ -50,17 +50,18 @@ class ProductCard extends Component {
   handleAddProduct = (qtyRef, product) => {
     const {
       addItemToCart: addItem,
-      cart: { id, qty, items }
+      cart: { id, qty = qtyRef, items }
     } = this.props;
+
     let itemIds = items.map(id => id);
-    console.log(itemIds);
+
     itemIds.push(product.id);
-    console.log(itemIds);
+
     const data = {
       user: { id },
       products: [...itemIds]
     };
-    console.log(product.id);
+
     local
       .patch(`/carts/${id}`, data, {})
       .then(res => {
@@ -93,7 +94,7 @@ class ProductCard extends Component {
       id,
       product,
       image,
-      addToCart,
+
       isLoggedIn
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
@@ -145,9 +146,9 @@ class ProductCard extends Component {
 }
 
 const mapStateToProps = state => {
-  const { totalCostBeforeTax } = state.handleItem;
-  const { cart, user } = state.createCart;
-  return { cart, totalCostBeforeTax, user };
+  const { totalCostBeforeTax, cart, user } = state.handleItem;
+
+  return { totalCostBeforeTax, cart, user };
 };
 
 export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
