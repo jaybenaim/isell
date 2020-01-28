@@ -4,8 +4,10 @@ import local from "../../Api/local";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "./login.css";
+import { connect } from "react-redux";
+import { createCart } from "../../redux/actions";
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,6 +36,7 @@ export default class Login extends Component {
       }
     })
       .then(res => {
+        console.log(res.data);
         if (res.status === 200) {
           Cookies.set("token", res.data.token, {
             expires: 7
@@ -43,6 +46,7 @@ export default class Login extends Component {
           });
 
           handleLogin(res.data.token);
+          createCart(res.data);
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);
@@ -53,6 +57,22 @@ export default class Login extends Component {
         console.error(err);
         alert("Error logging in please try again");
       });
+  };
+  handleCreateCart = response => {
+    const id = Cookies.get("id");
+    console.log(id);
+    const data = { user: { id } };
+    const { isLoggedIn } = this.state;
+    isLoggedIn &&
+      local
+        .post("/carts", data, {})
+        .then(res => {
+          createCart(response);
+          console.log(res.data);
+        })
+        .catch(err => {
+          alert("Error creating cart", err);
+        });
   };
   render() {
     const { redirect } = this.props;
@@ -88,3 +108,10 @@ export default class Login extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const { totalCostBeforeTax, cart, user } = state.handleItem;
+
+  return { totalCostBeforeTax, cart, user };
+};
+
+export default connect(mapStateToProps, { createCart })(Login);
