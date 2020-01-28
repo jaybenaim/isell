@@ -46,7 +46,7 @@ class Login extends Component {
           });
 
           handleLogin(res.data.token);
-          createCart(res.data);
+          this.props.createCart(res.data);
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);
