@@ -37,8 +37,8 @@ class Signup extends Component {
           Cookies.set("id", res.data.id, {
             expires: 7
           });
-          handleLogin(res.data.userId);
-          const data = { user: { id: res.data.userId } };
+          // handleLogin(res.data.userId);
+          const data = { id: res.data.userId };
           this.handleCreateCart(data);
 
           this.props.history.push("/");
@@ -56,17 +56,20 @@ class Signup extends Component {
   handleCreateCart = user => {
     const { isLoggedIn } = this.state;
     const data = { user, products: [] };
+    console.log(data);
+    debugger;
 
-    isLoggedIn &&
-      local
-        .post("/carts", data, {})
-        .then(res => {
-          console.log(res.data);
-          this.props.createCart(res.data);
-        })
-        .catch(err => {
-          alert("Error creating cart", err);
-        });
+    local
+      .post("/carts", data, {})
+      .then(res => {
+        debugger;
+        console.log(res.data, "HELLLO");
+        this.props.createCart(res.data);
+      })
+      .catch(err => {
+        debugger;
+        alert("Error creating cart", err);
+      });
   };
   render() {
     return (

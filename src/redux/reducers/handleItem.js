@@ -57,12 +57,15 @@ const handleItem = (
 
     case CREATE_CART:
       const data = action.data;
-      const { id: i } = data.user;
+      const {
+        _id,
+        user: { id: i }
+      } = data;
       console.log(data);
       // const currentQty = items.length >= 1 ? items.length : 0;
       return Object.assign({}, state, {
         user: { id: i },
-        cart: { items: [], qty: 0, id: i }
+        cart: { items: [], qty: 0, id: _id }
       });
 
     default:

@@ -63,16 +63,16 @@ class Login extends Component {
     console.log(id);
     const data = { user: { id } };
     const { isLoggedIn } = this.state;
-    isLoggedIn &&
-      local
-        .post("/carts", data, {})
-        .then(res => {
-          this.props.createCart(res.data);
-          console.log(res.data);
-        })
-        .catch(err => {
-          alert("Error creating cart", err);
-        });
+
+    local
+      .post("/carts", data, {})
+      .then(res => {
+        this.props.createCart(res.data);
+        console.log(res.data);
+      })
+      .catch(err => {
+        alert("Error creating cart", err);
+      });
   };
   render() {
     const { redirect } = this.props;
