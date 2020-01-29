@@ -4,11 +4,11 @@ import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "./actionTypes";
 // use react-thunk as package?
 
 export const getCart = data => {
-  const { _id, createdAt, products, user } = data;
+  const { _id, products, user } = data;
 
   return {
     type: GET_CART,
-    cart: { _id, createdAt, products },
+    cart: { _id, products },
     user
   };
 };

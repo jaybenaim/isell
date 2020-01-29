@@ -43,6 +43,7 @@ class App extends Component {
     });
   };
   getCart = async id => {
+    console.log(id);
     await local
       .get(`/carts/find/${id}`)
       .then(res => {

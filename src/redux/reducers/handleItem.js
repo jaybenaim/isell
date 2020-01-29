@@ -78,8 +78,7 @@ const handleItem = (
         cart: {
           items: productItems,
           qty: productItems.length,
-          id: cartId,
-          createdAt
+          id: cartId
         }
       });
 
