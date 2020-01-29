@@ -45,7 +45,11 @@ class Login extends Component {
             expires: 7
           });
 
-          handleLogin(res.data.token);
+          // handleLogin(res.data.token);
+          debugger;
+
+          console.log(res.data);
+
           this.handleCreateCart(res.data);
           this.props.history.push("/");
         } else {
@@ -54,15 +58,14 @@ class Login extends Component {
         }
       })
       .catch(err => {
-        console.error(err);
+        console.log(err);
         alert("Error logging in please try again");
       });
   };
-  handleCreateCart = response => {
+  handleCreateCart = user => {
     const id = Cookies.get("id");
     console.log(id);
     const data = { user: { id } };
-    const { isLoggedIn } = this.state;
 
     local
       .post("/carts", data, {})
