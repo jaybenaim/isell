@@ -1,4 +1,4 @@
-import { ADD_ITEM, REMOVE_ITEM, CREATE_CART } from "../actionTypes";
+import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "../actionTypes";
 
 const handleItem = (
   state = {
@@ -22,14 +22,14 @@ const handleItem = (
       for (let i = 1; i <= qty; i++) {
         total += Number(item.price);
       }
-      console.log(state);
+      const items = [
+        ...prevItems.filter(item => (item.id !== itemId ? item : null)),
+        item
+      ];
       return Object.assign({}, state, {
         cart: {
-          items: [
-            ...prevItems.filter(item => (item.id !== itemId ? item : null)),
-            item
-          ],
-          qty: prevQty + qty,
+          items,
+          qty: items.length,
           id: prevCartId
         },
         totalCostBeforeTax: Number(
@@ -62,10 +62,25 @@ const handleItem = (
         user: { id: i }
       } = data;
       console.log(data);
-      // const currentQty = items.length >= 1 ? items.length : 0;
       return Object.assign({}, state, {
         user: { id: i },
         cart: { items: [], qty: 0, id: _id }
+      });
+
+    case GET_CART:
+      const {
+        cart: { products: productItems, _id: cartId, createdAt },
+        user
+      } = action;
+
+      return Object.assign({}, state, {
+        user,
+        cart: {
+          items: productItems,
+          qty: productItems.length,
+          id: cartId,
+          createdAt
+        }
       });
 
     default:

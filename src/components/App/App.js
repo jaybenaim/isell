@@ -16,7 +16,7 @@ import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
 import local from "../../Api/local";
 import { connect } from "react-redux";
-import { createCart } from "../../redux/actions";
+import { createCart, getCart } from "../../redux/actions";
 
 const history = createBrowserHistory();
 const { token } = Cookies.get();
@@ -42,27 +42,23 @@ class App extends Component {
       isLoggedIn: token ? true : false
     });
   };
+  getCart = async id => {
+    await local
+      .get(`/carts/find/${id}`)
+      .then(res => {
+        this.props.getCart(res.data);
+      })
+      .catch(err => {
+        alert("Error getting cart", err);
+      });
+  };
   componentDidMount() {
     const id = Cookies.get("id");
-    console.log(Cookies.get());
-    const userID = this.props.user.id;
-    const data = { user: { id: id === undefined ? userID : id } };
-    const { isLoggedIn } = this.state;
-    isLoggedIn &&
-      local
-        .post("/carts", data, {})
-        .then(res => {
-          this.props.createCart(res.data);
-          console.log(res.data);
-        })
-        .catch(err => {
-          alert("Error creating cart", err);
-        });
+    this.getCart(id);
   }
   render() {
     const { showAlert, isLoggedIn } = this.state;
-    // const { cart } = this.props;
-    // const { items  } = cart;
+
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -171,4 +167,4 @@ const mapStateToProps = state => {
   return { totalCostBeforeTax, cart, user };
 };
 
-export default connect(mapStateToProps, { createCart })(App);
+export default connect(mapStateToProps, { createCart, getCart })(App);

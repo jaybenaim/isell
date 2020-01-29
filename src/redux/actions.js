@@ -1,7 +1,17 @@
-import { ADD_ITEM, REMOVE_ITEM, CREATE_CART } from "./actionTypes";
+import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "./actionTypes";
 
 // make api calls here for simple calls
 // use react-thunk as package?
+
+export const getCart = data => {
+  const { _id, createdAt, products, user } = data;
+
+  return {
+    type: GET_CART,
+    cart: { _id, createdAt, products },
+    user
+  };
+};
 
 export const createCart = data => {
   return {
