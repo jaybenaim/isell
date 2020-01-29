@@ -43,7 +43,6 @@ class App extends Component {
     });
   };
   getCart = async id => {
-    console.log(id);
     await local
       .get(`/carts/find/${id}`)
       .then(res => {
@@ -163,9 +162,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  const { totalCostBeforeTax, cart, user } = state.handleItem;
+  const { cart, user } = state.handleItem;
 
-  return { totalCostBeforeTax, cart, user };
+  return { cart, user };
 };
 
 export default connect(mapStateToProps, { createCart, getCart })(App);

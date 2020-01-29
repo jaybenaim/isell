@@ -52,15 +52,13 @@ class ProductCard extends Component {
       addItemToCart: addItem,
       cart: { id, qty = qtyRef, items }
     } = this.props;
-
-    let itemIds = items.map(id => id);
-
-    itemIds.push(product.id);
-
     const data = {
       user: { id },
       products: [...itemIds]
     };
+
+    let itemIds = items.map(id => id);
+    itemIds.push(product.id);
 
     local
       .patch(`/carts/${id}`, data, {})

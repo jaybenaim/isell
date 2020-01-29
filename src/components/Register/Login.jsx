@@ -59,10 +59,11 @@ class Login extends Component {
         alert("Error logging in please try again");
       });
   };
-  handleGetCart = id => {
-    local
+  handleGetCart = async id => {
+    await local
       .get(`/carts/find/${id}`)
       .then(res => {
+        console.log(res, id);
         this.props.getCart(res.data);
       })
       .catch(err => {

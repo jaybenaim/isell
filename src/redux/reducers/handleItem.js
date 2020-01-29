@@ -2,8 +2,7 @@ import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "../actionTypes";
 
 const handleItem = (
   state = {
-    cart: { items: [], qty: 0, id: null },
-    totalCostBeforeTax: 0,
+    cart: { items: [], qty: 0, id: null, totalCostBeforeTax: 0 },
     user: { id: null }
   },
   action
@@ -13,8 +12,12 @@ const handleItem = (
       let { item, qty } = action.payload;
       const { id: itemId } = item;
       const {
-        cart: { items: prevItems, qty: prevQty, id: prevCartId },
-        totalCostBeforeTax
+        cart: {
+          items: prevItems,
+          qty: prevQty,
+          id: prevCartId,
+          totalCostBeforeTax
+        }
       } = state;
       let total = 0;
       item.qty = qty;
@@ -30,11 +33,11 @@ const handleItem = (
         cart: {
           items,
           qty: items.length,
-          id: prevCartId
-        },
-        totalCostBeforeTax: Number(
-          Number(totalCostBeforeTax + Number(total)).toFixed(2)
-        )
+          id: prevCartId,
+          totalCostBeforeTax: Number(
+            Number(totalCostBeforeTax + Number(total)).toFixed(2)
+          )
+        }
       });
 
     case REMOVE_ITEM:
@@ -50,9 +53,9 @@ const handleItem = (
             ...stateItems.filter(item => (item.id !== id ? item.id : null))
           ],
           qty: stateQty - 1,
-          id: prevCartId
-        },
-        totalCostBeforeTax: Number(Number(totalBeforeTax - price).toFixed(2))
+          id: prevCartId,
+          totalCostBeforeTax: Number(Number(totalBeforeTax - price).toFixed(2))
+        }
       });
 
     case CREATE_CART:
@@ -72,13 +75,21 @@ const handleItem = (
         cart: { products: productItems, _id: cartId, createdAt },
         user
       } = action;
-
+      const calculatePrice = () => {
+        let result = 0;
+        productItems.map(item => {
+          return (result += Number(item.price));
+        });
+        return result;
+      };
+      const totalBeforeTaxed = calculatePrice();
       return Object.assign({}, state, {
         user,
         cart: {
           items: productItems,
           qty: productItems.length,
-          id: cartId
+          id: cartId,
+          totalCostBeforeTax: totalBeforeTaxed
         }
       });
 
