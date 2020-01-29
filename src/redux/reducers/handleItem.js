@@ -1,7 +1,11 @@
 import { ADD_ITEM, REMOVE_ITEM, CREATE_CART } from "../actionTypes";
 
 const handleItem = (
-  state = { cart: { items: [], qty: 0, id: null }, totalCostBeforeTax: 0 },
+  state = {
+    cart: { items: [], qty: 0, id: null },
+    totalCostBeforeTax: 0,
+    user: { id: null }
+  },
   action
 ) => {
   switch (action.type) {
@@ -53,16 +57,12 @@ const handleItem = (
 
     case CREATE_CART:
       const data = action.data;
-      const {
-        _id: cartId,
-        products: items,
-        user: { id: userId }
-      } = data;
-
-      const currentQty = items.length >= 1 ? items.length : 0;
+      const { id: i } = data.user;
+      console.log(data);
+      // const currentQty = items.length >= 1 ? items.length : 0;
       return Object.assign({}, state, {
-        user: { id: userId },
-        cart: { items, qty: currentQty, id: cartId }
+        user: { id: i },
+        cart: { items: [], qty: 0, id: i }
       });
 
     default:

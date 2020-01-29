@@ -29,6 +29,7 @@ class Signup extends Component {
       }
     })
       .then(res => {
+        console.log(res.data);
         if (res.status === 200) {
           Cookies.set("token", res.data.token, {
             expires: 7
@@ -37,7 +38,8 @@ class Signup extends Component {
             expires: 7
           });
           handleLogin(res.data.userId);
-          createCart(res.data);
+          const data = { user: { id: res.data.userId } };
+          this.handleCreateCart(data);
 
           this.props.history.push("/");
         } else {
@@ -51,17 +53,16 @@ class Signup extends Component {
         alert("Error creating user, please try again.");
       });
   };
-  handleCreateCart = response => {
-    const id = Cookies.get("id");
-    console.log(id);
-    const data = { user: { id } };
+  handleCreateCart = user => {
     const { isLoggedIn } = this.state;
+    const data = { user, products: [] };
+
     isLoggedIn &&
       local
         .post("/carts", data, {})
         .then(res => {
-          this.props.createCart(response);
           console.log(res.data);
+          this.props.createCart(res.data);
         })
         .catch(err => {
           alert("Error creating cart", err);

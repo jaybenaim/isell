@@ -46,7 +46,7 @@ class Login extends Component {
           });
 
           handleLogin(res.data.token);
-          this.props.createCart(res.data);
+          this.handleCreateCart(res.data);
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);
@@ -67,7 +67,7 @@ class Login extends Component {
       local
         .post("/carts", data, {})
         .then(res => {
-          createCart(response);
+          this.props.createCart(res.data);
           console.log(res.data);
         })
         .catch(err => {

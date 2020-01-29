@@ -44,8 +44,9 @@ class App extends Component {
   };
   componentDidMount() {
     const id = Cookies.get("id");
-    console.log(id);
-    const data = { user: { id } };
+    console.log(Cookies.get());
+    const userID = this.props.user.id;
+    const data = { user: { id: id === undefined ? userID : id } };
     const { isLoggedIn } = this.state;
     isLoggedIn &&
       local
