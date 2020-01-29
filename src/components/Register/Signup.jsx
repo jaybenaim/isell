@@ -55,18 +55,13 @@ class Signup extends Component {
   };
   handleCreateCart = user => {
     const data = { user, products: [] };
-    console.log(data);
-    debugger;
 
     local
       .post("/carts", data, {})
       .then(res => {
-        debugger;
-        console.log(res.data, "HELLLO");
         this.props.createCart(res.data);
       })
       .catch(err => {
-        debugger;
         alert("Error creating cart", err);
       });
   };
