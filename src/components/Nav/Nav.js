@@ -120,8 +120,8 @@ class Nav extends Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const { items, qty } = state.handleItem;
-  const cart = { items, qty };
+  const { cart } = state.handleItem;
+
   return { cart };
 };
 
