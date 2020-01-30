@@ -31,12 +31,13 @@ export const addItem = (qty, item) => {
   };
 };
 
-export const removeItem = (id, price) => {
+export const removeItem = data => {
+  console.log(data);
+  const { products } = data;
   return {
     type: REMOVE_ITEM,
     payload: {
-      id,
-      price
+      products
     }
   };
 };

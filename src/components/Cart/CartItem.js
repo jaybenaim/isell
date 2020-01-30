@@ -2,19 +2,47 @@ import React, { Component } from "react";
 import { BrowserRouter as Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { removeItem } from "../../redux/actions";
+import local from "../../Api/local";
 import "./cartItem.css";
 class CartItem extends Component {
   state = {};
   shortDescription = description => {
+    if (!description) {
+      return "";
+    }
     if (description.length <= 15) {
       return description;
     } else {
       return description.slice(0, 15) + "...";
     }
   };
+  handleRemoveItem = (id, price) => {
+    const {
+      removeItem: removeItemFromCart,
+      cart: { items, id: cartID }
+    } = this.props;
+    const itemIds = items.filter(item => {
+      return item._id !== id;
+    });
+    const ids = itemIds.map(item => {
+      return item._id;
+    });
+
+    const data = { products: [...ids] };
+    console.log(data);
+    local
+      .patch(`/carts/${cartID}`, data, {})
+      .then(res => {
+        console.log(res.data, "Item removed");
+        removeItemFromCart(res.data);
+      })
+      .catch(err => {
+        alert("Error removing item");
+      });
+  };
   render() {
     const { error, item, hideModal } = this.props;
-    const { id, name, price, description, image, qty } = item;
+    const { _id: id, name, price, description, image, qty } = item;
 
     return (
       <>
@@ -53,7 +81,7 @@ class CartItem extends Component {
             </span>
             <button
               className="modal-cart-remove-item btn btn-outline-danger"
-              onClick={() => this.props.removeItem(id, price)}
+              onClick={() => this.handleRemoveItem(id, price)}
             >
               Remove Item
             </button>
@@ -65,9 +93,8 @@ class CartItem extends Component {
 }
 
 const mapStateToProps = state => {
-  const { items, qty } = state.handleItem;
-  const cart = { items, qty };
-  console.log(state);
+  const { cart } = state.handleItem;
+
   return { cart };
 };
 

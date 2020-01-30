@@ -33,20 +33,19 @@ const handleItem = (
       });
 
     case REMOVE_ITEM:
-      const { id, price } = action.payload;
+      const { products } = action.payload;
       const {
-        cart: { items: stateItems, qty: stateQty }
+        cart: { id: cartID }
       } = state;
-      const newItems = [
-        ...stateItems.filter(item => (item._id !== id ? item.id : null))
-      ];
-      const totalBeforeTaxes = calculatePrice(newItems);
-      const newRemovedQty = newItems ? newItems.length : 0;
+      console.log(action);
+
+      const totalBeforeTaxes = calculatePrice(products);
+      const newRemovedQty = products ? products.length : 0;
 
       return Object.assign({}, state, {
         cart: {
-          items: newItems,
-          id: prevCartId,
+          items: products,
+          id: cartID,
           totalCostBeforeTax: totalBeforeTaxes.toFixed(2),
           qty: newRemovedQty
         }

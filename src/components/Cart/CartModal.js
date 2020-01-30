@@ -73,11 +73,10 @@ class CartModal extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const { cart } = state.handleItem;
 
-const mapStateToProps = (state, ownProps) => {
-  const { items, qty, totalCostBeforeTax } = state.handleItem;
-  const cart = { items, qty };
-  return { cart, totalCostBeforeTax };
+  return { cart };
 };
 
 export default connect(mapStateToProps, {})(CartModal);
