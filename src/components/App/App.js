@@ -54,6 +54,7 @@ class App extends Component {
   };
   componentDidMount() {
     const id = Cookies.get("id");
+    console.log(id);
     this.getCart(id);
   }
   render() {

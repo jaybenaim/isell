@@ -12,49 +12,43 @@ const handleItem = (
       let { item, qty } = action.payload;
       const { id: itemId } = item;
       const {
-        cart: {
-          items: prevItems,
-          qty: prevQty,
-          id: prevCartId,
-          totalCostBeforeTax
-        }
+        cart: { items: prevItems, qty: prevQty, id: prevCartId }
       } = state;
-      let total = 0;
       item.qty = qty;
 
-      for (let i = 1; i <= qty; i++) {
-        total += Number(item.price);
-      }
       const items = [
-        ...prevItems.filter(item => (item.id !== itemId ? item : null)),
+        ...prevItems.filter(item => (item._id !== itemId ? item : null)),
         item
       ];
+      const totalBeforeTax = calculatePrice(items);
+      const newQty = items ? items.length : 0;
+
       return Object.assign({}, state, {
         cart: {
           items,
-          qty: items.length,
+          qty: newQty,
           id: prevCartId,
-          totalCostBeforeTax: Number(
-            Number(totalCostBeforeTax + Number(total)).toFixed(2)
-          )
+          totalCostBeforeTax: totalBeforeTax.toFixed(2)
         }
       });
 
     case REMOVE_ITEM:
       const { id, price } = action.payload;
       const {
-        cart: { items: stateItems, qty: stateQty },
-        totalCostBeforeTax: totalBeforeTax
+        cart: { items: stateItems, qty: stateQty }
       } = state;
+      const newItems = [
+        ...stateItems.filter(item => (item._id !== id ? item.id : null))
+      ];
+      const totalBeforeTaxes = calculatePrice(newItems);
+      const newRemovedQty = newItems ? newItems.length : 0;
 
       return Object.assign({}, state, {
         cart: {
-          items: [
-            ...stateItems.filter(item => (item.id !== id ? item.id : null))
-          ],
-          qty: stateQty - 1,
+          items: newItems,
           id: prevCartId,
-          totalCostBeforeTax: Number(Number(totalBeforeTax - price).toFixed(2))
+          totalCostBeforeTax: totalBeforeTaxes.toFixed(2),
+          qty: newRemovedQty
         }
       });
 
@@ -67,7 +61,7 @@ const handleItem = (
       console.log(data);
       return Object.assign({}, state, {
         user: { id: i },
-        cart: { items: [], qty: 0, id: _id }
+        cart: { items: [], qty: 0, id: _id, totalCostBeforeTax: 0 }
       });
 
     case GET_CART:
@@ -75,26 +69,33 @@ const handleItem = (
         cart: { products: productItems, _id: cartId, createdAt },
         user
       } = action;
-      const calculatePrice = () => {
-        let result = 0;
-        productItems.map(item => {
-          return (result += Number(item.price));
-        });
-        return result;
-      };
-      const totalBeforeTaxed = calculatePrice();
+
+      const totalBeforeTaxed = calculatePrice(productItems);
+      const newGetQty = productItems ? productItems.length : 0;
       return Object.assign({}, state, {
         user,
         cart: {
           items: productItems,
-          qty: productItems.length,
+          qty: newGetQty,
           id: cartId,
-          totalCostBeforeTax: totalBeforeTaxed
+          totalCostBeforeTax: totalBeforeTaxed.toFixed(2)
         }
       });
 
     default:
       return state;
+  }
+};
+const calculatePrice = items => {
+  let result = 0;
+
+  if (!items) {
+    return result;
+  } else {
+    items.map(item => {
+      return (result += Number(item.price));
+    });
+    return result;
   }
 };
 
