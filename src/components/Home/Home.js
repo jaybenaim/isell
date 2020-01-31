@@ -33,7 +33,7 @@ class Home extends Component {
                 <div className="carousel-caption d-none d-md-block">
                   <h3>50% OFF</h3>
 
-                  <p className="discount">Use code SALETIME for 50%</p>
+                  <p className="discount">Use code SALETIME for 50% off</p>
                 </div>
               </div>
               {/* <!-- Slide Two - Set the background image for this slide in the line below --> */}

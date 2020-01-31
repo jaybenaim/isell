@@ -19,7 +19,6 @@ class Register extends Component {
         {isLoggedIn ? (
           <div>
             <Logout handleLogin={handleLogin} />
-            Logged In
           </div>
         ) : (
           <>

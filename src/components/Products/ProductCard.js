@@ -132,12 +132,13 @@ class ProductCard extends Component {
           >
             {addToCartButtonText}
           </button>
+          <br />
           <Link
             to={{
               pathname: `/Products/${id}/show`,
               state: { id, name, description, price, image, isLoggedIn }
             }}
-            className="btn btn-primary"
+            className="btn btn-primary show-product-btn"
           >
             Show Details
           </Link>

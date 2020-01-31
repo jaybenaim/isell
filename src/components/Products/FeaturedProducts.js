@@ -24,25 +24,28 @@ class FeaturedProducts extends Component {
                 <ProductCard
                   {...featuredProducts[0]}
                   product={featuredProducts[0]}
-                  productClass={`product-card-${featuredProducts[0].id} product-card`}
+                  productClass={`product-card-1 product-card`}
                   addToCart={addToCart}
                   isLoggedIn={isLoggedIn}
                 />
               </div>
+              <hr />
               <div className="card-2">
                 <ProductCard
                   {...featuredProducts[1]}
                   product={featuredProducts[1]}
-                  productClass={`product-card-${featuredProducts[1].id} product-card`}
+                  productClass={`product-card-2 product-card`}
                   addToCart={addToCart}
                   isLoggedIn={isLoggedIn}
                 />
               </div>
+              <hr />
+
               <div className="card-3">
                 <ProductCard
                   {...featuredProducts[2]}
                   product={featuredProducts[2]}
-                  productClass={`product-card-${featuredProducts[2].id} product-card`}
+                  productClass={`product-card-3 product-card`}
                   addToCart={addToCart}
                   isLoggedIn={isLoggedIn}
                 />

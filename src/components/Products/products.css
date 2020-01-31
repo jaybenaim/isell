@@ -6,10 +6,12 @@
     grid-gap: 20px;
   }
   .card-img-top {
-    height: 200px;
+    height: 260px;
     max-width: 290px;
     object-fit: cover;
-    object-position: 0 54%;
+    object-position: 0 50%;
+    padding: 7%;
+    margin: 0 auto;
   }
 }
 

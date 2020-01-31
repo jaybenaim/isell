@@ -1,30 +1,61 @@
 @media (max-width: 450px) {
   .featured-products-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 5% 1fr 5%;
   }
 
-  .card-1 {
-    grid-area: 1 / 1;
-    width: 10em;
-    padding-bottom: 40px;
-    margin-left: 4%;
-  }
-  .card-2 {
-    grid-area: 1 / 2;
-    width: 10em;
-    margin-left: 9%;
-  }
+  .card-1,
+  .card-2,
   .card-3 {
-    grid-area: 2 / 1;
-    width: 10em;
-    margin-left: 4%;
+    grid-column: 2;
+    width: 100%;
+    margin: 0 auto;
+    animation-name: fadeIn;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    padding-bottom: 40px;
+  }
+  .card-1 {
+    object-fit: cover;
+    object-position: 0 54%;
+    animation-name: fadeIn;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+  }
+  .product-card-1 {
+    background: rgb(255, 140, 0);
+  }
+  .product-card-2 {
+    background: red;
+  }
+  .product-card-3 {
+    background: red;
+  }
+  .card-body div {
+    border-radius: 20px;
   }
   .card-1 .card-body h5 {
-    padding-bottom: 24px;
+    padding-bottom: 10px;
+    font-size: 2.3em;
+  }
+  .show-product-btn {
+    margin-top: 4%;
+  }
+
+  .card-image-top {
+    animation-name: fadeIn;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
   }
 }
-
+@keyframes fadeIn {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media (min-width: 451px) {
   .featured-products-grid {
     display: grid;
