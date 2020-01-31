@@ -59,7 +59,7 @@ class App extends Component {
   }
   render() {
     const { showAlert, isLoggedIn } = this.state;
-
+    const { cart } = this.props;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">
@@ -127,13 +127,11 @@ class App extends Component {
                 <Route
                   exact
                   path="/ShoppingCart"
-                  component={Cart}
                   render={props => (
                     <Cart
                       {...props}
                       timestamp={new Date().toString()}
-                      removeFromCart={this.removeFromCart}
-                      // items={items}
+                      // cart={cart}
                     />
                   )}
                 />

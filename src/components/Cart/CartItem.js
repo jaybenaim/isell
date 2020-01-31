@@ -19,7 +19,8 @@ class CartItem extends Component {
   handleRemoveItem = (id, price) => {
     const {
       removeItem: removeItemFromCart,
-      cart: { items, id: cartID }
+      cart: { items, id: cartID },
+      item: { qty }
     } = this.props;
     const itemIds = items.filter(item => {
       return item._id !== id;
@@ -29,7 +30,13 @@ class CartItem extends Component {
     });
 
     const data = { products: [...ids] };
-    console.log(data);
+
+    const productQty = { qty: 1 };
+    if (qty > 1) {
+      local.patch(`/products/${id}`, productQty, {}).then(res => {
+        console.log(res.statusText, "Product updated");
+      });
+    }
     local
       .patch(`/carts/${cartID}`, data, {})
       .then(res => {
@@ -61,7 +68,7 @@ class CartItem extends Component {
             <Link
               to={{
                 pathname: `/Products/${id}/show`,
-                state: { name, description, price, image }
+                state: { item }
               }}
               className="modal-link-to-product-show"
               onClick={() => hideModal()}

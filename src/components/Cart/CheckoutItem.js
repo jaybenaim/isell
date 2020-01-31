@@ -1,14 +1,51 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import "./checkoutItem.css";
 import { connect } from "react-redux";
 import { removeItem } from "../../redux/actions";
-
+import local from "../../Api/local";
 class CheckoutItem extends Component {
   state = {};
+  handleRemoveItem = (id, price) => {
+    const {
+      removeItem,
+      cart: { items, id: cartID },
+      qty
+    } = this.props;
+    const itemIds = items.filter(item => {
+      return item._id !== id;
+    });
+    const ids = itemIds.map(item => {
+      return item._id;
+    });
 
+    const data = { products: [...ids] };
+
+    const productQty = { qty: 1 };
+    if (qty > 1) {
+      local.patch(`/products/${id}`, productQty, {}).then(res => {
+        console.log(res.statusText, "Product updated");
+      });
+    }
+    local
+      .patch(`/carts/${cartID}`, data, {})
+      .then(res => {
+        console.log(res.data, "Item removed");
+        removeItem(res.data);
+      })
+      .catch(err => {
+        alert("Error removing item");
+      });
+  };
   render() {
-    const { id, name, description, price, image, qty, removeItem } = this.props;
+    const {
+      _id,
+      name,
+      description,
+      price,
+      image,
+      qty,
+      removeItem
+    } = this.props;
     return (
       <div className="checkout-item">
         <img className="checkout-item-image" src={image} alt={name} />
@@ -20,7 +57,7 @@ class CheckoutItem extends Component {
         <div className="checkout-item-price">${price * qty}</div>
         <button
           className="btn btn-outline-danger checkout-item-delete-btn"
-          onClick={() => removeItem(id, price)}
+          onClick={() => this.handleRemoveItem(_id, price)}
         >
           X
         </button>
@@ -30,8 +67,7 @@ class CheckoutItem extends Component {
 }
 
 const mapStateToProps = state => {
-  const { items, qty } = state.handleItem;
-  const cart = { items, qty };
+  const { cart } = state.handleItem;
 
   return { cart };
 };

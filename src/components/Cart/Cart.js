@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import CheckoutItem from "./CheckoutItem";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import { Redirect } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { connect } from "react-redux";
 import { removeItem } from "../../redux/actions";
 
 import "./cart.css";
-import axios from "axios";
 class Cart extends Component {
   state = {
-    isCheckedOut: false
+    isCheckedOut: false,
+    tax: 0,
+    proccessFee: 0,
+    subTotal: 0
   };
 
   showCheckoutItems = () => {
@@ -54,8 +55,9 @@ class Cart extends Component {
   };
 
   calculateSubTotal = totalCostBeforeTax => {
+    totalCostBeforeTax = Number(totalCostBeforeTax);
     const taxPercentage = 0.13;
-    let totalWithTax = Number(totalCostBeforeTax) * taxPercentage;
+    let totalWithTax = totalCostBeforeTax * taxPercentage;
     let proccessFee = totalCostBeforeTax * 0.029 + 0.35;
     let subTotal = totalCostBeforeTax + totalWithTax + proccessFee;
 
@@ -64,34 +66,28 @@ class Cart extends Component {
       proccessFee: proccessFee.toFixed(2),
       subTotal: subTotal.toFixed(2)
     };
-
     return results;
   };
-  // handleDelete = id => {
-  //   const { cart, removeFromCart } = this.props.location.params;
 
-  //   removeFromCart(id);
+  componentDidMount() {}
 
-  //   return cart.qty <= 1 ? (
-  //     <Redirect to="/" />
-  //   ) : (
-  //     <Redirect to={{ pathname: "/ShoppingCart", state: { cart } }} />
-  //   );
-  // };
-  componentDidUpdate() {}
   render() {
-    const { cart, totalCostBeforeTax } = this.props;
+    const { cart, totalCostBeforeTax, items } = this.props;
     const { isCheckedOut } = this.state;
     const total = this.calculateSubTotal(totalCostBeforeTax);
     const { tax, proccessFee, subTotal } = total;
+
     return (
       <div className="cart-container">
         <h1>Review Order</h1>
         {cart && this.showCheckoutItems()}
         <div className="checkout-total-container">
-          <div className="checkout-message">
-            You have {cart.qty} items in your cart.
+          <div className="checkout-messege">
+            You have{" "}
+            {cart.qty >= 2 ? `${cart.qty} items ` : `${cart.qty} item `}
+            in your cart.
           </div>
+
           <span className="checkout-label-tax">Tax:</span>
           <span className="checkout-amount-tax"> {tax}</span>
           <div className="checkout-label-process-fees">Process Fee:</div>
@@ -100,7 +96,7 @@ class Cart extends Component {
           <div className="checkout-label-subtotal">
             <strong>SubTotal:</strong>
           </div>
-          <span className="checkout-subtotal">${subTotal}</span>
+          <span className="checkout-subtotal">CAD ${subTotal}</span>
         </div>
 
         <div
@@ -114,10 +110,13 @@ class Cart extends Component {
     );
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  const { cart } = state.handleItem;
+const mapStateToProps = state => {
+  const {
+    cart,
+    cart: { totalCostBeforeTax, items }
+  } = state.handleItem;
 
-  return { cart };
+  return { cart, totalCostBeforeTax, items };
 };
 
 export default connect(mapStateToProps, { removeItem })(Cart);

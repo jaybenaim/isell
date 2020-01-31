@@ -20,10 +20,38 @@
   margin: 0 auto;
 }
 @media (max-width: 450px) {
+  .checkout-item {
+    margin-top: 10%;
+  }
+  .checkout-item-image {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .checkout-item-name {
+    grid-area: 2/1;
+    font-weight: 500;
+    font-size: 1.4em;
+  }
+  .checkout-item-desc {
+    grid-area: 1/2;
+    margin-top: 40%;
+  }
+  .checkout-item-qty {
+    margin-top: 40%;
+  }
+  .checkout-item-price {
+    margin-top: 20%;
+    font-weight: 700;
+  }
   .checkout-item-delete-btn {
     grid-area: 2/4;
     width: 50%;
     margin: 0 auto;
+    margin-top: -20%;
+  }
+  .checkout-messege {
+    margin: 0 auto;
+    grid-area: 1/1/1/6;
   }
 }
 @media (min-width: 451px) {

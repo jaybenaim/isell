@@ -13,7 +13,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
-  .checkout-message {
+  .checkout-messege {
     grid-area: 1 / 1 / 1 / 5;
     font-size: 2em;
   }
@@ -100,46 +100,55 @@
     display: none;
   }
 }
+
 @media (max-width: 450px) {
   .checkout-total-container {
     margin-bottom: 4%;
     border: 2px solid black;
-    padding: 20px;
+    padding: 4px;
     margin: 10%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
   }
-  .checkout-message {
-    grid-area: 1 / 1 / 1 / 5;
+  .checkout-messege {
+    grid-area: 1 / 1 / 1 / 6;
+    margin-top: 10%;
+    font-size: 1.4em;
   }
   .checkout-label-tax {
-    margin-top: 16%;
-    grid-area: 2 / 3 / 2 / 4;
+    margin-top: 36%;
+    grid-area: 3 / 2;
     text-align: left !important;
+    margin-left: -60%;
   }
   .checkout-amount-tax {
-    grid-area: 2 / 5 / 3 / 5;
+    grid-area: 3 / 5;
     font-size: 0.9em;
-    margin-top: 30%;
+    margin-top: 47%;
   }
   .checkout-label-process-fees {
     text-align: left !important;
-    grid-area: 3 / 3 / 4 / span 4;
+    grid-area: 3 /2 / 3 / span 4;
+    margin-top: 20%;
+    margin-left: -15%;
   }
   .checkout-amount-fees {
-    grid-area: 3 / 5 / 4 / 5;
+    grid-area: 3 / 5;
     font-size: 0.9em;
-    margin-top: 7%;
+    margin-top: 80%;
   }
   .checkout-label-subtotal {
     margin-top: 30%;
-    grid-area: 4 / 3 / 5 / 5;
+    grid-area: 4 / 2;
+    margin-left: -60%;
+    font-size: 1.3em;
   }
   .checkout-subtotal {
-    grid-area: 4 / 5 / 5 / 5;
-    margin-top: 35%;
-    font-size: 1.5em;
+    grid-area: 4 / 4 / 4 / span 6;
+    font-size: 1.3em;
     font-weight: 600;
+    margin-top: 18%;
   }
   .checkout-btn {
     margin-bottom: 40%;
