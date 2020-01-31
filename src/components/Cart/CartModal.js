@@ -34,7 +34,12 @@ class CartModal extends Component {
 
   render() {
     const { props } = this;
-    const { cart, onHide, totalCostBeforeTax, removeFromCart } = props;
+    const {
+      cart,
+      onHide,
+      cart: { totalCostBeforeTax },
+      removeFromCart
+    } = props;
 
     return (
       <Modal

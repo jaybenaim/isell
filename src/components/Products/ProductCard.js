@@ -55,7 +55,13 @@ class ProductCard extends Component {
 
     // get item ids for patch
     let itemIds = items.map(item => item._id);
-    console.log(product);
+    const productQty = { qty: qtyRef };
+    console.log(qtyRef);
+    if (qtyRef > 1) {
+      local.patch(`/products/${product._id}`, productQty, {}).then(res => {
+        console.log(res.statusText, "Product updated");
+      });
+    }
     itemIds.push(product._id);
 
     const data = {
@@ -66,7 +72,7 @@ class ProductCard extends Component {
       .patch(`/carts/${id}`, data, {})
       .then(res => {
         console.log(res.data + "Item added");
-        addItem(qty, product);
+        addItem(qtyRef, product);
       })
       .catch(err => {
         alert("Error adding item");

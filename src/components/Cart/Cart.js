@@ -114,10 +114,10 @@ class Cart extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  const { items, qty, totalCostBeforeTax } = state.handleItem;
-  const cart = { items, qty };
-  return { cart, totalCostBeforeTax };
+const mapStateToProps = (state, ownProps) => {
+  const { cart } = state.handleItem;
+
+  return { cart };
 };
 
 export default connect(mapStateToProps, { removeItem })(Cart);

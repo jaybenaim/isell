@@ -1,8 +1,9 @@
 import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "../actionTypes";
+import local from "../../Api/local";
 
 const handleItem = (
   state = {
-    cart: { items: [], qty: 0, id: null, totalCostBeforeTax: 0 },
+    cart: { items: [], qty: 1, id: null, totalCostBeforeTax: 0 },
     user: { id: null }
   },
   action
@@ -92,7 +93,7 @@ const calculatePrice = items => {
     return result;
   } else {
     items.map(item => {
-      return (result += Number(item.price));
+      return (result += Number(item.price * item.qty));
     });
     return result;
   }
