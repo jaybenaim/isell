@@ -21,9 +21,16 @@
     animation-name: fadeIn;
     animation-duration: 3s;
     animation-iteration-count: 1;
+    margin-top: 20%;
   }
   .product-card-1 {
     background: rgb(255, 140, 0);
+    position: relative;
+    padding: 0 7%;
+  }
+  .product-card-1 img {
+    position: absolute;
+    top: -20%;
   }
   .product-card-2 {
     background: red;
@@ -35,6 +42,7 @@
     border-radius: 20px;
   }
   .card-1 .card-body h5 {
+    margin-top: 60%;
     padding-bottom: 10px;
     font-size: 2.3em;
   }

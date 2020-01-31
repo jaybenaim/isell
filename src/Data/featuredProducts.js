@@ -12,7 +12,7 @@ class Product {
 const products = [];
 const product1 = new Product(
   "5e2e3d8d50d8891b1cd5d9e1",
-  "Gucci",
+  "Gucci Sticker",
   "Juul Sticker",
   "2.53",
   "https://jaybenaim.github.io/isell/images/img1.jpg",
