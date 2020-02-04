@@ -39,6 +39,10 @@
     object-fit: contain;
     object-position: 0 52%;
   }
+  [src="https://jaybenaim.github.io/isell/images/img8.jpg"] {
+    object-fit: cover;
+    margin-left: -2px;
+  }
   .product-card-3 img,
   .product-card-1 img {
     object-position: 0 52%;
