@@ -13,6 +13,10 @@
     padding: 7%;
     margin: 0 auto;
   }
+  [src="https://jaybenaim.github.io/isell/images/img5.jpg"] {
+    object-fit: contain;
+    object-position: 0 52%;
+  }
 }
 
 @media (min-width: 751px) {
@@ -119,6 +123,9 @@
   border-radius: 4px;
   margin-right: 4px;
   margin-bottom: 10px;
+}
+.card-text {
+  font-size: 1.4em;
 }
 .card-text:hover {
   cursor: pointer;

@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-
+import local from "../../Api/local";
+import { connect } from "react-redux";
+import {
+  addItem as addItemToCart,
+  removeItem as removeItemFromCart
+} from "../../redux/actions";
 class ProductShow extends Component {
-  state = {};
+  state = {
+    qty: 1,
+    addToCartButtonText: "Add to cart",
+    addToCartButtonDisabled: false
+  };
   getImageOr404 = (image, name) => {
     if (image === undefined) {
       return (
@@ -15,9 +24,54 @@ class ProductShow extends Component {
       return <img src={image} className="card-img-top" alt={name} />;
     }
   };
-  render() {
-    const { name, description, price, image, id } = this.props.location.state;
+  handleAddProduct = (qtyRef, product) => {
+    const {
+      addItemToCart: addItem,
+      cart: { id, items }
+    } = this.props;
+    const productQty = { qty: qtyRef };
 
+    let itemIds = items.map(item => item._id);
+    itemIds.push(product._id);
+
+    const data = {
+      products: [...itemIds]
+    };
+    if (qtyRef > 1) {
+      local.patch(`/products/${product._id}`, productQty, {}).then(res => {
+        console.log(res.statusText, "Product updated");
+      });
+    }
+
+    local
+      .patch(`/carts/${id}`, data, {})
+      .then(res => {
+        console.log(res.data + "Item added");
+        addItem(qtyRef, product);
+      })
+      .catch(err => {
+        alert("Error adding item");
+      });
+
+    this.setState({
+      addToCartButtonText: "Added to cart",
+      addToCartButtonDisabled: true
+    });
+  };
+  handleSetQty = event => {
+    let qty = Number(event.target.value);
+    this.setState({ qty: qty });
+  };
+  render() {
+    const {
+      name,
+      description,
+      price,
+      image,
+      id,
+      product
+    } = this.props.location.state;
+    const { addToCartButtonDisabled, addToCartButtonText, qty } = this.state;
     return (
       <div className="container">
         <h1 className="mt-4 mb-3">
@@ -39,6 +93,28 @@ class ProductShow extends Component {
             <p>{description}</p>
 
             <h3 className="my-3">${price}</h3>
+            <div>
+              <label htmlFor="qty-integer">Qty: </label>
+
+              <input
+                className="qty-input"
+                type="number"
+                name="quantity"
+                min="1"
+                max="100"
+                placeholder="1"
+                ref={this.qtyRef}
+                onChange={this.handleSetQty}
+                disabled={addToCartButtonDisabled}
+              ></input>
+              <button
+                disabled={addToCartButtonDisabled}
+                className="add-to-cart-btn "
+                onClick={() => this.handleAddProduct(qty, product)}
+              >
+                {addToCartButtonText}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -89,5 +165,12 @@ class ProductShow extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  const { totalCostBeforeTax, cart, user } = state.handleItem;
 
-export default ProductShow;
+  return { totalCostBeforeTax, cart, user };
+};
+
+export default connect(mapStateToProps, { addItemToCart, removeItemFromCart })(
+  ProductShow
+);

@@ -111,36 +111,24 @@ class ProductCard extends Component {
           <p className="card-text" onClick={() => this.showDescription()}>
             {showDesc ? description : this.shortDescription(description)}
           </p>
-          <p>CAD ${price}</p>
-          <label htmlFor="qty-integer">Qty: </label>
-          <input
-            className="qty-input"
-            type="number"
-            name="quantity"
-            min="1"
-            max="10"
-            placeholder="1"
-            ref={this.qtyRef}
-            onChange={this.handleSetQty}
-            disabled={addToCartButtonDisabled}
-          ></input>
-          {/* <button onClick={() => addToCart(qty, product)}>Add to cart</button> */}
-          <button
-            disabled={addToCartButtonDisabled}
-            className="add-to-cart-btn "
-            onClick={() => this.handleAddProduct(qty, product)}
-          >
-            {addToCartButtonText}
-          </button>
+
           <br />
           <Link
             to={{
               pathname: `/Products/${id}/show`,
-              state: { id, name, description, price, image, isLoggedIn }
+              state: {
+                id,
+                name,
+                description,
+                price,
+                image,
+                isLoggedIn,
+                product
+              }
             }}
             className="btn btn-primary show-product-btn"
           >
-            Show Details
+            <span>CAD ${price}</span>
           </Link>
         </div>
       </div>
