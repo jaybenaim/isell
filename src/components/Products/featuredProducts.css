@@ -31,12 +31,7 @@
     position: absolute;
     top: -20%;
   }
-  .product-card-2 {
-    background: red;
-  }
-  .product-card-3 {
-    background: red;
-  }
+
   .card-body div {
     border-radius: 20px;
   }
