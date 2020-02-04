@@ -72,6 +72,7 @@ class ProductShow extends Component {
       product
     } = this.props.location.state;
     const { addToCartButtonDisabled, addToCartButtonText, qty } = this.state;
+
     return (
       <div className="container">
         <h1 className="mt-4 mb-3">
@@ -89,10 +90,10 @@ class ProductShow extends Component {
           <div className="col-md-8">{this.getImageOr404(image, name)}</div>
 
           <div className="col-md-4">
-            <h3 className="my-3">Project Description</h3>
+            <h3 className="my-3">Product Description</h3>
             <p>{description}</p>
 
-            <h3 className="my-3">${price}</h3>
+            <h3 className="my-3"> CAD ${price}</h3>
             <div>
               <label htmlFor="qty-integer">Qty: </label>
 
@@ -118,14 +119,14 @@ class ProductShow extends Component {
           </div>
         </div>
 
-        <h3 className="my-4">Related Projects</h3>
+        <h3 className="my-4">Related Products</h3>
 
         <div className="row">
           <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                className="img-fluid"
-                src="https://placehold.it/500x300"
+                className="img-fluid related-images"
+                src="https://jaybenaim.github.io/isell/images/img8.jpg"
                 alt={name}
               />
             </a>
@@ -134,8 +135,8 @@ class ProductShow extends Component {
           <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                className="img-fluid"
-                src="https://placehold.it/500x300"
+                className="img-fluid related-images"
+                src="https://jaybenaim.github.io/isell/images/img3.jpg"
                 alt=""
               />
             </a>
@@ -144,8 +145,8 @@ class ProductShow extends Component {
           <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                className="img-fluid"
-                src="https://placehold.it/500x300"
+                className="img-fluid related-images"
+                src="https://jaybenaim.github.io/isell/images/img2.jpg"
                 alt=""
               />
             </a>
@@ -154,8 +155,8 @@ class ProductShow extends Component {
           <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img
-                className="img-fluid"
-                src="https://placehold.it/500x300"
+                className="img-fluid related-images"
+                src="https://jaybenaim.github.io/isell/images/img1.jpg"
                 alt=""
               />
             </a>
