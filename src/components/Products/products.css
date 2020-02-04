@@ -25,6 +25,7 @@
     max-width: 285px;
     object-fit: cover;
     object-position: 0 54%;
+    margin-top: 5%;
   }
   .product-card-3 img,
   .product-card-1 img {

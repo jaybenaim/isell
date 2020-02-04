@@ -3,7 +3,7 @@ import local from "../../Api/local";
 
 const handleItem = (
   state = {
-    cart: { items: [], qty: 1, id: null, totalCostBeforeTax: 0 },
+    cart: { items: [], qty: 0, id: null, totalCostBeforeTax: 0 },
     user: { id: null }
   },
   action
