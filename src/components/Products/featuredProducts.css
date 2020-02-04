@@ -26,12 +26,32 @@
     background: rgb(255, 140, 0);
     position: relative;
     padding: 0 7%;
+    color: white;
   }
   .product-card-1 img {
     position: absolute;
     top: -20%;
   }
-
+  .product-card-2 img {
+    position: absolute;
+    top: -30%;
+  }
+  .product-card-3 img {
+    position: absolute;
+    top: -30%;
+  }
+  .product-card-2 {
+    background: rgb(154, 205, 50);
+    margin-top: 20%;
+    padding-top: 40%;
+    color: white;
+  }
+  .product-card-3 {
+    background: rgb(255, 140, 0);
+    margin-top: 20%;
+    padding-top: 40%;
+    color: white;
+  }
   .card-body div {
     border-radius: 20px;
   }
