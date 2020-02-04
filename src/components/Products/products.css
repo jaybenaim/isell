@@ -19,13 +19,19 @@
   .product-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
   }
   .card-img-top {
     height: 258px;
-    max-width: 285px;
     object-fit: cover;
     object-position: 0 54%;
     margin-top: 5%;
+  }
+  .product-container div > h5 {
+    margin-top: 10%;
+  }
+  .product-container > .card {
+    width: 20em !important;
   }
   .product-card-3 img,
   .product-card-1 img {
@@ -45,6 +51,12 @@
   .product-card-4 {
     grid-area: 2/1;
   }
+  .product-container > .products-card {
+    width: 14em !important;
+    margin: 0 auto;
+    border-radius: 20px;
+  }
+
   .product-card-5 {
     grid-area: 2/2;
   }

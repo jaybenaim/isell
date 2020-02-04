@@ -19,7 +19,7 @@ class Products extends Component {
             {...product}
             product={product}
             url={url}
-            productClass={`product-card-${id} product-card`}
+            productClass={`products-card product-card`}
             addToCart={addToCart}
             isLoggedIn={isLoggedIn}
           />

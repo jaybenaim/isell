@@ -103,15 +103,16 @@
     position: absolute;
     top: -25%;
     left: 4.8%;
+    width: 18em;
   }
   .product-card-2 img {
     margin-left: 5%;
     margin-top: 4%;
-    width: 40em;
+    width: 20em;
   }
   .product-card-3 img {
     margin-top: 4%;
-    width: 60em;
+    width: 20em;
   }
   .card-1,
   .card-2,
