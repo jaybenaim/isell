@@ -20,6 +20,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
+    background-color: #f8f8f8;
   }
   .card-img-top {
     height: 258px;
@@ -32,6 +33,11 @@
   }
   .product-container > .card {
     width: 20em !important;
+    margin-top: 20% !important;
+  }
+  [src="https://jaybenaim.github.io/isell/images/img5.jpg"] {
+    object-fit: contain;
+    object-position: 0 52%;
   }
   .product-card-3 img,
   .product-card-1 img {
