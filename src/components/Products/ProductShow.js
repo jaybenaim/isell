@@ -27,7 +27,7 @@ class ProductShow extends Component {
   handleAddProduct = (qtyRef, product) => {
     const {
       addItemToCart: addItem,
-      cart: { id, items }
+      cart: { id, items = [] }
     } = this.props;
     const productQty = { qty: qtyRef };
 
@@ -141,7 +141,7 @@ class ProductShow extends Component {
               />
             </a>
           </div>
-
+          {/* TODO RUN PRoducts map from Products.js */}
           <div className="col-md-3 col-sm-6 mb-4">
             <a href={image}>
               <img

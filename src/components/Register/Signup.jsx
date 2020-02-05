@@ -34,10 +34,8 @@ class Signup extends Component {
           Cookies.set("token", res.data.token, {
             expires: 7
           });
-          Cookies.set("id", res.data.userId, {
-            expires: 7
-          });
-          handleLogin(res.data.userId);
+
+          handleLogin(res.data.token, res.data.userId);
           const data = { id: res.data.userId };
           this.handleCreateCart(data);
 

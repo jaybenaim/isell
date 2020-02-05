@@ -28,7 +28,7 @@ class Login extends Component {
     const { handleLogin } = this.props;
 
     event.preventDefault();
-    axios("http://localhost:5000/api/authenticate", {
+    axios("http://localhost:5000/api/authenticate/", {
       method: "POST",
       data: this.state,
       headers: {
@@ -45,7 +45,9 @@ class Login extends Component {
             expires: 7
           });
 
-          handleLogin(res.data.token);
+          console.log("Cookie: ", Cookies.get());
+
+          handleLogin(res.data.token, res.data.id);
 
           this.handleGetCart(id);
           this.props.history.push("/");
@@ -70,6 +72,7 @@ class Login extends Component {
         alert("Error getting cart", err);
       });
   };
+
   render() {
     const { redirect } = this.props;
     const { containerClass } = this.state;

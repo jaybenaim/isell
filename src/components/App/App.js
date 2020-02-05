@@ -37,24 +37,31 @@ class App extends Component {
     const { showAlert } = this.state;
     this.setState({ showAlert: !showAlert });
   };
-  handleLogin = token => {
+  handleLogin = (token, id) => {
+    this.getCart(id);
     this.setState({
-      isLoggedIn: token ? true : false
+      isLoggedIn: token ? true : false,
+      userID: id
     });
   };
   getCart = async id => {
-    await local
-      .get(`/carts/find/${id}`)
-      .then(res => {
-        this.props.getCart(res.data);
-      })
-      .catch(err => {
-        alert("Error getting cart", err);
-      });
+    const { id: userId } = this.props.user;
+    if (userId === "null") {
+      alert("Please sign in");
+    } else {
+      await local
+        .get(`/carts/find/${id}`)
+        .then(res => {
+          console.log(res.body);
+          this.props.getCart(res.data);
+        })
+        .catch(err => {
+          alert("Error getting cart", err);
+        });
+    }
   };
   componentDidMount() {
     const id = Cookies.get("id");
-    console.log(id);
     this.getCart(id);
   }
   render() {
