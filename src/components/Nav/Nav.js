@@ -72,11 +72,11 @@ class Nav extends Component {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/">
+                {/* <a className="nav-link" href="/">
                   Pricing
-                </a>
+                </a> */}
               </li>
-              <li className="nav-item dropdown">
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   href="/"
@@ -102,6 +102,7 @@ class Nav extends Component {
                   </a>
                 </div>
               </li>
+              */}
               <li data-toggle="collapse" data-target="#navbarNavDropdown">
                 <button
                   className="cart-btn btn cart-btn-2"
