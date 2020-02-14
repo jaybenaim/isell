@@ -77,20 +77,21 @@
     font-weight: 700;
     font-size: 1.4em;
     grid-area: 1 / 2 / 1 / 5;
-    margin-left: 2%;
+    margin-left: 8%;
   }
   .modal-cart-price {
-    grid-area: 1 / 4 / 1 / 6;
-    margin-top: 80%;
+    grid-area: 2 / 1 / 2 / 6;
+    margin-top: 10%;
   }
   .modal-cart-short-desc {
     grid-area: 1 / 2 / 1 / 5;
-    margin-top: 20%;
-    margin-left: 4%;
+    margin-top: 50%;
+    margin-left: 10%;
   }
   .modal-cart-qty {
     grid-area: 1 / 4 / 1 / 6;
-    margin-top: 60%;
+    margin-top: -10%;
+    margin-left: 34%;
   }
   .modal-cart-remove-item {
     grid-area: 2 / 4 / 2 / 6;
