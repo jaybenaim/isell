@@ -22,7 +22,7 @@ class CheckoutForm extends Component {
     subTotal = JSON.stringify(subTotal);
     console.log(ev);
 
-    let response = await backend("/charge", {
+    let response = await local("/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
