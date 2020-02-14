@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import Nav from "../Nav/Nav";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
@@ -66,7 +65,6 @@ class App extends Component {
   }
   render() {
     const { showAlert, isLoggedIn } = this.state;
-    const { cart } = this.props;
     return (
       <Router basename="/isell" history={history}>
         <div className="App">

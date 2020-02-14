@@ -23,7 +23,7 @@
     margin-top: 20%;
   }
   .product-card-1 {
-    background: rgb(255, 140, 0);
+    background: #fb416b;
     position: relative;
     padding: 0 7%;
     color: white;
@@ -31,6 +31,7 @@
   .product-card-1 img {
     position: absolute;
     top: -20%;
+    left: 1%;
   }
   .product-card-2 img {
     position: absolute;
@@ -41,13 +42,13 @@
     top: -30%;
   }
   .product-card-2 {
-    background: rgb(154, 205, 50);
+    background: rgb(255, 140, 0);
     margin-top: 20%;
     padding-top: 40%;
     color: white;
   }
   .product-card-3 {
-    background: rgb(255, 140, 0);
+    background: rgb(154, 205, 50);
     margin-top: 20%;
     padding-top: 40%;
     color: white;
@@ -56,10 +57,19 @@
     border-radius: 20px;
   }
   .card-1 .card-body h5 {
-    margin-top: 60%;
+    margin-top: 70%;
     padding-bottom: 10px;
     font-size: 2.3em;
   }
+  .card-2 .card-body h5 {
+    padding-bottom: 10px;
+    font-size: 2.3em;
+  }
+  .card-3 .card-body h5 {
+    padding-bottom: 10px;
+    font-size: 2.3em;
+  }
+
   .show-product-btn {
     margin-top: 4%;
   }
