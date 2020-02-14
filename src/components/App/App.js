@@ -62,7 +62,7 @@ class App extends Component {
   };
   componentDidMount() {
     const id = Cookies.get("id");
-    this.getCart(id);
+    id && this.getCart(id);
   }
   render() {
     const { showAlert, isLoggedIn } = this.state;
