@@ -20,9 +20,8 @@ class CheckoutForm extends Component {
     console.log(subTotal);
     subTotal = Math.round(subTotal);
     subTotal = JSON.stringify(subTotal);
-    console.log(ev);
 
-    let response = await local("/charge", {
+    let response = await local("/stripe/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",
