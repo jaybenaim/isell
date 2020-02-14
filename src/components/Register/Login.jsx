@@ -28,7 +28,7 @@ class Login extends Component {
     const { handleLogin } = this.props;
 
     event.preventDefault();
-    axios("http://localhost:5000/api/authenticate/", {
+    local("/authenticate/", {
       method: "POST",
       data: this.state,
       headers: {

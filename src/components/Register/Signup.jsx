@@ -21,7 +21,7 @@ class Signup extends Component {
   onSubmit = event => {
     const { handleLogin } = this.props;
     event.preventDefault();
-    axios("http://localhost:5000/api/signup", {
+    local("/signup", {
       method: "POST",
       data: JSON.stringify(this.state),
       headers: {
