@@ -27,7 +27,7 @@ class Cart extends Component {
     this.setState({ isCheckedOut: !isCheckedOut || value });
   };
   showCheckoutForm = () => {
-    const { totalCostBeforeTax } = this.props.location.params;
+    const { totalCostBeforeTax } = this.props;
     const PK_TEST = "pk_test_kUyitnXXbG5Rg8HhhfYhnklR00qMm6iAaZ";
     const PK_LIVE = process.env.PK_LIVE;
     const validTotal = (
