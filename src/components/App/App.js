@@ -59,7 +59,7 @@ class App extends Component {
         });
     }
   };
-  componentDidUpdate() {
+  componentDidMount() {
     const id = Cookies.get("id");
     id && this.getCart(id);
   }
