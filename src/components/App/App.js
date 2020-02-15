@@ -18,11 +18,10 @@ import { connect } from "react-redux";
 import { createCart, getCart } from "../../redux/actions";
 
 const history = createBrowserHistory();
-const { token } = Cookies.get();
 
 class App extends Component {
   state = {
-    isLoggedIn: token === undefined ? false : true,
+    isLoggedIn: this.props.user.id === undefined ? false : true,
     selectedProduct: null,
     addedToCart: false,
     valid: false,
@@ -37,9 +36,10 @@ class App extends Component {
     this.setState({ showAlert: !showAlert });
   };
   handleLogin = (token, id) => {
+    const { isLoggedIn } = this.state;
     this.getCart(id);
     this.setState({
-      isLoggedIn: token ? true : false,
+      isLoggedIn: !isLoggedIn,
       userID: id
     });
   };
@@ -59,7 +59,7 @@ class App extends Component {
         });
     }
   };
-  componentDidMount() {
+  componentDidUpdate() {
     const id = Cookies.get("id");
     id && this.getCart(id);
   }
