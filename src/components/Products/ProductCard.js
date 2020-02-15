@@ -82,18 +82,13 @@ class ProductCard extends Component {
     });
   };
   render() {
-    const {
-      qty,
-      showDesc,
-      addToCartButtonText,
-      addToCartButtonDisabled
-    } = this.state;
+    const { showDesc } = this.state;
     let {
       name,
       description,
       price,
       productClass,
-      id,
+      _id,
       product,
       image,
 
@@ -115,9 +110,9 @@ class ProductCard extends Component {
           <br />
           <Link
             to={{
-              pathname: `/Products/${id}/show`,
+              pathname: `/Products/${_id}/show`,
               state: {
-                id,
+                _id,
                 name,
                 description,
                 price,

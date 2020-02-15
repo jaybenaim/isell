@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import local from "../../Api/local";
+import products from "../../Data/products";
+import ProductCard from "./ProductCard";
+
 import { connect } from "react-redux";
 import {
   addItem as addItemToCart,
   removeItem as removeItemFromCart
 } from "../../redux/actions";
+import "./productShow.css";
+
 class ProductShow extends Component {
   state = {
     qty: 1,
@@ -61,6 +66,32 @@ class ProductShow extends Component {
   handleSetQty = event => {
     let qty = Number(event.target.value);
     this.setState({ qty: qty });
+  };
+  relatedProducts = () => {
+    const { isLoggedIn, description } = this.props.location.state;
+    const { addToCart } = this.props;
+    const firstWord = description.replace(/ .*/, "");
+
+    let productList = products.map((product, i) => {
+      const { id, image: url } = product;
+
+      if (product.image === undefined) {
+        return null;
+      } else if (product.description.includes(firstWord)) {
+        return (
+          <ProductCard
+            key={i}
+            {...product}
+            product={product}
+            url={url}
+            productClass={`products-card product-card`}
+            addToCart={addToCart}
+            isLoggedIn={isLoggedIn}
+          />
+        );
+      }
+    });
+    return productList;
   };
   render() {
     const {
@@ -119,48 +150,16 @@ class ProductShow extends Component {
           </div>
         </div>
 
-        <h3 className="my-4">Related Products</h3>
+        <h3 className="my-4 related-products-title">Related Products</h3>
 
         <div className="row">
-          <div className="col-md-3 col-sm-6 mb-4">
-            <a href={image}>
-              <img
-                className="img-fluid related-images"
-                src="https://jaybenaim.github.io/isell/images/img8.jpg"
-                alt={name}
-              />
-            </a>
-          </div>
+          <div className="col-md-3 col-sm-6 mb-4"></div>
 
-          <div className="col-md-3 col-sm-6 mb-4">
-            <a href={image}>
-              <img
-                className="img-fluid related-images"
-                src="https://jaybenaim.github.io/isell/images/img3.jpg"
-                alt=""
-              />
-            </a>
-          </div>
+          <div className="col-md-3 col-sm-6 mb-4"></div>
           {/* TODO RUN PRoducts map from Products.js */}
-          <div className="col-md-3 col-sm-6 mb-4">
-            <a href={image}>
-              <img
-                className="img-fluid related-images"
-                src="https://jaybenaim.github.io/isell/images/img2.jpg"
-                alt=""
-              />
-            </a>
-          </div>
+          <div className="col-md-3 col-sm-6 mb-4">{this.relatedProducts()}</div>
 
-          <div className="col-md-3 col-sm-6 mb-4">
-            <a href={image}>
-              <img
-                className="img-fluid related-images"
-                src="https://jaybenaim.github.io/isell/images/img1.jpg"
-                alt=""
-              />
-            </a>
-          </div>
+          <div className="col-md-3 col-sm-6 mb-4"></div>
         </div>
       </div>
     );
