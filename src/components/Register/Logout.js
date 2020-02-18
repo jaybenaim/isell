@@ -11,9 +11,13 @@ class Secret extends Component {
   };
   render() {
     return (
-      <button className="logout-btn" onClick={() => this.handleLogout()}>
-        Logout
-      </button>
+      <>
+        <button className="logout-btn" onClick={() => this.handleLogout()}>
+          Logout
+        </button>
+        <br />
+        <a href="/account">Account Info</a>
+      </>
     );
   }
 }

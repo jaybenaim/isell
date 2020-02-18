@@ -1,21 +1,21 @@
 import React, { Component } from "react";
-import "./App.css";
-import Nav from "../Nav/Nav";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Products from "../Products/Products";
 import { createBrowserHistory } from "history";
 import Home from "../Home/Home";
-import ProductShow from "../Products/ProductShow";
+import Nav from "../Nav/Nav";
 import Cart from "../Cart/Cart";
 import Login from "../Register/Login";
 import Signup from "../Register/Signup";
-import "./App.css";
-import Cookies from "js-cookie";
+import Products from "../Products/Products";
+import ProductShow from "../Products/ProductShow";
+import Account from "../Account/Account";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
 import local from "../../Api/local";
-import { connect } from "react-redux";
 import { createCart, getCart } from "../../redux/actions";
+import { connect } from "react-redux";
+import Cookies from "js-cookie";
+import "./App.css";
 
 const history = createBrowserHistory();
 
@@ -145,6 +145,13 @@ class App extends Component {
                   exact
                   path="/profiles/new"
                   render={props => <ProfileForm {...props} />}
+                />
+              </ProtectedRoute>
+              <ProtectedRoute path="/account" isLoggedIn={isLoggedIn}>
+                <Route
+                  exact
+                  path="/account"
+                  render={props => <Account {...props} />}
                 />
               </ProtectedRoute>
             </Switch>
