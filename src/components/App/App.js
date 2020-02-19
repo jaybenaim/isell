@@ -21,7 +21,7 @@ const history = createBrowserHistory();
 
 class App extends Component {
   state = {
-    isLoggedIn: this.props.userId !== null && true,
+    isLoggedIn: Cookies.get("id") !== undefined && true,
     selectedProduct: null,
     addedToCart: false,
     valid: false,
@@ -50,7 +50,6 @@ class App extends Component {
       await local
         .get(`/carts/find/${id}`)
         .then(res => {
-          console.log(res.body);
           this.props.getCart(res.data);
         })
         .catch(err => {
