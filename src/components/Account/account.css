@@ -1,0 +1,7 @@
+@media (max-width: 440px) {
+  .account-page > div {
+    border: 1px outset lightgray;
+    padding: 30px;
+    margin: 10%;
+  }
+}

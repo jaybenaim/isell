@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Link } from "react-router-dom";
+
 class AccountHover extends Component {
   state = {};
   render() {
@@ -9,10 +11,15 @@ class AccountHover extends Component {
         onMouseLeave={() => showAccountMenu()}
       >
         <ul className={showAccountClass}>
-          <li>Your Account</li>
-          <a href="/cart">
-            <li>Your Cart</li>
-          </a>
+          <Link to="/account">
+            <li>Your Account</li>
+          </Link>
+          <Link to="/cart">
+            <li>
+              Your Cart{" "}
+              <img src="https://img.icons8.com/doodle/48/000000/shopping-cart--v1.png"></img>
+            </li>
+          </Link>
         </ul>
         {showAccountClass === "account-link-mobile" && (
           <div
@@ -22,6 +29,7 @@ class AccountHover extends Component {
             Hide
           </div>
         )}
+        <a href="https://icons8.com/icon/80857/shopping-cart"></a>
       </div>
     );
   }
