@@ -37,10 +37,6 @@ class App extends Component {
   };
   handleLogin = (token, id) => {
     this.getCart(id);
-    id &&
-      this.setState({
-        isLoggedIn: true
-      });
   };
   getCart = async id => {
     const { userId } = this.props;
