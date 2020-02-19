@@ -9,7 +9,8 @@ class Signup extends Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      isLoaded: false
     };
   }
   handleInputChange = event => {
@@ -20,6 +21,7 @@ class Signup extends Component {
   };
   onSubmit = event => {
     const { handleLogin } = this.props;
+    this.setState({ isLoaded: true });
     event.preventDefault();
     local("/signup", {
       method: "POST",
@@ -58,16 +60,25 @@ class Signup extends Component {
       .post("/carts", data, {})
       .then(res => {
         this.props.createCart(res.data);
+        this.setState({ isLoaded: true });
       })
       .catch(err => {
         alert("Error creating cart", err);
       });
   };
   render() {
+    const { isLoaded } = this.state;
     return (
       <div className="register-form-container">
         <form className="login-form" onSubmit={this.onSubmit}>
           <h1>Signup!</h1>
+          {isLoaded && (
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          )}
           <input
             type="email"
             name="email"

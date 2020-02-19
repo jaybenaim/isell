@@ -16,7 +16,8 @@ class Login extends Component {
       password: "",
       containerClass: !this.props.redirect
         ? "register-form-container"
-        : "register-form-container login-redirect"
+        : "register-form-container login-redirect",
+      isLoaded: false
     };
   }
   handleInputChange = event => {
@@ -27,7 +28,7 @@ class Login extends Component {
   };
   onSubmit = event => {
     const { handleLogin, redirect } = this.props;
-
+    this.setState({ isLoaded: true });
     event.preventDefault();
     local("/authenticate/", {
       method: "POST",
@@ -69,6 +70,7 @@ class Login extends Component {
       .then(res => {
         console.log(res, id);
         this.props.getCart(res.data);
+        this.setState({ isLoaded: true });
       })
       .catch(err => {
         alert("Error getting cart", err);
@@ -77,11 +79,18 @@ class Login extends Component {
 
   render() {
     const { redirect } = this.props;
-    const { containerClass } = this.state;
+    const { containerClass, isLoaded } = this.state;
     return (
       <div className={containerClass}>
         <form className="login-form" onSubmit={this.onSubmit}>
           <h1>Login Below!</h1>
+          {isLoaded && (
+            <div class="d-flex justify-content-center">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </div>
+          )}
           <input
             type="email"
             name="email"
