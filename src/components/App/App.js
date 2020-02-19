@@ -21,7 +21,7 @@ const history = createBrowserHistory();
 
 class App extends Component {
   state = {
-    isLoggedIn: this.props.user.id === undefined ? false : true,
+    isLoggedIn: false,
     selectedProduct: null,
     addedToCart: false,
     valid: false,
@@ -37,15 +37,10 @@ class App extends Component {
   };
   handleLogin = (token, id) => {
     const { isLoggedIn } = this.state;
-    const {
-      user: { id: userID }
-    } = this.props;
     this.getCart(id);
-    if (userID) {
-      this.setState({
-        isLoggedIn: !isLoggedIn
-      });
-    }
+    this.setState({
+      isLoggedIn: !isLoggedIn
+    });
   };
   getCart = async id => {
     const { id: userId } = this.props.user;
