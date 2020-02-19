@@ -67,7 +67,7 @@ class CartItem extends Component {
           <div className="modal-cart-item-container">
             <Link
               to={{
-                pathname: `/Products/${id}/show`,
+                pathname: `/products/${id}/show`,
                 state: { item }
               }}
               className="modal-link-to-product-show"

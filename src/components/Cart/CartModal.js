@@ -62,7 +62,7 @@ class CartModal extends Component {
             className="nav-link btn-success proceed-to-checkout-btn"
             onClick={() => this.checkout()}
             to={{
-              pathname: `/ShoppingCart`
+              pathname: `/cart`
             }}
           >
             Proceed to checkout

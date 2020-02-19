@@ -110,7 +110,7 @@ class ProductCard extends Component {
           <br />
           <Link
             to={{
-              pathname: `/Products/${_id}/show`,
+              pathname: `/products/${_id}/show`,
               state: {
                 _id,
                 name,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Cookies from "js-cookie";
-
-class Secret extends Component {
+import AccountNav from "../Account/AccountNav";
+class Logout extends Component {
   state = {};
   handleLogout = () => {
     const { handleLogin } = this.props;
@@ -16,10 +16,10 @@ class Secret extends Component {
           Logout
         </button>
         <br />
-        <a href="/account">Account Info</a>
+        <AccountNav />
       </>
     );
   }
 }
 
-export default Secret;
+export default Logout;

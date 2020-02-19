@@ -2,7 +2,11 @@ import React, { Component } from "react";
 class Account extends Component {
   state = {};
   render() {
-    return <div>Account Page </div>;
+    return (
+      <div class="account-page">
+        <div></div>
+      </div>
+    );
   }
 }
 

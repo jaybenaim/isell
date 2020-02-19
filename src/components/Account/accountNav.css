@@ -1,0 +1,27 @@
+@media (min-width: 440px) {
+  .account-link {
+    display: none;
+  }
+  .account-link-show {
+    display: block;
+    list-style: none;
+    text-align: left;
+    width: 130%;
+    background: #eee;
+    border: 1px outset lightgray;
+  }
+}
+@media (max-width: 450px) {
+  .account-link {
+    display: none;
+  }
+  .account-link-mobile {
+    display: block;
+    list-style: none;
+    text-align: left;
+    height: 40%;
+    background: #eee;
+    border: 1px outset lightgray;
+    padding: 20%;
+  }
+}

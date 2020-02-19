@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import "./login.css";
 import { connect } from "react-redux";
 import { getCart } from "../../redux/actions";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Login extends Component {
     });
   };
   onSubmit = event => {
-    const { handleLogin } = this.props;
+    const { handleLogin, redirect } = this.props;
 
     event.preventDefault();
     local("/authenticate/", {
@@ -50,6 +51,7 @@ class Login extends Component {
           handleLogin(res.data.token, res.data.id);
 
           this.handleGetCart(id);
+
           this.props.history.push("/");
         } else {
           const error = new Error(res.error);

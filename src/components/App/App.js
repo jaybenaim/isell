@@ -37,11 +37,15 @@ class App extends Component {
   };
   handleLogin = (token, id) => {
     const { isLoggedIn } = this.state;
+    const {
+      user: { id: userID }
+    } = this.props;
     this.getCart(id);
-    this.setState({
-      isLoggedIn: !isLoggedIn,
-      userID: id
-    });
+    if (userID) {
+      this.setState({
+        isLoggedIn: !isLoggedIn
+      });
+    }
   };
   getCart = async id => {
     const { id: userId } = this.props.user;
@@ -123,14 +127,14 @@ class App extends Component {
 
               <Route
                 exact
-                path="/Products/:id/Show"
+                path="/products/:id/show"
                 render={props => <ProductShow {...props} />}
               />
 
-              <ProtectedRoute path="/ShoppingCart" isLoggedIn={isLoggedIn}>
+              <ProtectedRoute path="/cart" isLoggedIn={isLoggedIn}>
                 <Route
                   exact
-                  path="/ShoppingCart"
+                  path="/cart"
                   render={props => (
                     <Cart
                       {...props}
@@ -147,7 +151,11 @@ class App extends Component {
                   render={props => <ProfileForm {...props} />}
                 />
               </ProtectedRoute>
-              <ProtectedRoute path="/account" isLoggedIn={isLoggedIn}>
+              <ProtectedRoute
+                path="/account"
+                isLoggedIn={isLoggedIn}
+                handleLogin={this.handleLogin}
+              >
                 <Route
                   exact
                   path="/account"
