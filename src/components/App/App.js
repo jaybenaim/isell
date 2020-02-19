@@ -21,7 +21,7 @@ const history = createBrowserHistory();
 
 class App extends Component {
   state = {
-    isLoggedIn: false,
+    isLoggedIn: this.props.userId !== null && true,
     selectedProduct: null,
     addedToCart: false,
     valid: false,
@@ -36,14 +36,14 @@ class App extends Component {
     this.setState({ showAlert: !showAlert });
   };
   handleLogin = (token, id) => {
-    const { isLoggedIn } = this.state;
     this.getCart(id);
-    this.setState({
-      isLoggedIn: !isLoggedIn
-    });
+    id &&
+      this.setState({
+        isLoggedIn: true
+      });
   };
   getCart = async id => {
-    const { id: userId } = this.props.user;
+    const { userId } = this.props;
     if (userId === "null") {
       alert("Please sign in");
     } else {
@@ -175,9 +175,12 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  const { cart, user } = state.handleItem;
+  const {
+    cart,
+    user: { id: userId }
+  } = state.handleItem;
 
-  return { cart, user };
+  return { cart, userId };
 };
 
 export default connect(mapStateToProps, { createCart, getCart })(App);
