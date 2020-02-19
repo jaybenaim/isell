@@ -69,7 +69,6 @@ const handleItem = (
         cart: { products: productItems, _id: cartId, createdAt },
         user
       } = action;
-
       const totalBeforeTaxed = calculatePrice(productItems);
       const newGetQty = productItems ? productItems.length : 0;
       return Object.assign({}, state, {
@@ -95,8 +94,8 @@ const calculatePrice = items => {
     items.map(item => {
       return (result += Number(item.price * item.qty));
     });
-    return result;
   }
+  return result;
 };
 
 export default handleItem;

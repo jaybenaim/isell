@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Address from "./Address";
 import "./account.css";
 class Account extends Component {
   state = {
@@ -28,7 +29,11 @@ class Account extends Component {
         <div className="account-address" onClick={() => this.show("address")}>
           Address
         </div>
-        {showAddress && <div className="account-address-items"></div>}
+        {showAddress && (
+          <div className="account-address-items">
+            <Address />{" "}
+          </div>
+        )}
         {/* // TODO // */}
         {/* <div className="account-settings">Settings</div>
         {showSettings && <div className="account-settings-items"></div>} */}

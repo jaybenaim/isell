@@ -43,6 +43,7 @@ class ProductShow extends Component {
       products: [...itemIds]
     };
     if (qtyRef > 1) {
+      // TODO change this method so it doesnt change qty for another user concurrently ordering
       local.patch(`/products/${product._id}`, productQty, {}).then(res => {
         console.log(res.statusText, "Product updated");
       });
@@ -73,8 +74,7 @@ class ProductShow extends Component {
     const firstWord = description.replace(/ .*/, "");
 
     let productList = products.map((product, i) => {
-      const { id, image: url } = product;
-
+      const { image: url } = product;
       if (product.image === undefined) {
         return null;
       } else if (product.description.includes(firstWord)) {
@@ -82,6 +82,7 @@ class ProductShow extends Component {
           <ProductCard
             key={i}
             {...product}
+            _id={product._id}
             product={product}
             url={url}
             productClass={`products-card product-card`}
@@ -99,7 +100,6 @@ class ProductShow extends Component {
       description,
       price,
       image,
-      id,
       product
     } = this.props.location.state;
     const { addToCartButtonDisabled, addToCartButtonText, qty } = this.state;

@@ -39,16 +39,19 @@ class App extends Component {
     this.getCart(id);
   };
   getCart = async id => {
-    const { userId } = this.props;
-    if (userId === "null") {
+    const {
+      user: { id: userId }
+    } = this.props;
+    if (id === null) {
       alert("Please sign in");
-    } else {
+    } else if (userId) {
       await local
-        .get(`/carts/find/${id}`)
+        .get(`/carts/find/${userId}`)
         .then(res => {
           this.props.getCart(res.data);
         })
         .catch(err => {
+          console.log(err);
           alert("Error getting cart", err);
         });
     }
@@ -170,12 +173,9 @@ class App extends Component {
   }
 }
 const mapStateToProps = state => {
-  const {
-    cart,
-    user: { id: userId }
-  } = state.handleItem;
-
-  return { cart, userId };
+  let { cart, user } = state.handleItem;
+  user.id = Cookies.get("id") || undefined;
+  return { cart, user };
 };
 
 export default connect(mapStateToProps, { createCart, getCart })(App);

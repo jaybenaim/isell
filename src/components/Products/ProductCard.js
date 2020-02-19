@@ -84,11 +84,12 @@ class ProductCard extends Component {
   render() {
     const { showDesc } = this.state;
     let {
+      _id,
       name,
       description,
       price,
       productClass,
-      _id,
+
       product,
       image,
 
