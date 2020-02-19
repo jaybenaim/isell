@@ -89,10 +89,8 @@ class ProductCard extends Component {
       description,
       price,
       productClass,
-
       product,
       image,
-
       isLoggedIn
     } = this.props;
     name = name.replace(/^\w/, c => c.toUpperCase());
