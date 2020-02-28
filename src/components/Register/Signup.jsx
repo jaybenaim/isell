@@ -41,6 +41,10 @@ class Signup extends Component {
           Cookies.set("id", res.data.userId, {
             expires: 7
           });
+          // TODO
+
+          /// USE REDUX TO SET ADDRESS STATE
+          // USE res.data.profile
 
           handleLogin(res.data.token, res.data.userId);
           const data = { id: res.data.userId };

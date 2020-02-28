@@ -15,9 +15,7 @@ class AddressForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { handleAddAddress, showAddressForm } = this.props;
-    // TODO
     const data = { shippingInfo: this.state };
-    // get data ^^^^^^^^^^
 
     backend("/profiles/", {
       method: "POST",
@@ -25,11 +23,15 @@ class AddressForm extends Component {
       headers: {
         "Content-Type": "application/json"
       }
-    }).then(res => {
-      console.log(res.data);
-      showAddressForm();
-    });
-    handleAddAddress(data);
+    })
+      .then(res => {
+        console.log(res.data);
+        showAddressForm();
+        handleAddAddress(data);
+      })
+      .catch(err => {
+        alert("Something went wrong");
+      });
   };
   handleInputChange = event => {
     const { value, name } = event.target;

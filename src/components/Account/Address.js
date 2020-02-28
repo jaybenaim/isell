@@ -9,9 +9,33 @@ class Address extends Component {
     const { showForm } = this.state;
     this.setState({ showForm: !showForm });
   };
-  handleAddAddress = () => {
+  handleAddAddress = data => {
     // this.showAddressForm();
-    console.log("hit");
+    this.showAddress(data);
+  };
+  showAddress = data => {
+    const {
+      shippingInfo: {
+        name,
+        addressType,
+        streetAddress,
+        suite,
+        prov,
+        city,
+        postalCode
+      }
+    } = data;
+    return (
+      <div>
+        {name}
+        <br /> {addressType}
+        <br /> {streetAddress}
+        <br /> {suite}
+        <br /> {prov}
+        <br /> {city}
+        <br /> {postalCode}
+      </div>
+    );
   };
   render() {
     const { showForm } = this.state;
@@ -30,7 +54,7 @@ class Address extends Component {
           />
           Add an address
         </button>
-
+        {this.showAddress}
         <AddressForm
           showForm={showForm}
           showAddressForm={this.showAddressForm}
