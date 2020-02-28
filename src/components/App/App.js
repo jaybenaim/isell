@@ -21,7 +21,6 @@ const history = createBrowserHistory();
 
 class App extends Component {
   state = {
-    isLoggedIn: Cookies.get("id") !== undefined && true,
     selectedProduct: null,
     addedToCart: false,
     valid: false,
@@ -37,6 +36,7 @@ class App extends Component {
   };
   handleLogin = (token, id) => {
     this.getCart(id);
+    if (!id) this.forceUpdate();
   };
   getCart = async id => {
     const {
@@ -60,8 +60,16 @@ class App extends Component {
     const id = Cookies.get("id");
     id && this.getCart(id);
   }
+  componentDidUpdate() {
+    console.log(this.props.user["id"]);
+  }
   render() {
-    const { showAlert, isLoggedIn } = this.state;
+    const { showAlert } = this.state;
+    let {
+      user: { id: userId }
+    } = this.props;
+    let isLoggedIn = !userId ? false : true;
+
     return (
       <Router basename="/isell" history={history}>
         <div className="App">

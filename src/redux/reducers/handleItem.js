@@ -65,6 +65,7 @@ const handleItem = (
       });
 
     case GET_CART:
+      console.log(action);
       const {
         cart: { products: productItems, _id: cartId, createdAt },
         user

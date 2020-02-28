@@ -21,7 +21,9 @@ class Signup extends Component {
   };
   onSubmit = event => {
     const { handleLogin } = this.props;
+
     this.setState({ isLoaded: true });
+
     event.preventDefault();
     local("/signup", {
       method: "POST",
@@ -34,6 +36,9 @@ class Signup extends Component {
         console.log(res.data);
         if (res.status === 200) {
           Cookies.set("token", res.data.token, {
+            expires: 7
+          });
+          Cookies.set("id", res.data.userId, {
             expires: 7
           });
 
@@ -66,6 +71,9 @@ class Signup extends Component {
         alert("Error creating cart", err);
       });
   };
+  componentWillUnmount() {
+    this.setState({ isLoaded: false });
+  }
   render() {
     const { isLoaded } = this.state;
     return (
@@ -73,9 +81,9 @@ class Signup extends Component {
         <form className="login-form" onSubmit={this.onSubmit}>
           <h1>Signup!</h1>
           {isLoaded && (
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             </div>
           )}
