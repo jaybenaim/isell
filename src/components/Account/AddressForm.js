@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 
 class AddressForm extends Component {
   state = {
@@ -19,7 +19,7 @@ class AddressForm extends Component {
     const data = { shippingInfo: this.state };
     // get data ^^^^^^^^^^
 
-    local("/profiles/", {
+    backend("/profiles/", {
       method: "POST",
       data: data,
       headers: {
