@@ -25,7 +25,11 @@ class Account extends Component {
         <div className="account-orders" onClick={() => this.show("orders")}>
           Orders
         </div>
-        {showOrders && <div className="account-orders-items"></div>}
+        {showOrders && (
+          <div className="account-orders-items">
+            <strong>No Orders Yet.</strong>
+          </div>
+        )}
         <div className="account-address" onClick={() => this.show("address")}>
           Address
         </div>

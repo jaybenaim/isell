@@ -5,3 +5,10 @@
     margin: 10%;
   }
 }
+@media (min-width: 441px) {
+  .account-page > div {
+    border: 1px outset lightgray;
+    padding: 30px;
+    margin: 10%;
+  }
+}

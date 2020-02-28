@@ -12,3 +12,24 @@
     margin-left: -4%;
   }
 }
+@media (min-width: 441px) {
+  .account-address,
+  .account-orders {
+    font-size: 2.2em;
+  }
+  .account-address-items div h4 {
+    font-size: 2.2em;
+  }
+  .add-address-btn {
+    font-size: 1.2em;
+    padding: 4%;
+    border: 3px dashed black;
+    margin-top: 20px;
+  }
+  .add-address-icon {
+    width: 2.6em;
+    padding: 3%;
+    margin-right: 4%;
+    margin-left: -4%;
+  }
+}

@@ -13,8 +13,7 @@
     top: -70px;
     left: -220%;
   }
-  .logout-btn {
-  }
+
   .navbar-toggler {
     margin-left: 85%;
     margin-top: -10%;
@@ -47,6 +46,7 @@
     cursor: pointer;
   }
   .logout-btn {
+    border: none;
   }
 }
 @media (min-width: 789px) {
