@@ -15,7 +15,7 @@ class AccountHover extends Component {
             <li onClick={() => showAccountMenu("none")}>Your Account</li>
           </Link>
           <Link to="/cart">
-            <li onclick={() => showAccountMenu("none")}>
+            <li onClick={() => showAccountMenu("none")}>
               Your Cart
               <img src="https://img.icons8.com/doodle/48/000000/shopping-cart--v1.png"></img>
             </li>

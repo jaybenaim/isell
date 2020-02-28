@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 import products from "../../Data/products";
 import ProductCard from "./ProductCard";
 
@@ -44,12 +44,12 @@ class ProductShow extends Component {
     };
     if (qtyRef > 1) {
       // TODO change this method so it doesnt change qty for another user concurrently ordering
-      local.patch(`/products/${product._id}`, productQty, {}).then(res => {
+      backend.patch(`/products/${product._id}`, productQty, {}).then(res => {
         console.log(res.statusText, "Product updated");
       });
     }
 
-    local
+    backend
       .patch(`/carts/${id}`, data, {})
       .then(res => {
         console.log(res.data + "Item added");

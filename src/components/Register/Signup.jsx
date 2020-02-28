@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 import Cookies from "js-cookie";
 import { connect } from "react-redux";
 import { createCart } from "../../redux/actions";
@@ -25,7 +25,7 @@ class Signup extends Component {
     this.setState({ isLoaded: true });
 
     event.preventDefault();
-    local("/signup", {
+    backend("/signup", {
       method: "POST",
       data: JSON.stringify(this.state),
       headers: {
@@ -63,7 +63,7 @@ class Signup extends Component {
   handleCreateCart = user => {
     const data = { user, products: [] };
 
-    local
+    backend
       .post("/carts", data, {})
       .then(res => {
         this.props.createCart(res.data);

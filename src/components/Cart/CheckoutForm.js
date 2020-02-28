@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import axios from "axios";
 import backend from "../../Api/backend";
-import local from "../../Api/local";
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -21,7 +20,7 @@ class CheckoutForm extends Component {
     subTotal = Math.round(subTotal);
     subTotal = JSON.stringify(subTotal);
 
-    let response = await local("/stripe/charge", {
+    let response = await backend("/stripe/charge", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain",

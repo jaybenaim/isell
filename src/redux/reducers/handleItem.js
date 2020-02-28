@@ -1,5 +1,4 @@
 import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "../actionTypes";
-import local from "../../Api/local";
 
 const handleItem = (
   state = {

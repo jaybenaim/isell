@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 export default function withAuth(ComponentToProtect) {
   return class extends Component {
     constructor() {
@@ -11,7 +11,7 @@ export default function withAuth(ComponentToProtect) {
       };
     }
     componentDidMount() {
-      local
+      backend
         .get("/checkToken", { withCredentials: true })
         .then(res => {
           if (res.status === 200) {

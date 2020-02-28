@@ -4,7 +4,7 @@ import { Modal, Form, Button } from "react-bootstrap";
 class AddressForm extends Component {
   state = {};
   render() {
-    const { showForm, showAddressForm } = this.props;
+    const { showForm, showAddressForm, handleAddAddress } = this.props;
     return (
       <div>
         <Modal
@@ -35,7 +35,11 @@ class AddressForm extends Component {
               <Form.Group controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
-              <Button variant="primary" type="submit">
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={() => handleAddAddress()}
+              >
                 Submit
               </Button>
             </Form>

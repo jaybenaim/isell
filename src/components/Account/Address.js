@@ -12,7 +12,8 @@ class Address extends Component {
   };
   handleAddAddress = () => {
     // TODO call api/profiles and post shippingInfo
-    this.showAddressForm();
+    // this.showAddressForm();
+    console.log("hit");
   };
   render() {
     const { showForm } = this.state;
@@ -35,6 +36,7 @@ class Address extends Component {
         <AddressForm
           showForm={showForm}
           showAddressForm={this.showAddressForm}
+          handleAddAddress={this.handleAddAddress}
         />
         <a href="https://icons8.com/icon/1501/plus"></a>
       </div>

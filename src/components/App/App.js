@@ -11,7 +11,7 @@ import ProductShow from "../Products/ProductShow";
 import Account from "../Account/Account";
 import ProtectedRoute from "../Register/ProtectedRoute";
 import ProfileForm from "../Profile/ProfileForm";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 import { createCart, getCart } from "../../redux/actions";
 import { connect } from "react-redux";
 import Cookies from "js-cookie";
@@ -45,7 +45,7 @@ class App extends Component {
     if (id === null) {
       alert("Please sign in");
     } else if (userId) {
-      await local
+      await backend
         .get(`/carts/find/${userId}`)
         .then(res => {
           this.props.getCart(res.data);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./checkoutItem.css";
 import { connect } from "react-redux";
 import { removeItem } from "../../redux/actions";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 class CheckoutItem extends Component {
   state = {};
   handleRemoveItem = (id, price) => {
@@ -22,11 +22,11 @@ class CheckoutItem extends Component {
 
     const productQty = { qty: 1 };
     if (qty > 1) {
-      local.patch(`/products/${id}`, productQty, {}).then(res => {
+      backend.patch(`/products/${id}`, productQty, {}).then(res => {
         console.log(res.statusText, "Product updated");
       });
     }
-    local
+    backend
       .patch(`/carts/${cartID}`, data, {})
       .then(res => {
         console.log(res.data, "Item removed");

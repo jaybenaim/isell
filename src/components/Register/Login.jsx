@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 import axios from "axios";
 import Cookies from "js-cookie";
 import "./login.css";
@@ -30,7 +30,7 @@ class Login extends Component {
     const { handleLogin, redirect } = this.props;
     this.setState({ isLoaded: true });
     event.preventDefault();
-    local("/authenticate/", {
+    backend("/authenticate/", {
       method: "POST",
       data: this.state,
       headers: {
@@ -66,7 +66,7 @@ class Login extends Component {
       });
   };
   handleGetCart = async id => {
-    await local
+    await backend
       .get(`/carts/find/${id}`)
       .then(res => {
         console.log(res, id);
