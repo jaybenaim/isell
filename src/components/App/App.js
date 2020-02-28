@@ -60,9 +60,7 @@ class App extends Component {
     const id = Cookies.get("id");
     id && this.getCart(id);
   }
-  componentDidUpdate() {
-    console.log(this.props.user["id"]);
-  }
+
   render() {
     const { showAlert } = this.state;
     let {

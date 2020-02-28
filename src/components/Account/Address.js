@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import backend from "../../Api/backend";
 import AddressForm from "./AddressForm";
 import "./address.css";
 class Address extends Component {
@@ -11,7 +10,6 @@ class Address extends Component {
     this.setState({ showForm: !showForm });
   };
   handleAddAddress = () => {
-    // TODO call api/profiles and post shippingInfo
     // this.showAddressForm();
     console.log("hit");
   };
@@ -23,7 +21,7 @@ class Address extends Component {
         <h4>Shipping Address</h4>
         <button
           className="add-address-btn"
-          onClick={() => this.handleAddAddress()}
+          onClick={() => this.showAddressForm()}
         >
           <img
             src="https://img.icons8.com/ios/50/000000/plus.png"
