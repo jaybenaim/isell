@@ -1,0 +1,14 @@
+@media (max-width: 440px) {
+  .add-address-btn {
+    font-size: 1.2em;
+    padding: 4%;
+    border: 3px dashed black;
+    margin-top: 20px;
+  }
+  .add-address-icon {
+    width: 2.6em;
+    padding: 3%;
+    margin-right: 4%;
+    margin-left: -4%;
+  }
+}

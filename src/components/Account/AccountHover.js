@@ -8,15 +8,15 @@ class AccountHover extends Component {
     return (
       <div
         className="account-link-container"
-        onMouseLeave={() => showAccountMenu()}
+        onMouseLeave={() => showAccountMenu("none")}
       >
         <ul className={showAccountClass}>
           <Link to="/account">
-            <li>Your Account</li>
+            <li onClick={() => showAccountMenu("none")}>Your Account</li>
           </Link>
           <Link to="/cart">
-            <li>
-              Your Cart{" "}
+            <li onclick={() => showAccountMenu("none")}>
+              Your Cart
               <img src="https://img.icons8.com/doodle/48/000000/shopping-cart--v1.png"></img>
             </li>
           </Link>

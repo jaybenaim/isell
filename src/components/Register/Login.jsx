@@ -85,9 +85,9 @@ class Login extends Component {
         <form className="login-form" onSubmit={this.onSubmit}>
           <h1>Login Below!</h1>
           {isLoaded && (
-            <div class="d-flex justify-content-center">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Loading...</span>
+            <div className="d-flex justify-content-center">
+              <div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
               </div>
             </div>
           )}
