@@ -62,6 +62,7 @@ class Login extends Component {
       .catch(err => {
         console.log(err);
         alert("Error logging in please try again");
+        this.setState({ isLoaded: false });
       });
   };
   handleGetCart = async id => {

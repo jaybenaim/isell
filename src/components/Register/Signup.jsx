@@ -48,6 +48,7 @@ class Signup extends Component {
 
           this.props.history.push("/");
         } else {
+          this.setState({ isLoaded: false });
           const error = new Error(res.error);
           throw error;
         }
@@ -55,7 +56,8 @@ class Signup extends Component {
 
       .catch(err => {
         console.error(err);
-        alert("Error creating user, please try again.");
+        this.setState({ isLoaded: false });
+        alert("User Exists, Please try another username.");
       });
   };
   handleCreateCart = user => {
