@@ -53,7 +53,7 @@ export const getProfile = data => {
   return {
     type: GET_PROFILE,
     payload: {
-      addresses
+      addresses: [...addresses]
     }
   };
 };
