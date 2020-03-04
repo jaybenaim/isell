@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import backend from "../../Api/backend";
+import { connect } from "react-redux";
 
 class AddressForm extends Component {
   state = {
@@ -14,8 +15,12 @@ class AddressForm extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    const { handleAddAddress, showAddressForm } = this.props;
-    const data = { shippingInfo: this.state };
+    const {
+      handleAddAddress,
+      showAddressForm,
+      user: { id }
+    } = this.props;
+    const data = { shippingInfo: this.state, user: { id } };
 
     backend("/profiles/", {
       method: "POST",
@@ -159,5 +164,9 @@ class AddressForm extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  let { user } = state.handleItem;
+  return { user };
+};
 
-export default AddressForm;
+export default connect(mapStateToProps, {})(AddressForm);

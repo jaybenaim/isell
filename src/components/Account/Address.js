@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import AddressForm from "./AddressForm";
+import local from "../../Api/local";
+import { connect } from "react-redux";
 import "./address.css";
 class Address extends Component {
   state = {
@@ -15,6 +17,7 @@ class Address extends Component {
   };
   showAddress = data => {
     const {
+      shippingInfo,
       shippingInfo: {
         name,
         addressType,
@@ -25,7 +28,7 @@ class Address extends Component {
         postalCode
       }
     } = data;
-    return (
+    return shippingInfo["name"] ? (
       <div>
         {name}
         <br /> {addressType}
@@ -35,7 +38,26 @@ class Address extends Component {
         <br /> {city}
         <br /> {postalCode}
       </div>
+    ) : (
+      <div>No Shipping Info</div>
     );
+  };
+  getProfile = () => {
+    const {
+      user: { id }
+    } = this.props;
+    local(`/profiles/find/${id}`, {
+      method: "GET"
+    })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        alert("Something went wrong");
+      });
+  };
+  componentDidMount = () => {
+    this.getProfile();
   };
   render() {
     const { showForm } = this.state;
@@ -43,6 +65,8 @@ class Address extends Component {
     return (
       <div>
         <h4>Shipping Address</h4>
+        {this.showAddress({ shippingInfo: [] })}
+
         <button
           className="add-address-btn"
           onClick={() => this.showAddressForm()}
@@ -54,7 +78,6 @@ class Address extends Component {
           />
           Add an address
         </button>
-        {this.showAddress}
         <AddressForm
           showForm={showForm}
           showAddressForm={this.showAddressForm}
@@ -65,5 +88,9 @@ class Address extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  let { user } = state.handleItem;
+  return { user };
+};
 
-export default Address;
+export default connect(mapStateToProps, {})(Address);

@@ -3,7 +3,7 @@ import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "../actionTypes";
 const handleItem = (
   state = {
     cart: { items: [], qty: 0, id: null, totalCostBeforeTax: 0 },
-    user: { id: null }
+    user: { id: null, profile: [] }
   },
   action
 ) => {
@@ -53,11 +53,12 @@ const handleItem = (
 
     case CREATE_CART:
       const data = action.data;
+      console.log(data);
+
       const {
         _id,
         user: { id: i }
       } = data;
-      console.log(data);
       return Object.assign({}, state, {
         user: { id: i },
         cart: { items: [], qty: 0, id: _id, totalCostBeforeTax: 0 }

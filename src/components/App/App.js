@@ -49,6 +49,7 @@ class App extends Component {
         .get(`/carts/find/${userId}`)
         .then(res => {
           this.props.getCart(res.data);
+          console.log(res.data);
         })
         .catch(err => {
           console.log(err);
