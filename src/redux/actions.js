@@ -1,4 +1,10 @@
-import { ADD_ITEM, REMOVE_ITEM, CREATE_CART, GET_CART } from "./actionTypes";
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  CREATE_CART,
+  GET_CART,
+  GET_PROFILE
+} from "./actionTypes";
 
 // make api calls here for simple calls
 // use react-thunk as package?
@@ -37,6 +43,17 @@ export const removeItem = data => {
     type: REMOVE_ITEM,
     payload: {
       products
+    }
+  };
+};
+
+export const getProfile = data => {
+  const addresses = data.map(profile => profile.shippingInfo);
+
+  return {
+    type: GET_PROFILE,
+    payload: {
+      addresses
     }
   };
 };

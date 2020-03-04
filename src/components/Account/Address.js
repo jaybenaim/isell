@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import AddressForm from "./AddressForm";
 import local from "../../Api/local";
 import { connect } from "react-redux";
+import { getProfile } from "../../redux/actions";
+
 import "./address.css";
 class Address extends Component {
   state = {
@@ -50,6 +52,7 @@ class Address extends Component {
       method: "GET"
     })
       .then(res => {
+        this.props.getProfile(res.data);
         console.log(res.data);
       })
       .catch(err => {
@@ -90,7 +93,8 @@ class Address extends Component {
 }
 const mapStateToProps = state => {
   let { user } = state.handleItem;
-  return { user };
+  let { profile } = state.handleProfile;
+  return { user, profile };
 };
 
-export default connect(mapStateToProps, {})(Address);
+export default connect(mapStateToProps, { getProfile })(Address);
