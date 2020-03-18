@@ -33,6 +33,7 @@
   .cart-btn .cart-qty-icon {
     font-size: 1em;
     padding: 8% 15% !important;
+    width: 35px !important;
     margin-bottom: 4%;
     background: red;
     color: white;
