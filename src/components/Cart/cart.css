@@ -168,7 +168,7 @@
     margin-top: 30%;
   }
   .cart-btn {
-    margin-top: 5%;
-    margin-left: 72%;
+    position: fixed;
+    right: 3%;
   }
 }

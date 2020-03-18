@@ -7,14 +7,11 @@ import "./cartItem.css";
 class CartItem extends Component {
   state = {};
   shortDescription = description => {
-    if (!description) {
-      return "";
-    }
-    if (description.length <= 15) {
-      return description;
-    } else {
-      return description.slice(0, 15) + "...";
-    }
+    return !description
+      ? ""
+      : description.length <= 15
+      ? description
+      : description.slice(0, 15) + "...";
   };
   handleRemoveItem = (id, price) => {
     const {

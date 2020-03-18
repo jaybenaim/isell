@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Cookies from "js-cookie";
-import AccountNav from "../Account/AccountNav";
 class Logout extends Component {
   state = {};
   handleLogout = () => {
@@ -16,7 +15,6 @@ class Logout extends Component {
           Logout
         </button>
         <br />
-        <AccountNav />
       </>
     );
   }

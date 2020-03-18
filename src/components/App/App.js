@@ -24,7 +24,8 @@ class App extends Component {
     selectedProduct: null,
     addedToCart: false,
     valid: false,
-    showAlert: false
+    showAlert: false,
+    y: 0
   };
 
   setSelectedProduct = product => {
@@ -92,6 +93,7 @@ class App extends Component {
           {/* <Link to={{ pathname: "/profiles/new", state: { text: "hello" } }}>
             NEW PROFILE
           </Link> */}
+
           <div className="content">
             <Switch>
               <Route exact path="/">
@@ -168,8 +170,11 @@ class App extends Component {
           <footer className="py-5 bg-dark">
             <div className="container">
               <p className="m-0 text-center text-white">
-                Copyright &copy; Your Website 2019 NOT A REAL ECOMMERCE SITE DO
-                NOT TRY TO PURCHASE
+                Copyright &copy; Jacob Benaim 2019 <br /> NOT A REAL ECOMMERCE
+                SITE DO NOT TRY TO PURCHASE <br />
+                <a href="https://icons8.com/icon/O0098eRiFjhT/shopping-cart-promotion">
+                  Shopping Cart Promotion icon by Icons8
+                </a>
               </p>
             </div>
             {/* <!-- /.container --> */}

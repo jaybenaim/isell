@@ -3,6 +3,7 @@ import FeaturedProducts from "../Products/FeaturedProducts";
 import "./home.css";
 class Home extends Component {
   state = {};
+  componentDidMount() {}
   render() {
     const { addToCart, isLoggedIn } = this.props;
     return (

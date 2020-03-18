@@ -132,3 +132,7 @@
 .card-text:hover {
   cursor: pointer;
 }
+.card-header,
+.card-footer {
+  background: rgba(154, 205, 50, 0.5);
+}

@@ -61,7 +61,7 @@ class Signup extends Component {
       .catch(err => {
         console.error(err);
         this.setState({ isLoaded: false });
-        alert("User Exists, Please try another username.");
+        alert("User exists, Please try another username.");
       });
   };
   handleCreateCart = user => {

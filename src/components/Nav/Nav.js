@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import CartModal from "../Cart/CartModal";
 import Register from "../Register/Register";
 import { connect } from "react-redux";
+import AccountNav from "../Account/AccountNav";
 
 import "./nav.css";
 class Nav extends Component {
@@ -24,13 +25,13 @@ class Nav extends Component {
     const { isLoggedIn, handleLogin, cart } = this.props;
     const { qty } = cart;
     const { showCart, expanded } = this.state;
+
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="/isell">
             Isell
           </a>
-
           <button
             className={
               expanded
@@ -39,9 +40,13 @@ class Nav extends Component {
             }
             onClick={() => this.handleShowCart()}
           >
-            Cart &nbsp; <span>{qty}</span>
+            <img
+              src="https://img.icons8.com/plasticine/100/000000/shopping-cart-promotion.png"
+              alt="shopping-cart icon"
+              className="cart-icon"
+            />
+            &nbsp; <span className="cart-qty-icon">{qty}</span>
           </button>
-
           {showCart && (
             <CartModal onHide={() => this.handleShowCart()} show={showCart} />
           )}
@@ -57,7 +62,6 @@ class Nav extends Component {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-
           <div className="collapse navbar-collapse" id="navbarNavDropdown">
             <ul className="navbar-nav">
               <li
@@ -72,38 +76,14 @@ class Nav extends Component {
                   Products<span className="sr-only">(current)</span>
                 </Link>
               </li>
+
               <li className="nav-item">
-                {/* <a className="nav-link" href="/">
-                  Pricing
-                </a> */}
+                <AccountNav />
               </li>
-              {/* <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="/"
-                  id="navbarDropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  Dropdown link
-                </a>
-                <div
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <a className="dropdown-item" href="/">
-                    Action
-                  </a>
-                  <a className="dropdown-item" href="/">
-                    Another action
-                  </a>
-                  <a className="dropdown-item" href="/">
-                    Something else here
-                  </a>
-                </div>
+              <li className="nav-item">
+                <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
               </li>
-              */}
+
               <li data-toggle="collapse" data-target="#navbarNavDropdown">
                 <button
                   className="cart-btn btn cart-btn-2"
@@ -114,8 +94,6 @@ class Nav extends Component {
               </li>
             </ul>
           </div>
-
-          <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
         </nav>
       </>
     );

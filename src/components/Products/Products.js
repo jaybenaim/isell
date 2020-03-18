@@ -28,7 +28,7 @@ class Products extends Component {
     });
     return (
       <div>
-        <FeaturedProducts addToCart={addToCart} />
+        <FeaturedProducts addToCart={addToCart} hideDeal={true} />
         <div className="product-container">{productList}</div>
       </div>
     );
