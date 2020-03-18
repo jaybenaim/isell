@@ -18,10 +18,12 @@
   .account-link-mobile {
     display: block;
     list-style: none;
-    text-align: left;
-    height: 40%;
-    background: #eee;
-    border: 1px outset lightgray;
-    padding: 20%;
+    height: 5%;
+    background: rgba(154, 205, 50, 0);
+    border: 1px none lightgray;
+    padding: 3%;
+  }
+  .account-link-mobile > a {
+    color: black;
   }
 }
