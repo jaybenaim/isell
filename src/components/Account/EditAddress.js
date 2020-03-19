@@ -3,7 +3,7 @@ import { Modal, Form, Button } from "react-bootstrap";
 import backend from "../../Api/backend";
 import { connect } from "react-redux";
 
-class AddressForm extends Component {
+class EditAddress extends Component {
   state = {
     name: "",
     addressType: "House",
@@ -24,7 +24,7 @@ class AddressForm extends Component {
     const data = { shippingInfo: this.state, user: { id } };
 
     backend("/profiles/", {
-      method: "POST",
+      method: "PATCH",
       data: data,
       headers: {
         "Content-Type": "application/json"
@@ -48,11 +48,12 @@ class AddressForm extends Component {
   };
 
   render() {
-    const { showAddressForm, edit, address } = this.props;
+    const { showEditForm, showForm, address } = this.props;
+
     return (
       <div>
         <Modal
-          show={showAddressForm}
+          show={showForm}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
@@ -68,7 +69,7 @@ class AddressForm extends Component {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="John Smith"
+                  placeholder={address["name"]}
                   name="name"
                   onChange={this.handleInputChange}
                 />
@@ -79,7 +80,7 @@ class AddressForm extends Component {
                 <Form.Label>Street Address</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder={"222 Example Road"}
+                  placeholder={address["streetAddress"]}
                   name="streetAddress"
                   onChange={this.handleInputChange}
                 />
@@ -102,7 +103,7 @@ class AddressForm extends Component {
                 <Form.Label>Suite/Apt #</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="402"
+                  placeholder={address["suite"]}
                   name="suite"
                   onChange={this.handleInputChange}
                 />
@@ -134,7 +135,7 @@ class AddressForm extends Component {
                 <Form.Label>City</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Toronto"
+                  placeholder={address["city"]}
                   name="city"
                   onChange={this.handleInputChange}
                 />
@@ -144,7 +145,7 @@ class AddressForm extends Component {
                 <Form.Label>Postal Code</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="X3X 3X3"
+                  placeholder={address["postalCode"]}
                   name="postalCode"
                   onChange={this.handleInputChange}
                 />
@@ -160,16 +161,17 @@ class AddressForm extends Component {
             </Form>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => showAddressForm()}>Close</Button>
+            <Button onClick={() => showEditForm()}>Close</Button>
           </Modal.Footer>
         </Modal>
       </div>
     );
   }
 }
+
 const mapStateToProps = state => {
   let { user } = state.handleItem;
   return { user };
 };
 
-export default connect(mapStateToProps, {})(AddressForm);
+export default connect(mapStateToProps, {})(EditAddress);

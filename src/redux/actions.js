@@ -49,10 +49,11 @@ export const removeItem = data => {
 
 export const getProfile = data => {
   const addresses = data.map(profile => profile.shippingInfo);
-
+  const id = data.map(i => i._id);
   return {
     type: GET_PROFILE,
     payload: {
+      profileId: id[0],
       addresses: [...addresses]
     }
   };

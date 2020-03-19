@@ -1,22 +1,33 @@
 import React, { Component } from "react";
 import AddressForm from "./AddressForm";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 import { connect } from "react-redux";
 import { getProfile } from "../../redux/actions";
-
+import EditAddress from "./EditAddress";
 import "./address.css";
 class Address extends Component {
   state = {
-    showForm: false
+    showAddressForm: false,
+    showEditForm: false,
+    newData: "",
+    address: [],
+    editKey: ""
   };
 
   showAddressForm = () => {
-    const { showForm } = this.state;
-    this.setState({ showForm: !showForm });
+    const { showAddressForm } = this.state;
+    this.setState({ showAddressForm: !showAddressForm });
   };
   handleAddAddress = data => {
     // this.showAddressForm();
     this.showAddress(data);
+  };
+  showEditForm = i => {
+    const { showEditForm } = this.state;
+    this.setState({ showEditForm: !showEditForm, editKey: i });
+  };
+  editInfo = i => {
+    this.showEditForm(i);
   };
   showAddresses = data => {
     const {
@@ -24,7 +35,7 @@ class Address extends Component {
     } = this.props.profile;
     console.log(addresses);
     if (addresses) {
-      const a = addresses.map(item => {
+      const a = addresses.map((item, i) => {
         let {
           name,
           addressType,
@@ -36,50 +47,40 @@ class Address extends Component {
         } = item;
 
         return (
-          <div>
+          <div className="shipping-address">
             <br />
-            Name: {name || "N/A"}
-            <br /> Address Type: {addressType || "N/A"}
-            <br /> Street Address: {streetAddress || "N/A"}
-            <br />
-            Suite/Apt: {suite || "N/A"}
-            <br /> Province: {prov || "N/A"}
-            <br /> City: {city || "N/A"}
-            <br />
-            Postal Code: {postalCode || "N/A"}
-            <br />
-            <hr />
+            <p>
+              Name: {name || "N/A"}
+              &nbsp; &nbsp;{" "}
+            </p>
+            <p>Address Type: {addressType || "N/A"}</p>
+            <p>Street Address: {streetAddress || "N/A"}</p>
+            <p>Suite/Apt: {suite || "N/A"}</p>
+            <p>Province: {prov || "N/A"}</p>
+            <p>City: {city || "N/A"}</p>
+            <p>Postal Code: {postalCode || "N/A"}</p>
+            <span onClick={() => this.editInfo(i)}>Edit</span> <hr />
           </div>
         );
       });
       return a;
     }
     return addresses;
-
-    // return shippingInfo["name"] ? (
-    //   <div>
-    //     {name}
-    //     <br /> {addressType}
-    //     <br /> {streetAddress}
-    //     <br /> {suite}
-    //     <br /> {prov}
-    //     <br /> {city}
-    //     <br /> {postalCode}
-    //   </div>
-    // ) : (
-    //   <div>No Shipping Info</div>
-    // );
   };
   getProfile = () => {
     const {
       user: { id }
     } = this.props;
-    local(`/profiles/find/${id}`, {
+    backend(`/profiles/find/${id}`, {
       method: "GET"
     })
       .then(res => {
         this.props.getProfile(res.data);
-        console.log(res.data);
+
+        this.setState({
+          profileId: res.data.map(i => i._id),
+          address: res.data.map(i => i.shippingInfo)
+        });
       })
       .catch(err => {
         alert("Something went wrong");
@@ -89,13 +90,12 @@ class Address extends Component {
     this.getProfile();
   };
   render() {
-    const { showForm } = this.state;
+    const { showAddressForm, showEditForm, address, editKey } = this.state;
 
     return (
       <div>
         <h4>Shipping Address</h4>
         {this.showAddresses()}
-
         <button
           className="add-address-btn"
           onClick={() => this.showAddressForm()}
@@ -107,11 +107,21 @@ class Address extends Component {
           />
           Add an address
         </button>
-        <AddressForm
-          showForm={showForm}
-          showAddressForm={this.showAddressForm}
-          handleAddAddress={this.handleAddAddress}
-        />
+        {showAddressForm && (
+          <AddressForm
+            showForm={showAddressForm}
+            showAddressForm={this.showAddressForm}
+            handleAddAddress={this.handleAddAddress}
+          />
+        )}
+        {showEditForm && (
+          <EditAddress
+            showForm={showEditForm}
+            address={{ ...address[editKey] }}
+            showEditForm={this.showEditForm}
+          />
+        )}
+
         <a href="https://icons8.com/icon/1501/plus"></a>
       </div>
     );

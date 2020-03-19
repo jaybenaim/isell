@@ -11,6 +11,9 @@
     margin-right: 4%;
     margin-left: -4%;
   }
+  .shipping-address {
+    text-align: left;
+  }
 }
 @media (min-width: 441px) {
   .account-address,
