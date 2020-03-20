@@ -17,13 +17,13 @@ class EditAddress extends Component {
   onSubmit = e => {
     e.preventDefault();
     const {
-      handleAddAddress,
-      showAddressForm,
-      user: { id }
+      showEditForm,
+      user: { id },
+      profileId
     } = this.props;
     const data = { shippingInfo: this.state, user: { id } };
 
-    backend("/profiles/", {
+    backend(`/profiles/${profileId}`, {
       method: "PATCH",
       data: data,
       headers: {
@@ -32,8 +32,7 @@ class EditAddress extends Component {
     })
       .then(res => {
         console.log(res.data);
-        showAddressForm();
-        handleAddAddress(data);
+        showEditForm();
       })
       .catch(err => {
         alert("Something went wrong");

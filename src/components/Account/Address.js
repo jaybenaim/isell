@@ -10,7 +10,7 @@ class Address extends Component {
     showAddressForm: false,
     showEditForm: false,
     newData: "",
-    address: [],
+    addresses: [],
     editKey: ""
   };
 
@@ -19,7 +19,6 @@ class Address extends Component {
     this.setState({ showAddressForm: !showAddressForm });
   };
   handleAddAddress = data => {
-    // this.showAddressForm();
     this.showAddress(data);
   };
   showEditForm = i => {
@@ -30,31 +29,29 @@ class Address extends Component {
     this.showEditForm(i);
   };
   showAddresses = data => {
-    const {
-      shippingInfo: { addresses }
-    } = this.props.profile;
-    console.log(addresses);
+    const { addresses } = this.state;
+    console.log(typeof addresses);
     if (addresses) {
-      const a = addresses.map((item, i) => {
+      const a = addresses.map((address, i) => {
         let {
           name,
           addressType,
-          streetAddress,
+          street,
           suite,
           prov,
           city,
           postalCode
-        } = item;
+        } = address;
 
         return (
-          <div className="shipping-address">
+          <div className="shipping-address" key={i}>
             <br />
             <p>
               Name: {name || "N/A"}
               &nbsp; &nbsp;{" "}
             </p>
             <p>Address Type: {addressType || "N/A"}</p>
-            <p>Street Address: {streetAddress || "N/A"}</p>
+            <p>Street: {street || "N/A"}</p>
             <p>Suite/Apt: {suite || "N/A"}</p>
             <p>Province: {prov || "N/A"}</p>
             <p>City: {city || "N/A"}</p>
@@ -76,10 +73,9 @@ class Address extends Component {
     })
       .then(res => {
         this.props.getProfile(res.data);
-
         this.setState({
-          profileId: res.data.map(i => i._id),
-          address: res.data.map(i => i.shippingInfo)
+          profileId: res.data.map(i => i._id)[0],
+          addresses: res.data[0].shippingInfo
         });
       })
       .catch(err => {
@@ -90,7 +86,13 @@ class Address extends Component {
     this.getProfile();
   };
   render() {
-    const { showAddressForm, showEditForm, address, editKey } = this.state;
+    const {
+      showAddressForm,
+      showEditForm,
+      addresses,
+      editKey,
+      profileId
+    } = this.state;
 
     return (
       <div>
@@ -117,8 +119,9 @@ class Address extends Component {
         {showEditForm && (
           <EditAddress
             showForm={showEditForm}
-            address={{ ...address[editKey] }}
+            addresses={{ ...addresses[editKey] }}
             showEditForm={this.showEditForm}
+            profileId={profileId}
           />
         )}
 

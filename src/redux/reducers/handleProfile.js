@@ -8,10 +8,9 @@ const handleProfile = (
 ) => {
   switch (action.type) {
     case GET_PROFILE:
-      console.log(action.payload);
-      const { addresses, profileId } = action.payload;
+      const { profile } = action.payload;
       return Object.assign({}, state, {
-        profile: { shippingInfo: { addresses }, id: profileId }
+        profile
       });
     default:
       return state;
