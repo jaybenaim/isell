@@ -72,11 +72,14 @@ class Address extends Component {
       method: "GET"
     })
       .then(res => {
-        this.props.getProfile(res.data[0]);
-        this.setState({
-          profileId: res.data.map(i => i._id)[0],
-          addresses: res.data[0].shippingInfo
-        });
+        this.props.getProfile(res.data);
+        const { shippingInfo } = this.props.profile;
+        setTimeout(() => {
+          this.setState({
+            profileId: res.data._id,
+            addresses: shippingInfo
+          });
+        }, 500);
       })
       .catch(err => {
         alert("Something went wrong");

@@ -23,13 +23,13 @@ class EditAddress extends Component {
     } = this.props;
     const data = { shippingInfo: this.state, profile: { id: profileId } };
     console.log(this.state);
-    backend
-      .patch(`/addresses/${_id}`, {
-        data,
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
+    backend(`/addresses/${_id}`, {
+      method: "PATCH",
+      data,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
       .then(res => {
         console.log(res.data);
         showEditForm();
