@@ -7,29 +7,29 @@ class EditAddress extends Component {
   state = {
     name: "",
     addressType: "House",
-    streetAddress: "",
+    street: "",
     suite: "",
-    prov: "ON",
+    province: "ON",
     city: "",
-    postalCode: "",
-    placeholder: ""
+    postalCode: ""
   };
   onSubmit = e => {
     e.preventDefault();
     const {
       showEditForm,
       user: { id },
-      profileId
+      profileId,
+      address: { _id }
     } = this.props;
-    const data = { shippingInfo: this.state, user: { id } };
-
-    backend(`/profiles/${profileId}`, {
-      method: "PATCH",
-      data: data,
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
+    const data = { shippingInfo: this.state, profile: { id: profileId } };
+    console.log(this.state);
+    backend
+      .patch(`/addresses/${_id}`, {
+        data,
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
       .then(res => {
         console.log(res.data);
         showEditForm();
@@ -41,11 +41,26 @@ class EditAddress extends Component {
 
   handleInputChange = event => {
     const { value, name } = event.target;
+
     this.setState({
       [name]: value
     });
   };
+  componentDidMount() {
+    const {
+      address: { addressType, city, name, postalCode, province, street, suite }
+    } = this.props;
 
+    this.setState({
+      addressType,
+      city,
+      name,
+      postalCode,
+      province,
+      street,
+      suite
+    });
+  }
   render() {
     const { showEditForm, showForm, address } = this.props;
 
@@ -76,10 +91,10 @@ class EditAddress extends Component {
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
-                <Form.Label>Street Address</Form.Label>
+                <Form.Label>Street </Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder={address["streetAddress"]}
+                  placeholder={address["street"]}
                   name="streetAddress"
                   onChange={this.handleInputChange}
                 />
@@ -111,7 +126,8 @@ class EditAddress extends Component {
                 <Form.Label>Province</Form.Label>
                 <Form.Control
                   as="select"
-                  name="prov"
+                  name="province"
+                  value={address["province"]}
                   onChange={this.handleInputChange}
                 >
                   <option>AB</option>

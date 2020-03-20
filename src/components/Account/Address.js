@@ -38,7 +38,7 @@ class Address extends Component {
           addressType,
           street,
           suite,
-          prov,
+          province,
           city,
           postalCode
         } = address;
@@ -53,7 +53,7 @@ class Address extends Component {
             <p>Address Type: {addressType || "N/A"}</p>
             <p>Street: {street || "N/A"}</p>
             <p>Suite/Apt: {suite || "N/A"}</p>
-            <p>Province: {prov || "N/A"}</p>
+            <p>Province: {province || "N/A"}</p>
             <p>City: {city || "N/A"}</p>
             <p>Postal Code: {postalCode || "N/A"}</p>
             <span onClick={() => this.editInfo(i)}>Edit</span> <hr />
@@ -72,7 +72,7 @@ class Address extends Component {
       method: "GET"
     })
       .then(res => {
-        this.props.getProfile(res.data);
+        this.props.getProfile(res.data[0]);
         this.setState({
           profileId: res.data.map(i => i._id)[0],
           addresses: res.data[0].shippingInfo
@@ -119,7 +119,7 @@ class Address extends Component {
         {showEditForm && (
           <EditAddress
             showForm={showEditForm}
-            addresses={{ ...addresses[editKey] }}
+            address={{ ...addresses[editKey] }}
             showEditForm={this.showEditForm}
             profileId={profileId}
           />

@@ -21,9 +21,9 @@ class AddressForm extends Component {
       showAddressForm,
       user: { id }
     } = this.props;
-    const data = { shippingInfo: this.state, user: { id } };
+    const data = { shippingInfo: this.state, profile: { id } };
 
-    backend("/profiles/", {
+    backend("/addresses/", {
       method: "POST",
       data: data,
       headers: {
