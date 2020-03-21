@@ -130,6 +130,7 @@ class Address extends Component {
             address={{ ...addresses[editKey] }}
             showEditForm={this.showEditForm}
             profileId={profileId}
+            getAddresses={this.getAddresses}
           />
         )}
 

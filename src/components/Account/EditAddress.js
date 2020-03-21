@@ -21,8 +21,8 @@ class EditAddress extends Component {
       profileId,
       address: { _id }
     } = this.props;
-    const data = { shippingInfo: this.state, profile: { id: profileId } };
-    console.log(this.state);
+    const data = { ...this.state, user: { id } };
+
     backend(`/addresses/${_id}`, {
       method: "PATCH",
       data,
@@ -31,7 +31,12 @@ class EditAddress extends Component {
       }
     })
       .then(res => {
-        console.log(res.data);
+        const {
+          getAddresses,
+          user: { id }
+        } = this.props;
+        getAddresses(id);
+
         showEditForm();
       })
       .catch(err => {
@@ -95,7 +100,7 @@ class EditAddress extends Component {
                 <Form.Control
                   type="text"
                   placeholder={address["street"]}
-                  name="streetAddress"
+                  name="street"
                   onChange={this.handleInputChange}
                 />
               </Form.Group>
