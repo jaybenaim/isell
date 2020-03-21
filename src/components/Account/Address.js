@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AddressForm from "./AddressForm";
-import local from "../../Api/local";
+import backend from "../../Api/backend";
 import { connect } from "react-redux";
 import { getProfile } from "../../redux/actions";
 import EditAddress from "./EditAddress";
@@ -30,9 +30,8 @@ class Address extends Component {
   };
   showAddresses = data => {
     const { addresses } = this.state;
-    console.log(typeof addresses);
-    if (addresses) {
-      const a = addresses.map((address, i) => {
+    if (addresses.length > 0) {
+      return addresses.map((address, i) => {
         let {
           name,
           addressType,
@@ -60,25 +59,30 @@ class Address extends Component {
           </div>
         );
       });
-      return a;
     }
     return addresses;
+  };
+  getAddresses = id => {
+    backend(`/addresses/find/${id}`, {
+      method: "GET"
+    }).then(res => {
+      this.setState({ addresses: res.data[0] });
+    });
   };
   getProfile = () => {
     const {
       user: { id }
     } = this.props;
-    local(`/profiles/find/${id}`, {
+    backend(`/profiles/find/${id}`, {
       method: "GET"
     })
       .then(res => {
-        console.log(res.data);
+        this.getAddresses(id);
         this.props.getProfile(res.data);
         const { shippingInfo } = this.props.profile;
         setTimeout(() => {
           this.setState({
-            profileId: res.data._id,
-            addresses: shippingInfo
+            profileId: res.data._id
           });
         }, 500);
       })

@@ -7,9 +7,9 @@ class AddressForm extends Component {
   state = {
     name: "",
     addressType: "House",
-    streetAddress: "",
+    street: "",
     suite: "",
-    prov: "ON",
+    province: "ON",
     city: "",
     postalCode: "",
     placeholder: ""
@@ -21,11 +21,11 @@ class AddressForm extends Component {
       showAddressForm,
       user: { id }
     } = this.props;
-    const data = { shippingInfo: this.state, profile: { id } };
+    const data = { shippingInfo: this.state, user: { id } };
 
     backend("/addresses/", {
       method: "POST",
-      data: data,
+      data,
       headers: {
         "Content-Type": "application/json"
       }
@@ -33,7 +33,7 @@ class AddressForm extends Component {
       .then(res => {
         console.log(res.data);
         showAddressForm();
-        handleAddAddress(data);
+        handleAddAddress(res.data);
       })
       .catch(err => {
         alert("Something went wrong");
@@ -48,11 +48,11 @@ class AddressForm extends Component {
   };
 
   render() {
-    const { showAddressForm, edit, address } = this.props;
+    const { showForm, showAddressForm } = this.props;
     return (
       <div>
         <Modal
-          show={showAddressForm}
+          show={showForm}
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"
           centered
@@ -80,7 +80,7 @@ class AddressForm extends Component {
                 <Form.Control
                   type="text"
                   placeholder={"222 Example Road"}
-                  name="streetAddress"
+                  name="street"
                   onChange={this.handleInputChange}
                 />
               </Form.Group>
@@ -111,7 +111,7 @@ class AddressForm extends Component {
                 <Form.Label>Province</Form.Label>
                 <Form.Control
                   as="select"
-                  name="prov"
+                  name="province"
                   onChange={this.handleInputChange}
                 >
                   <option>AB</option>
