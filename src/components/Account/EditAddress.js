@@ -36,7 +36,6 @@ class EditAddress extends Component {
           user: { id }
         } = this.props;
         getAddresses(id);
-
         showEditForm();
       })
       .catch(err => {

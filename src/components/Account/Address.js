@@ -11,7 +11,10 @@ class Address extends Component {
     showEditForm: false,
     newData: "",
     addresses: [],
-    editKey: ""
+    editKey: "",
+    showConfirmDeleteMessage: false,
+    confirmText: "",
+    id: ""
   };
 
   showAddressForm = () => {
@@ -28,8 +31,34 @@ class Address extends Component {
   editInfo = i => {
     this.showEditForm(i);
   };
+  showConfirmMessage = id => {
+    const { showConfirmDeleteMessage } = this.state;
+    this.setState({ showConfirmDeleteMessage: !showConfirmDeleteMessage, id });
+  };
+  deleteAddress = e => {
+    e.preventDefault();
+    const { confirmText, id } = this.state;
+    confirmText === "yes" && this.deleteInfo(id);
+  };
+  handleConfirmChange = e => {
+    e.preventDefault();
+    this.setState({ confirmText: e.target.value.toLowerCase() });
+  };
+  handleDelete = id => {
+    this.showConfirmMessage(id);
+  };
+  deleteInfo = id => {
+    backend
+      .delete(`addresses/${id}`)
+      .then(res => {
+        this.getProfile();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   showAddresses = data => {
-    const { addresses } = this.state;
+    const { addresses, vb } = this.state;
     if (addresses.length > 0) {
       return addresses.map((address, i) => {
         let {
@@ -55,7 +84,14 @@ class Address extends Component {
             <p>Province: {province || "N/A"}</p>
             <p>City: {city || "N/A"}</p>
             <p>Postal Code: {postalCode || "N/A"}</p>
-            <span onClick={() => this.editInfo(i)}>Edit</span> <hr />
+            <span onClick={() => this.editInfo(i)}>Edit</span>
+            <span
+              onClick={() => this.handleDelete(address._id)}
+              className="delete-address"
+            >
+              Delete
+            </span>
+            <hr />
           </div>
         );
       });
@@ -99,13 +135,35 @@ class Address extends Component {
       showEditForm,
       addresses,
       editKey,
-      profileId
+      profileId,
+      showConfirmDeleteMessage
     } = this.state;
 
     return (
       <div>
         <h4>Shipping Address</h4>
+        {showConfirmDeleteMessage && (
+          <form>
+            <div className="form-group">
+              <label>Confirm Delete?</label>
+              <input
+                type="text"
+                name="confirm"
+                placeholder="yes"
+                autofocus
+                className="form-control confirm-address-delete"
+                onChange={e => this.handleConfirmChange(e)}
+              ></input>
+              <input
+                type="submit"
+                value="Delete"
+                onClick={e => this.deleteAddress(e)}
+              ></input>
+            </div>
+          </form>
+        )}
         {this.showAddresses()}
+
         <button
           className="add-address-btn"
           onClick={() => this.showAddressForm()}

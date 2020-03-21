@@ -36,3 +36,11 @@
     margin-left: -4%;
   }
 }
+.delete-address {
+  color: #ff0303;
+  padding-left: 4%;
+}
+.confirm-address-delete {
+  width: 21%;
+  margin: 0 auto;
+}
