@@ -1,28 +1,10 @@
 @media (max-width: 450px) {
-  .login-container {
-    position: absolute;
-  }
-  .login-btn {
-    position: relative;
-    top: -45px;
-    z-index: 5;
-    left: -220%;
-  }
-  .signup-btn {
-    position: relative;
-    top: -70px;
-    left: -220%;
-  }
-
   .navbar-toggler {
     margin-left: 85%;
     margin-top: -10%;
   }
 }
 @media (min-width: 451px) {
-  .login-container {
-    position: absolute;
-  }
   .login-btn {
     float: right;
     position: relative;
@@ -50,9 +32,6 @@
   }
 }
 @media (min-width: 789px) {
-  .login-container {
-    position: absolute;
-  }
   .login-btn {
     left: -70%;
     top: 15px;

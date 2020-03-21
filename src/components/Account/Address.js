@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AddressForm from "./AddressForm";
-import backend from "../../Api/backend";
+import local from "../../Api/local";
 import { connect } from "react-redux";
 import { getProfile } from "../../redux/actions";
 import EditAddress from "./EditAddress";
@@ -68,10 +68,11 @@ class Address extends Component {
     const {
       user: { id }
     } = this.props;
-    backend(`/profiles/find/${id}`, {
+    local(`/profiles/find/${id}`, {
       method: "GET"
     })
       .then(res => {
+        console.log(res.data);
         this.props.getProfile(res.data);
         const { shippingInfo } = this.props.profile;
         setTimeout(() => {

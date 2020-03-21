@@ -70,10 +70,10 @@ class Nav extends Component {
                 data-target="#navbarNavDropdown"
               >
                 <Link
-                  className="nav-link"
+                  className="nav-link products-nav-link"
                   to={{ pathname: "/Products", state: { isLoggedIn } }}
                 >
-                  Products<span className="sr-only">(current)</span>
+                  Products
                 </Link>
               </li>
 

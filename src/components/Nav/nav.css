@@ -2,6 +2,10 @@
   .navbar {
     background: rgba(154, 205, 50, 0.6) !important;
   }
+  .products-nav-link {
+    padding-bottom: 0;
+  }
+
   .cart-btn {
     display: flex;
     justify-content: center;
