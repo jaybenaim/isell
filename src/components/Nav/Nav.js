@@ -89,7 +89,8 @@ class Nav extends Component {
                   className="cart-btn btn cart-btn-2"
                   onClick={() => this.handleShowCart()}
                 >
-                  Cart &nbsp; <span>{qty}</span>
+                  <img src="https://img.icons8.com/doodle/48/000000/shopping-cart--v1.png"></img>
+                  &nbsp; <span>{qty}</span>
                 </button>
               </li>
             </ul>

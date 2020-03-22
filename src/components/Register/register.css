@@ -29,6 +29,7 @@
   }
   .logout-btn {
     border: none;
+    background: rgba(154, 205, 50, 0);
   }
 }
 @media (min-width: 789px) {

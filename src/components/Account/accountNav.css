@@ -10,6 +10,13 @@
     background: #eee;
     border: 1px outset lightgray;
   }
+  .account-link-show {
+    position: fixed;
+    top: 6%;
+    left: 15%;
+    z-index: 9;
+    width: 15%;
+  }
 }
 @media (max-width: 450px) {
   .account-link {
