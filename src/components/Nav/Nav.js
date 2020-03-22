@@ -77,10 +77,14 @@ class Nav extends Component {
                 </Link>
               </li>
 
-              <li className="nav-item">
+              <li className="nav-item account-nav-item">
+                <span className="collapse-hr">
+                  <hr />
+                </span>
+
                 <AccountNav />
               </li>
-              <li className="nav-item">
+              <li className="nav-item register-nav-item">
                 <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
               </li>
 

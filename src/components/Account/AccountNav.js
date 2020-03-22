@@ -19,12 +19,13 @@ class AccountNav extends Component {
     const { showAccountClass } = this.state;
     return (
       <>
-        <div
+        <span
+          className="account-nav-link"
           onMouseEnter={() => this.showAccountMenu("show")}
           onClick={() => this.showAccountMenu("mobile")}
         >
           Account
-        </div>
+        </span>
         <AccountHover
           showAccountClass={showAccountClass}
           showAccountMenu={this.showAccountMenu}

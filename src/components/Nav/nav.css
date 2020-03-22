@@ -26,6 +26,18 @@
     border-top-right-radius: 40%;
     border-bottom-right-radius: 40%;
   }
+  .navbar-collapse {
+    height: 100%;
+    z-index: 9;
+  }
+  .navbar-collapse ul {
+    position: fixed;
+    background: rgba(154, 205, 50, 0.6);
+    padding: 0 6.5%;
+    right: 0%;
+    top: 7.9%;
+    padding-bottom: 3%;
+  }
 }
 @media (min-width: 498px) {
   .cart-btn {
@@ -42,9 +54,10 @@
     background: rgba(154, 205, 50, 0);
     border: 1px solid #eee;
     border-radius: 3px;
-    padding: 0 10%;
-    width: 150%;
-    height: 100%;
+    padding: 0 1.3%;
+    position: fixed;
+    right: 17%;
+    top: 0.5%;
   }
   .navbar-toggler {
     margin-left: 91%;
@@ -56,11 +69,31 @@
   .cart-qty-icon {
     font-size: 1.4em;
   }
+  .navbar-collapse {
+    max-height: 70px;
+    z-index: 9;
+  }
+
   .products-nav-link {
-    margin-top: -10%;
+    margin-top: -5%;
+  }
+  .account-nav-link {
+    margin-top: -5%;
   }
   .nav-item {
     padding: 4%;
+  }
+  .collapse-hr {
+    display: none;
+  }
+  .account-nav-item,
+  .register-nav-item {
+    position: fixed;
+    right: 0%;
+    top: -4%;
+  }
+  .account-nav-item {
+    right: 7%;
   }
 }
 

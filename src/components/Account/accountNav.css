@@ -6,16 +6,18 @@
     display: block;
     list-style: none;
     text-align: left;
-    width: 130%;
-    background: #eee;
-    border: 1px outset lightgray;
-  }
-  .account-link-show {
+    background: rgba(154, 205, 50, 0.3);
+    border: 1px none lightgray;
     position: fixed;
-    top: 6%;
-    left: 15%;
+    top: 6.8%;
+    right: 2%;
     z-index: 9;
     width: 15%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+  }
+  .acccount-link-show a {
+    color: black;
   }
 }
 @media (max-width: 450px) {
