@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "../Register/Login";
 import "./protectedRoute.css";
+import { Redirect } from "react-router-dom";
 
 function PrivateRoute({
   isLoggedIn,
@@ -30,9 +31,10 @@ function PrivateRoute({
                 X
               </button>
             </div>
+            <Login redirect={true} handleLogin={handleLogin} {...props} />
           </>
         ) : (
-          <Login redirect={true} handleLogin={handleLogin} />
+          <Login redirect={true} handleLogin={handleLogin} {...props} />
         )
       }
     />

@@ -20,9 +20,6 @@ class Register extends Component {
               <div className="login-btn">
                 <Link to="/login">Login</Link>
               </div>
-              <div className="signup-btn">
-                <Link to="/signup">Signup</Link>
-              </div>
             </div>
           </>
         )}

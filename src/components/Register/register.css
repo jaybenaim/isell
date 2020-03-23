@@ -5,23 +5,14 @@
   }
 }
 @media (min-width: 451px) {
+  .login-container {
+    display: flex;
+    flex-direction: row;
+  }
   .login-btn {
-    float: right;
-    position: relative;
-    margin-right: 220%;
-    margin-top: -80%;
-    border: none;
-    padding: 2px;
-    padding-left: 6px;
-    padding-right: 6px;
+    padding-right: 4% !important;
   }
-  .signup-btn {
-    float: right;
-    position: relative;
-    margin-right: 220%;
-    margin-top: -70%;
-    border: none;
-  }
+
   .login-btn:hover,
   .signup-btn:hover {
     background-color: #eee;
