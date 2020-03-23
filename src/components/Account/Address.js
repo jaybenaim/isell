@@ -14,7 +14,8 @@ class Address extends Component {
     editKey: "",
     showConfirmDeleteMessage: false,
     confirmText: "",
-    id: ""
+    id: "",
+    isLoading: false
   };
 
   showAddressForm = () => {
@@ -99,13 +100,16 @@ class Address extends Component {
     return addresses;
   };
   getAddresses = id => {
+    this.setState({ isLoading: true });
     backend(`/addresses/find/${id}`, {
       method: "GET"
     }).then(res => {
-      this.setState({ addresses: res.data[0] });
+      this.setState({ addresses: res.data[0], isLoading: false });
     });
   };
   getProfile = () => {
+    this.setState({ isLoading: true });
+
     const {
       user: { id }
     } = this.props;
@@ -118,7 +122,8 @@ class Address extends Component {
         const { shippingInfo } = this.props.profile;
         setTimeout(() => {
           this.setState({
-            profileId: res.data._id
+            profileId: res.data._id,
+            isLoading: false
           });
         }, 500);
       })
@@ -136,7 +141,8 @@ class Address extends Component {
       addresses,
       editKey,
       profileId,
-      showConfirmDeleteMessage
+      showConfirmDeleteMessage,
+      isLoading
     } = this.state;
 
     return (
@@ -162,7 +168,15 @@ class Address extends Component {
             </div>
           </form>
         )}
-        {this.showAddresses()}
+        {isLoading ? (
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          this.showAddresses()
+        )}
 
         <button
           className="add-address-btn"
