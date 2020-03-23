@@ -76,17 +76,18 @@ class Nav extends Component {
                   Products
                 </Link>
               </li>
+              <span className="right-nav">
+                <li className="nav-item account-nav-item">
+                  <span className="collapse-hr">
+                    <hr />
+                  </span>
 
-              <li className="nav-item account-nav-item">
-                <span className="collapse-hr">
-                  <hr />
-                </span>
-
-                <AccountNav />
-              </li>
-              <li className="nav-item register-nav-item">
-                <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
-              </li>
+                  <AccountNav />
+                </li>
+                <li className="nav-item register-nav-item">
+                  <Register isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
+                </li>
+              </span>
 
               <li data-toggle="collapse" data-target="#navbarNavDropdown">
                 <button

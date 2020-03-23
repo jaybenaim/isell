@@ -86,11 +86,16 @@
   .collapse-hr {
     display: none;
   }
-  .account-nav-item,
-  .register-nav-item {
-    position: fixed;
-    right: 0%;
-    top: -4%;
+  .navbar-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+  }
+  .right-nav {
+    grid-column: 3;
+    display: inline-block;
+    margin: 0 auto;
+    padding-left: 70%;
   }
   .account-nav-item {
     right: 7%;
