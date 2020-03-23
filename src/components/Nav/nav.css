@@ -29,14 +29,17 @@
   .navbar-collapse {
     height: 100%;
     z-index: 9;
+    padding-top: 1%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .navbar-collapse ul {
-    position: fixed;
-    background: rgba(154, 205, 50, 0.6);
-    padding: 0 6.5%;
-    right: 0%;
-    top: 7.9%;
-    padding-bottom: 3%;
+    background: rgba(154, 205, 50, 0.95);
+    border: 0.5px outset rgba(154, 205, 50, 0.95);
+    padding: 6.5%;
+
+    width: 100%;
+    grid-column: 3;
   }
 }
 @media (min-width: 498px) {
@@ -103,6 +106,6 @@
 }
 
 .navbar {
-  background: rgba(154, 205, 50, 0.6) !important;
+  background: rgba(154, 205, 50, 0.95) !important;
   max-height: 70px;
 }

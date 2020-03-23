@@ -17,6 +17,9 @@
     object-fit: contain;
     object-position: 0 52%;
   }
+  .product-card-1 img {
+    margin-left: 20px;
+  }
 }
 
 @media (min-width: 751px) {
@@ -32,8 +35,7 @@
     object-position: 0 54%;
     margin-top: 5%;
   }
-  .related-images {
-  }
+
   .product-container div > h5 {
     margin-top: 10%;
   }
