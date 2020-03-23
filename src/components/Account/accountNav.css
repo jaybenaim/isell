@@ -32,4 +32,8 @@
     border: 1px none lightgray;
     padding: 3%;
   }
+  .account-link-mobile li {
+    list-style: none;
+    color: black;
+  }
 }
