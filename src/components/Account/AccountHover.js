@@ -12,7 +12,7 @@ class AccountHover extends Component {
       >
         <ul className={showAccountClass}>
           <Link to="/account">
-            <li onClick={() => showAccountMenu("none")}>Your Account</li>
+            <li onClick={() => showAccountMenu("none")}>Account</li>
           </Link>
           <Link to="/cart">
             <li onClick={() => showAccountMenu("none")}>

@@ -37,7 +37,6 @@
     background: rgba(154, 205, 50, 0.95);
     border: 0.5px outset rgba(154, 205, 50, 0.95);
     padding: 6.5%;
-
     width: 100%;
     grid-column: 3;
   }
@@ -77,12 +76,6 @@
     z-index: 9;
   }
 
-  .products-nav-link {
-    margin-top: -5%;
-  }
-  .account-nav-link {
-    margin-top: -5%;
-  }
   .nav-item {
     padding: 4%;
   }
@@ -102,6 +95,19 @@
   }
   .account-nav-item {
     right: 7%;
+  }
+  .products-nav-link {
+    display: flex;
+    float: left;
+    padding-top: 4%;
+    font-size: 1.4em;
+  }
+  .right-nav {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding-left: 60%;
+    padding-top: 5%;
   }
 }
 
